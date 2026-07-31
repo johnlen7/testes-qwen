@@ -1,0 +1,214 @@
+/* ============================================================
+   ÓRBITA — design tokens, temas, base
+   ============================================================ */
+
+:root {
+  /* tipografia */
+  --font-display: 'Unbounded', 'Arial Black', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* escala de espaçamento (base 4) */
+  --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem;
+  --s5: 1.5rem; --s6: 2rem; --s7: 3rem; --s8: 4rem; --s9: 6rem; --s10: 10rem;
+
+  /* motion */
+  --d1: 150ms; --d2: 300ms; --d3: 600ms; --d4: 1200ms;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.4, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* tema dark (default) */
+  --bg: #0b0b10;
+  --bg-soft: #101017;
+  --surface: #14141c;
+  --surface-2: #1b1b26;
+  --line: rgba(244, 242, 236, 0.09);
+  --ink: #f4f2ec;
+  --ink-2: #b9b6c4;
+  --muted: #8a8798;
+  --accent: #ff4d24;
+  --accent-ink: #18060a;
+  --accent-soft: rgba(255, 77, 36, 0.14);
+  --teal: #57e6c9;
+  --teal-soft: rgba(87, 230, 201, 0.1);
+  --glow: rgba(255, 77, 36, 0.35);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  --grain-opacity: 0.05;
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f2efe6;
+  --bg-soft: #ebe7da;
+  --surface: #fbf9f3;
+  --surface-2: #ffffff;
+  --line: rgba(21, 21, 28, 0.1);
+  --ink: #15151c;
+  --ink-2: #43414e;
+  --muted: #6d6a78;
+  --accent: #c22e0b;
+  --accent-ink: #fff4ef;
+  --accent-soft: rgba(194, 46, 11, 0.1);
+  --teal: #0d8a70;
+  --teal-soft: rgba(13, 138, 112, 0.08);
+  --glow: rgba(194, 46, 11, 0.25);
+  --shadow: 0 24px 60px rgba(35, 25, 15, 0.14);
+  --grain-opacity: 0.035;
+  color-scheme: light;
+}
+
+/* ---------- reset / base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  transition: background-color var(--d3) var(--ease-io), color var(--d3) var(--ease-io);
+}
+
+/* grão de filme — textura sutil global */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; }
+ul[role='list'], ol[role='list'] { list-style: none; padding: 0; }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* focus visible autoral */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- tipografia ---------- */
+.kicker {
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.h-xl { font-size: clamp(2.6rem, 7.5vw, 6.5rem); }
+.h-lg { font-size: clamp(2rem, 4.6vw, 3.6rem); }
+.h-md { font-size: clamp(1.3rem, 2.4vw, 1.8rem); }
+
+.lead { font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--ink-2); max-width: 56ch; }
+.muted { color: var(--muted); }
+
+/* ---------- layout ---------- */
+.wrap { width: min(1200px, 100% - 2 * var(--s5)); margin-inline: auto; }
+.section { padding-block: clamp(var(--s8), 12vw, var(--s10)); position: relative; }
+.section-head { display: grid; gap: var(--s4); margin-bottom: clamp(var(--s6), 6vw, var(--s8)); }
+
+.skip-link {
+  position: absolute;
+  left: var(--s4);
+  top: -100%;
+  z-index: 300;
+  padding: var(--s3) var(--s4);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  border-radius: 4px;
+  transition: top var(--d2) var(--ease-expo);
+}
+.skip-link:focus-visible { top: var(--s4); }
+
+/* ---------- botões ---------- */
+.btn {
+  --btn-bg: var(--accent);
+  --btn-ink: var(--accent-ink);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: 1rem 1.9rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: var(--btn-ink);
+  background: var(--btn-bg);
+  border-radius: 999px;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--d2) var(--ease-spring), box-shadow var(--d2) var(--ease-expo);
+  will-change: transform;
+}
+.btn:hover { box-shadow: 0 8px 32px var(--glow); }
+.btn:active { transform: scale(0.97); }
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-ink: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+  transition: transform var(--d2) var(--ease-spring), box-shadow var(--d2) var(--ease-expo), background-color var(--d2);
+}
+.btn--ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); background: transparent; }
+
+/* ripple autoral */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  transform: scale(0);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ---------- reveal on scroll ---------- */
+.rv {
+  opacity: 0;
+  translate: 0 28px;
+  transition: opacity var(--d3) var(--ease-expo), translate var(--d3) var(--ease-expo);
+  transition-delay: var(--rv-delay, 0ms);
+}
+.rv.is-in { opacity: 1; translate: 0 0; }
+
+/* ---------- reduced motion: desliga tudo que é decorativo ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .rv { opacity: 1; translate: none; }
+}
+
+/* util */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}

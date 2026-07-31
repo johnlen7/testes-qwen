@@ -1,0 +1,130 @@
+---
+import OrbitaSVG from './OrbitaSVG.astro';
+---
+
+<section class="section finale" aria-label="Chamada final">
+  <div class="finale__rings" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="wrap finale__in">
+    <div class="finale__stage rv">
+      <OrbitaSVG uid="fin" class="finale__svg" />
+    </div>
+
+    <div class="finale__copy">
+      <p class="kicker rv">Lançamento</p>
+      <h2 class="h-lg rv" style="--rv-delay:100ms">Pronto para<br />decolar?</h2>
+      <p class="lead rv" style="--rv-delay:200ms">
+        30 dias de teste em casa, garantia de 3 anos e o silêncio mais bem
+        calculado deste sistema solar.
+      </p>
+      <div class="rv" style="--rv-delay:300ms">
+        <button class="btn finale__cta" type="button" data-ripple data-magnetic data-finale-cta>
+          <span data-finale-label>Comprar ÓRBITA — Grafite · R$ 2.499</span>
+        </button>
+        <p class="muted finale__fine">Checkout simulado — produto fictício.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <a class="footer__brand" href="#topo">
+      <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true">
+        <circle cx="16" cy="16" r="6" fill="var(--accent)" />
+        <ellipse cx="16" cy="16" rx="14" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.6" transform="rotate(-24 16 16)" />
+      </svg>
+      <span>ÓRBITA</span>
+    </a>
+    <nav class="footer__nav" aria-label="Rodapé">
+      <a href="#tecnologia">Tecnologia</a>
+      <a href="#configurador">Configurar</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <p class="muted footer__note">
+      ÓRBITA é um produto fictício criado para um desafio de frontend.<br />
+      © 2026 Estúdio Órbita. Nenhum satélite foi prejudicado.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .finale {
+    position: relative;
+    overflow: clip;
+    text-align: center;
+    padding-block: clamp(var(--s9), 14vw, 12rem);
+  }
+
+  .finale__rings {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+  .finale__rings span {
+    position: absolute;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    animation: finale-ring 3.2s var(--ease-expo) infinite;
+    opacity: 0;
+  }
+  .finale__rings span:nth-child(2) { animation-delay: 1.05s; }
+  .finale__rings span:nth-child(3) { animation-delay: 2.1s; }
+  @keyframes finale-ring {
+    from { width: 180px; height: 180px; opacity: 0.8; }
+    to   { width: 120vmin; height: 120vmin; opacity: 0; }
+  }
+
+  .finale__in { position: relative; display: grid; justify-items: center; gap: var(--s7); }
+  .finale__stage { width: min(52vw, 240px); }
+  .finale__svg { animation: finale-float 5s var(--ease-io) infinite alternate; }
+  @keyframes finale-float {
+    from { translate: 0 -6px; }
+    to   { translate: 0 10px; }
+  }
+
+  .finale__copy { display: grid; justify-items: center; gap: var(--s5); }
+  .finale__cta {
+    font-size: 1.05rem;
+    padding: 1.15rem 2.4rem;
+    will-change: transform;
+  }
+  .finale__cta span { display: inline-block; will-change: transform; }
+  .finale__fine { margin-top: var(--s3); font-size: 0.8rem; }
+
+  .footer { border-top: 1px solid var(--line); padding-block: var(--s7); }
+  .footer__in {
+    display: grid;
+    justify-items: center;
+    gap: var(--s5);
+    text-align: center;
+  }
+  .footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s2);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    font-size: 0.85rem;
+  }
+  .footer__nav { display: flex; gap: var(--s5); flex-wrap: wrap; justify-content: center; }
+  .footer__nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color var(--d1);
+  }
+  .footer__nav a:hover { color: var(--ink); }
+  .footer__note { font-size: 0.8rem; line-height: 1.7; }
+</style>
+
+<script>
+  import '../scripts/finale.js';
+</script>

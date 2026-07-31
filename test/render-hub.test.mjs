@@ -8,6 +8,8 @@ const projeto = {
   model: 'Qwen',
   score: 86,
   accent: '#ff5c1a',
+  stack: 'vanilla TS · Vite',
+  date: '2026-07-23',
   enabled: true,
 };
 
@@ -39,6 +41,32 @@ test('omite a nota quando é null', () => {
 test('declara que as notas sao preliminares', () => {
   const html = renderHub([projeto], ok);
   assert.match(html, /preliminar/i);
+});
+
+test('mostra a stack do projeto', () => {
+  const html = renderHub([projeto], ok);
+  assert.match(html, /vanilla TS · Vite/);
+});
+
+test('mostra a data do projeto em formato brasileiro', () => {
+  const html = renderHub([projeto], ok);
+  assert.match(html, /23\/07\/2026/);
+});
+
+test('usa datetime ISO no elemento time', () => {
+  const html = renderHub([projeto], ok);
+  assert.match(html, /<time[^>]*datetime="2026-07-23"/);
+});
+
+test('omite stack e data quando ausentes', () => {
+  const semMeta = { ...projeto, stack: undefined, date: undefined };
+  const html = renderHub([semMeta], ok);
+  assert.doesNotMatch(html, /class="card-tech"/);
+});
+
+test('cabecalho traz a data da avaliacao', () => {
+  const html = renderHub([projeto], ok, { avaliadoEm: '2026-07-31' });
+  assert.match(html, /31\/07\/2026/);
 });
 
 test('projeto desabilitado nao aparece', () => {

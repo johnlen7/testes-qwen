@@ -10,6 +10,14 @@ import { renderHub } from './lib/render-hub.mjs';
 const root = path.dirname(fileURLToPath(import.meta.url));
 const siteDir = path.join(root, 'site');
 
+// Data em que a rodada de avaliação foi feita. Fixa de propósito: não é a data
+// do build. Rebuildar o site não reavalia nada.
+const AVALIADO_EM = '2026-07-31';
+
+// --hub-only re-renderiza só o hub a partir do site/ que já existe, sem
+// reconstruir os apps. Usado ao mexer em texto, nota ou metadado de card.
+const hubOnly = process.argv.includes('--hub-only');
+
 function run(cmd, args, cwd) {
   return new Promise((resolve) => {
     // shell: true no Windows para resolver npm.cmd / npx.cmd.
@@ -32,12 +40,22 @@ const deps = { run, exists: (p) => existsSync(path.join(root, p)) };
 const projects = JSON.parse(await fs.readFile(path.join(root, 'projects.json'), 'utf8'));
 const enabled = projects.filter((p) => p.enabled);
 
-await fs.rm(siteDir, { recursive: true, force: true });
+if (!hubOnly) {
+  await fs.rm(siteDir, { recursive: true, force: true });
+}
 await fs.mkdir(path.join(siteDir, 'p'), { recursive: true });
 
 const results = new Map();
 
 for (const project of enabled) {
+  if (hubOnly) {
+    const pronto = existsSync(path.join(siteDir, 'p', project.slug, 'index.html'));
+    results.set(project.slug, pronto
+      ? { ok: true }
+      : { ok: false, reason: 'não construído nesta execução (--hub-only)' });
+    continue;
+  }
+
   console.log(`\n=== ${project.slug} ===`);
   const result = await buildApp(project, deps);
 
@@ -56,7 +74,10 @@ for (const project of enabled) {
 }
 
 // Hub e assets estáticos.
-await fs.writeFile(path.join(siteDir, 'index.html'), renderHub(projects, results));
+await fs.writeFile(
+  path.join(siteDir, 'index.html'),
+  renderHub(projects, results, { avaliadoEm: AVALIADO_EM }),
+);
 await fs.cp(path.join(root, 'hub', 'hub.css'), path.join(siteDir, 'hub.css'));
 
 const shotsDir = path.join(root, 'hub', 'shots');

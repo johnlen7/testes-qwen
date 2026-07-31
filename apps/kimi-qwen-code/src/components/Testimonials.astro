@@ -1,0 +1,118 @@
+---
+const depoimentos = [
+  {
+    texto: 'Liguei o ANC no metrô lotado e o mundo simplesmente saiu de órbita. Nunca ouvi um silêncio tão bem construído.',
+    nome: 'Marina Duarte', cargo: 'Produtora musical, São Paulo', nota: 5,
+  },
+  {
+    texto: 'Trabalho em open space há anos. O ÓRBITA é o primeiro fone que me devolveu a sensação de escritório próprio.',
+    nome: 'Rafael Okamura', cargo: 'Engenheiro de software, Curitiba', nota: 5,
+  },
+  {
+    texto: 'O palco sonoro parece ter gravidade própria: cada instrumento no lugar certo, girando em torno da voz.',
+    nome: 'Luiza Prado', cargo: 'Crítica de áudio, Revista Espectro', nota: 5,
+  },
+  {
+    texto: '40 horas é real. Cruzei uma semana inteira de voos e reuniões com uma única carga.',
+    nome: 'Tomás Ferreira', cargo: 'Consultor, Lisboa', nota: 4,
+  },
+  {
+    texto: 'O modo atravessar é mágico: converso com a barista sem tirar o fone e sem aquela voz de robô dos concorrentes.',
+    nome: 'Beatriz Nunes', cargo: 'Arquiteta, Belo Horizonte', nota: 5,
+  },
+  {
+    texto: 'Design impecável. É o único gadget que já me rendeu elogios de desconhecidos no aeroporto.',
+    nome: 'André Vasques', cargo: 'Fotógrafo, Florianópolis', nota: 5,
+  },
+];
+
+function estrelas(n) {
+  return Array.from({ length: 5 }, (_, i) => i < n);
+}
+---
+
+<section class="section quotes" aria-label="Depoimentos de clientes">
+  <div class="wrap section-head rv">
+    <p class="kicker">Prova social</p>
+    <h2 class="h-lg">Quem já está em órbita.</h2>
+    <p class="muted">Arraste para navegar · pausa ao passar o mouse</p>
+  </div>
+
+  <div class="marquee" data-marquee>
+    <div class="marquee__track">
+      {[0, 1].map((dup) => (
+        <div class="marquee__group" role={dup === 0 ? 'list' : undefined} aria-hidden={dup === 1 ? 'true' : undefined}>
+          {depoimentos.map((d) => (
+            <figure class="quote" role={dup === 0 ? 'listitem' : undefined}>
+              <div class="quote__stars" aria-label={`Nota ${d.nota} de 5`}>
+                {estrelas(d.nota).map((cheia) => (
+                  <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true">
+                    <path
+                      d="M10 1.8l2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8z"
+                      fill={cheia ? 'var(--accent)' : 'none'}
+                      stroke="var(--accent)"
+                      stroke-width="1.2"
+                    />
+                  </svg>
+                ))}
+              </div>
+              <blockquote>“{d.texto}”</blockquote>
+              <figcaption>
+                <strong>{d.nome}</strong>
+                <span class="muted">{d.cargo}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .quotes { overflow: clip; }
+
+  .marquee {
+    cursor: grab;
+    overflow: clip;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .marquee.is-dragging { cursor: grabbing; }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    user-select: none;
+  }
+  .marquee__group {
+    display: flex;
+    gap: var(--s4);
+    padding-right: var(--s4);
+  }
+
+  .quote {
+    display: grid;
+    gap: var(--s4);
+    align-content: start;
+    width: min(84vw, 380px);
+    padding: var(--s6);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    transition: border-color var(--d2), transform var(--d2) var(--ease-spring);
+  }
+  .quote:hover { border-color: color-mix(in srgb, var(--teal) 50%, var(--line)); transform: translateY(-4px); }
+  .quote__stars { display: flex; gap: 3px; }
+  .quote blockquote { font-size: 1.02rem; line-height: 1.55; }
+  .quote figcaption { display: grid; }
+  .quote figcaption .muted { font-size: 0.85rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { overflow-x: auto; cursor: default; }
+  }
+</style>
+
+<script>
+  import '../scripts/marquee.js';
+</script>

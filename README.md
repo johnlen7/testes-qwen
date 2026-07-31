@@ -5,9 +5,11 @@ implementação em `/p/<slug>/`.
 
 ## Comandos
 
-    npm test        # testes das funções puras
-    npm run build   # constrói os apps habilitados em site/ e verifica
-    npm run capture # regera os screenshots dos cards (precisa de Chrome local)
+    npm test                    # testes das funções puras
+    npm run build               # constrói os apps em site/ e verifica
+    node build.mjs --hub-only   # re-renderiza só o hub, sem rebuildar os apps
+    npm run capture             # regera os screenshots (precisa de Chrome local)
+    node scrub-probe.mjs <slug>...   # mede se o scroll-telling scruba de verdade
 
 ## Adicionar um projeto
 
@@ -18,10 +20,15 @@ implementação em `/p/<slug>/`.
 
 ## Notas
 
-As notas exibidas vêm de avaliação por leitura estática de código, sem
-confirmação visual. São preliminares. `claude-01` aparece sem nota de
-propósito: a avaliação que existe dele foi feita no meio da construção e
-está obsoleta.
+As notas exibidas vêm de avaliação por leitura estática de código contra a
+rubrica do PRD (animação 25, design 20, interatividade 15, código 15,
+acessibilidade 10, performance 10, extra 5). São preliminares.
+
+A afirmação mais frágil dessa leitura é "o scroll-telling faz scrubbing
+real". `scrub-probe.mjs` existe para medir isso em vez de supor: ele amostra
+`transform`/`opacity` de todos os elementos em 8 posições de scroll e conta
+quantos valores distintos cada um assume. Scrubbing real produz elementos com
+muitos valores distintos; trigger com IntersectionObserver produz dois.
 
 ## Publicado em
 

@@ -1,0 +1,138 @@
+---
+import OrbitaSVG from './OrbitaSVG.astro';
+
+const steps = [
+  {
+    n: '01',
+    title: 'Leitura de órbita',
+    text: 'Seis microfones mapeiam o ambiente 200 vezes por segundo. Cada ruído vira um corpo celeste com trajetória calculada.',
+  },
+  {
+    n: '02',
+    title: 'Engenharia em camadas',
+    text: 'Concha acústica, anel de captação, almofada de memória e driver de 42mm — cada camada com uma função orbital precisa.',
+  },
+  {
+    n: '03',
+    title: 'Anti-ruído em contrafase',
+    text: 'O DSP gera ondas em contrafase que anulam o ruído antes de ele tocar seu ouvido. −48dB de silêncio calculado.',
+  },
+  {
+    n: '04',
+    title: 'Reentrada perfeita',
+    text: 'Tudo se encaixa em 214 gramas. O que fica é só a música — e a sensação de gravidade zero.',
+  },
+];
+---
+
+<section class="story" id="tecnologia" aria-label="Como o ÓRBITA funciona">
+  <div class="story__sticky">
+    <div class="wrap story__in">
+      <div class="story__copy">
+        <p class="kicker">Por dentro do silêncio</p>
+        <div class="story__steps">
+          {steps.map((s, i) => (
+            <article class="story__step" data-step={i} style={i === 0 ? 'opacity:1' : ''}>
+              <span class="story__num muted">{s.n}</span>
+              <h2 class="h-md">{s.title}</h2>
+              <p class="muted">{s.text}</p>
+            </article>
+          ))}
+        </div>
+        <div class="story__rail" aria-hidden="true">
+          <span class="story__rail-fill"></span>
+        </div>
+      </div>
+
+      <div class="story__stage" aria-hidden="true">
+        <svg class="story__waves" viewBox="0 0 440 480">
+          <g fill="none" stroke="var(--teal)" stroke-width="1.5">
+            <ellipse class="story__wave" cx="248" cy="322" rx="34" ry="44" />
+            <ellipse class="story__wave" cx="248" cy="322" rx="34" ry="44" />
+            <ellipse class="story__wave" cx="248" cy="322" rx="34" ry="44" />
+          </g>
+        </svg>
+        <div class="story__product">
+          <OrbitaSVG uid="story" class="story__svg" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story { height: 430vh; position: relative; }
+  .story__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: grid;
+    align-items: center;
+    overflow: clip;
+  }
+  .story__in {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+    gap: var(--s7);
+  }
+
+  .story__copy { position: relative; padding-left: var(--s6); display: grid; gap: var(--s5); }
+  .story__steps { position: relative; min-height: 13em; }
+  .story__step {
+    position: absolute;
+    inset: 0 auto auto 0;
+    max-width: 40ch;
+    opacity: 0;
+    display: grid;
+    gap: var(--s3);
+    will-change: opacity, transform;
+  }
+  .story__num {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+  }
+
+  .story__rail {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .story__rail-fill {
+    display: block;
+    width: 100%; height: 100%;
+    background: var(--accent);
+    transform-origin: top;
+    transform: scaleY(0);
+  }
+
+  .story__stage { position: relative; display: grid; place-items: center; }
+  .story__product, .story__waves { grid-area: 1 / 1; width: min(100%, 460px); }
+  .story__waves { overflow: visible; opacity: 0; }
+  .story__wave { opacity: 0; transform-origin: 248px 322px; }
+
+  @media (max-width: 900px) {
+    .story { height: 380vh; }
+    .story__in { grid-template-columns: 1fr; gap: 0; align-content: center; }
+    .story__stage { order: -1; }
+    .story__product, .story__waves { width: min(64vw, 280px); }
+    .story__copy { padding-left: var(--s5); }
+    .story__steps { min-height: 11em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .story { height: auto; }
+    .story__sticky { position: static; height: auto; padding-block: var(--s9); }
+    .story__steps { min-height: 0; display: grid; gap: var(--s6); }
+    .story__step { position: static; opacity: 1; }
+    .story__rail { display: none; }
+  }
+</style>
+
+<script>
+  import '../scripts/story.js';
+</script>

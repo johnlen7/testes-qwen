@@ -4,6 +4,7 @@ import { buildApp } from '../lib/build-app.mjs';
 
 const vite = { slug: 'qwen', dir: 'apps/qwen', builder: 'vite', outDir: 'dist' };
 const svelte = { slug: 'qwen-01', dir: 'apps/qwen-01', builder: 'sveltekit', outDir: 'build' };
+const astro = { slug: 'kimi-qwen-code', dir: 'apps/kimi-qwen-code', builder: 'astro', outDir: 'dist' };
 
 function fakeDeps({ codes = [0, 0], lock = true } = {}) {
   const commands = [];
@@ -46,6 +47,22 @@ test('sveltekit nao recebe base nem outDir', async () => {
   const { deps, commands } = fakeDeps();
   await buildApp(svelte, deps);
   assert.deepEqual(commands[1], ['npx', '--no-install', 'vite', 'build']);
+});
+
+test('astro usa a CLI propria e recebe base', async () => {
+  const { deps, commands } = fakeDeps();
+  await buildApp(astro, deps);
+  assert.deepEqual(commands[1], [
+    'npx', '--no-install', 'astro', 'build', '--base=/p/kimi-qwen-code/',
+  ]);
+});
+
+test('astro nao recebe outDir na linha de comando', async () => {
+  // O default do Astro ja e dist/ e a flag nao e suportada de forma estavel.
+  const { deps, commands } = fakeDeps();
+  await buildApp(astro, deps);
+  assert.ok(!commands[1].includes('--outDir'));
+  assert.equal((await buildApp(astro, fakeDeps().deps)).outDir, 'dist');
 });
 
 test('devolve o outDir do projeto', async () => {

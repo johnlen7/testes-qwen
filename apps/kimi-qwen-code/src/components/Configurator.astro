@@ -1,0 +1,198 @@
+---
+import OrbitaSVG from './OrbitaSVG.astro';
+import { CORES, CONCHAS } from '../scripts/motion.js';
+---
+
+<section class="section cfg" id="configurador" aria-label="Configurador do ÓRBITA">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="kicker">Configurador</p>
+      <h2 class="h-lg">Monte a sua órbita.</h2>
+    </div>
+
+    <div class="cfg__grid">
+      <div class="cfg__stage rv" style="--rv-delay:120ms">
+        <div class="cfg__orbit" aria-hidden="true"></div>
+        <div class="cfg__product">
+          <OrbitaSVG uid="cfg" class="cfg__svg" />
+        </div>
+        <p class="cfg__cor-nome" data-cor-nome>Grafite</p>
+      </div>
+
+      <div class="cfg__panel rv" style="--rv-delay:220ms">
+        <fieldset class="cfg__group">
+          <legend>Cor do acabamento</legend>
+          <div class="cfg__swatches" role="radiogroup" aria-label="Cor do acabamento">
+            {Object.entries(CORES).map(([key, c], i) => (
+              <label class="cfg__swatch" style={`--sw:${c.swatch}`}>
+                <input type="radio" name="cor" value={key} checked={i === 0} />
+                <span class="cfg__dot" aria-hidden="true"></span>
+                <span class="cfg__swatch-nome">{c.nome}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="cfg__group">
+          <legend>Tamanho da concha</legend>
+          <div class="cfg__seg" role="radiogroup" aria-label="Tamanho da concha">
+            {Object.entries(CONCHAS).map(([key, c], i) => (
+              <label class="cfg__seg-item">
+                <input type="radio" name="concha" value={key} checked={i === 0} />
+                <span class="cfg__seg-card">
+                  <strong>{c.nome.replace('Concha ', '')}</strong>
+                  <span class="muted">
+                    {key === 'compacta' ? 'Mais leve, 204g' : 'Mais palco, 226g'}
+                    {c.preco > 0 ? ` · +${c.preco === 200 ? 'R$ 200' : ''}` : ''}
+                  </span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <div class="cfg__total">
+          <span class="muted">Total</span>
+          <span class="cfg__preco" data-preco aria-hidden="true">R$ 2.499</span>
+          <span class="visually-hidden" data-preco-sr>Preço total: 2499 reais</span>
+          <span class="muted cfg__parc">em até 12x sem juros · frete grátis</span>
+        </div>
+
+        <button class="btn cfg__cta" type="button" data-ripple data-cta>
+          Comprar ÓRBITA — Grafite · R$ 2.499
+        </button>
+        <p class="muted cfg__fine">Checkout simulado — nenhuma cobrança real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cfg { background: var(--bg-soft); }
+
+  .cfg__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(var(--s6), 6vw, var(--s9));
+    align-items: center;
+  }
+
+  .cfg__stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    gap: var(--s4);
+    padding: var(--s7) 0;
+  }
+  .cfg__orbit {
+    position: absolute;
+    width: min(80%, 420px);
+    aspect-ratio: 1;
+    border: 1px dashed var(--line);
+    border-radius: 50%;
+    animation: cfg-spin 40s linear infinite;
+  }
+  .cfg__orbit::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: 50%;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 14px var(--glow);
+  }
+  @keyframes cfg-spin { to { rotate: 360deg; } }
+
+  .cfg__product { width: min(72%, 340px); }
+  .cfg__svg .o-cup-group {
+    transition: transform var(--d3) var(--ease-spring);
+    transform-origin: 248px 322px;
+  }
+  .cfg__cor-nome {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cfg__panel { display: grid; gap: var(--s6); align-content: start; }
+  .cfg__group { border: 0; padding: 0; display: grid; gap: var(--s3); }
+  .cfg__group legend {
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0;
+    margin-bottom: var(--s3);
+  }
+
+  .cfg__swatches { display: flex; gap: var(--s4); flex-wrap: wrap; }
+  .cfg__swatch { display: grid; justify-items: center; gap: var(--s2); cursor: pointer; }
+  .cfg__swatch input { position: absolute; opacity: 0; pointer-events: none; }
+  .cfg__dot {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--sw);
+    box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.25);
+    transition: transform var(--d2) var(--ease-spring), box-shadow var(--d2);
+  }
+  .cfg__swatch:hover .cfg__dot { transform: translateY(-3px); }
+  .cfg__swatch input:checked + .cfg__dot {
+    box-shadow:
+      inset 0 -6px 12px rgba(0, 0, 0, 0.25),
+      0 0 0 2px var(--bg-soft),
+      0 0 0 4.5px var(--accent);
+  }
+  .cfg__swatch input:focus-visible + .cfg__dot {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+  }
+  .cfg__swatch-nome { font-size: 0.78rem; color: var(--muted); }
+  .cfg__swatch input:checked ~ .cfg__swatch-nome { color: var(--ink); font-weight: 600; }
+
+  .cfg__seg { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+  .cfg__seg-item input { position: absolute; opacity: 0; pointer-events: none; }
+  .cfg__seg-card {
+    display: grid;
+    gap: 2px;
+    padding: var(--s4);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color var(--d2), background-color var(--d2), transform var(--d2) var(--ease-spring);
+  }
+  .cfg__seg-card:hover { transform: translateY(-2px); }
+  .cfg__seg-card .muted { font-size: 0.8rem; }
+  .cfg__seg-item input:checked + .cfg__seg-card {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .cfg__seg-item input:focus-visible + .cfg__seg-card {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .cfg__total { display: grid; gap: 2px; }
+  .cfg__preco {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .cfg__parc { font-size: 0.85rem; }
+
+  .cfg__cta { justify-content: center; width: 100%; font-size: 1rem; }
+  .cfg__fine { font-size: 0.78rem; text-align: center; }
+
+  @media (max-width: 900px) {
+    .cfg__grid { grid-template-columns: 1fr; gap: var(--s6); }
+    .cfg__stage { padding: var(--s5) 0 0; }
+    .cfg__product { width: min(60vw, 260px); }
+  }
+</style>
+
+<script>
+  import '../scripts/configurator.js';
+</script>

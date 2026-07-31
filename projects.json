@@ -9,7 +9,9 @@
     "accent": "#ff5c1a",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "vanilla TS · Vite",
+    "date": "2026-07-23"
   },
   {
     "slug": "flash",
@@ -17,11 +19,13 @@
     "source": "flash",
     "title": "ÓRBITA por Flash no VS Code",
     "model": "DeepSeek V4 Flash · VS Code",
-    "score": null,
+    "score": 92,
     "accent": "#5ba8ff",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "vanilla TS · Vite",
+    "date": "2026-07-31"
   },
   {
     "slug": "claude-01",
@@ -29,11 +33,13 @@
     "source": "claude-01",
     "title": "ÓRBITA por Claude",
     "model": "Claude",
-    "score": null,
+    "score": 88,
     "accent": "#ff7a45",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "vanilla TS · Vite",
+    "date": "2026-07-31"
   },
   {
     "slug": "luna",
@@ -41,11 +47,13 @@
     "source": "gpt/luna",
     "title": "ÓRBITA por GPT Luna",
     "model": "GPT-5.6 Luna",
-    "score": null,
+    "score": 83,
     "accent": "#8be7d4",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "React TS · Vite",
+    "date": "2026-07-31"
   },
   {
     "slug": "nemotron",
@@ -57,7 +65,9 @@
     "accent": "#ffb54a",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "React TS · Vite",
+    "date": "2026-07-31"
   },
   {
     "slug": "qwen-01",
@@ -69,7 +79,9 @@
     "accent": "#e8a040",
     "builder": "sveltekit",
     "outDir": "build",
-    "enabled": true
+    "enabled": true,
+    "stack": "SvelteKit · adapter-static",
+    "date": "2026-07-31"
   },
   {
     "slug": "qwen-02",
@@ -81,7 +93,9 @@
     "accent": "#f5a83c",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "React TS · Vite",
+    "date": "2026-07-30"
   },
   {
     "slug": "vazio",
@@ -93,7 +107,9 @@
     "accent": "#ffb547",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "vanilla JS · Vite",
+    "date": "2026-07-30"
   },
   {
     "slug": "vazio-2",
@@ -105,7 +121,9 @@
     "accent": "#f5a524",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "vanilla TS · Vite",
+    "date": "2026-07-31"
   },
   {
     "slug": "kimi-caveman",
@@ -113,11 +131,13 @@
     "source": "kimi-caveman",
     "title": "ÓRBITA por Kimi (caveman)",
     "model": "Kimi",
-    "score": null,
+    "score": 88,
     "accent": "#ffae3d",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "vanilla JS · Vite",
+    "date": "2026-07-31"
   },
   {
     "slug": "qwen-caveman",
@@ -125,11 +145,27 @@
     "source": "qwen-caveman",
     "title": "ÓRBITA por Qwen (caveman)",
     "model": "Qwen",
-    "score": null,
+    "score": 85,
     "accent": "#ff9e4a",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "vanilla TS · Vite",
+    "date": "2026-07-31"
+  },
+  {
+    "slug": "kimi-qwen-code",
+    "dir": "apps/kimi-qwen-code",
+    "source": "kimi in qwen code",
+    "title": "ÓRBITA por Kimi K3 no Qwen Code",
+    "model": "Kimi K3 · Qwen Code + skills do Claude",
+    "score": 93,
+    "accent": "#ff4d24",
+    "builder": "astro",
+    "outDir": "dist",
+    "enabled": true,
+    "stack": "Astro",
+    "date": "2026-07-31"
   },
   {
     "slug": "qwen-flash",
@@ -137,10 +173,12 @@
     "source": "qwen-flash",
     "title": "ÓRBITA por Qwen Flash",
     "model": "Qwen Flash",
-    "score": null,
+    "score": 90,
     "accent": "#ff7a45",
     "builder": "vite",
     "outDir": "dist",
-    "enabled": true
+    "enabled": true,
+    "stack": "vanilla JS · Vite",
+    "date": "2026-07-31"
   }
 ]

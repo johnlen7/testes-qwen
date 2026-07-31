@@ -1,0 +1,156 @@
+---
+const features = [
+  {
+    title: 'ANC adaptativo espacial',
+    text: 'O anti-ruído se recalcula a cada 5ms conforme você se move — do metrô ao open space.',
+    icon: 'anc',
+  },
+  {
+    title: 'Driver orbital de 42mm',
+    text: 'Diafragma de biocelulose com suspensão dupla. Graves que orbitam, não invadem.',
+    icon: 'driver',
+  },
+  {
+    title: '40 horas de voo',
+    text: 'Uma semana de trajetória sem recarregar. 10 minutos de carga = 5 horas de música.',
+    icon: 'battery',
+  },
+  {
+    title: 'Multiponto BT 5.4',
+    text: 'Dois dispositivos conectados, troca invisível. Do notebook para o telefone sem atrito.',
+    icon: 'link',
+  },
+  {
+    title: 'Modo atravessar',
+    text: 'Um toque e o mundo entra: vozes amplificadas com latência imperceptível de 12ms.',
+    icon: 'wave',
+  },
+  {
+    title: 'Almofada de memória',
+    text: 'Espuma viscoelástica com memória de forma. Veda como um airlock, pesa como nada.',
+    icon: 'cushion',
+  },
+];
+---
+
+<section class="section features" id="recursos" aria-label="Recursos do ÓRBITA">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="kicker">Recursos</p>
+      <h2 class="h-lg">Instrumentos de bordo.</h2>
+      <p class="lead">Cada recurso foi desenhado como parte de uma nave: nada sobra, nada falta.</p>
+    </div>
+
+    <ul class="features__grid" role="list">
+      {features.map((f, i) => (
+        <li class="features__card rv" style={`--rv-delay:${(i % 3) * 110}ms`} tabindex="0">
+          <span class="features__glow" aria-hidden="true"></span>
+          <span class="features__icon" aria-hidden="true">
+            {f.icon === 'anc' && (
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <circle cx="16" cy="16" r="5" />
+                <path d="M16 3v4M16 25v4M3 16h4M25 16h4" opacity="0.5" />
+                <path d="M7.5 7.5c5-5 12-5 17 0M7.5 24.5c5 5 12 5 17 0" />
+              </svg>
+            )}
+            {f.icon === 'driver' && (
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <circle cx="16" cy="16" r="11" />
+                <circle cx="16" cy="16" r="6.5" opacity="0.6" />
+                <circle cx="16" cy="16" r="2.4" fill="currentColor" stroke="none" />
+              </svg>
+            )}
+            {f.icon === 'battery' && (
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="10" width="21" height="12" rx="3" />
+                <path d="M28 14v4" />
+                <path d="M15.5 12.5 12 16.5h4l-2.5 4 5.5-6h-4l2-2z" fill="currentColor" stroke="none" />
+              </svg>
+            )}
+            {f.icon === 'link' && (
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <circle cx="10" cy="16" r="5.5" />
+                <circle cx="22" cy="16" r="5.5" />
+                <path d="M10 16h12" opacity="0.6" />
+              </svg>
+            )}
+            {f.icon === 'wave' && (
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <path d="M4 16c2-6 4-6 6 0s4 6 6 0 4-6 6 0 4 6 6 0" />
+              </svg>
+            )}
+            {f.icon === 'cushion' && (
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <ellipse cx="16" cy="16" rx="11" ry="8" />
+                <ellipse cx="16" cy="16" rx="5.5" ry="3.4" opacity="0.6" />
+              </svg>
+            )}
+          </span>
+          <h3 class="h-md features__title">{f.title}</h3>
+          <p class="muted">{f.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .features__grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s4);
+  }
+  .features__card {
+    position: relative;
+    display: grid;
+    gap: var(--s3);
+    align-content: start;
+    padding: var(--s6);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: border-color var(--d2);
+  }
+  .features__card:hover, .features__card:focus-visible { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+
+  .features__glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(240px circle at var(--gx, 50%) var(--gy, 50%), var(--accent-soft), transparent 65%);
+    opacity: 0;
+    transition: opacity var(--d2);
+    pointer-events: none;
+  }
+  .features__card:hover .features__glow, .features__card:focus-visible .features__glow { opacity: 1; }
+
+  .features__icon {
+    display: grid;
+    place-items: center;
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    transition: transform var(--d2) var(--ease-spring);
+  }
+  .features__icon svg { width: 28px; height: 28px; }
+  .features__card:hover .features__icon { transform: translateZ(30px) rotate(-6deg) scale(1.08); }
+
+  .features__title { font-size: 1.15rem; }
+  .features__card p { font-size: 0.92rem; }
+  .features__card > * { position: relative; }
+
+  @media (max-width: 980px) { .features__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) {
+    .features__grid { grid-template-columns: 1fr; }
+    .features__card { padding: var(--s5); }
+  }
+</style>
+
+<script>
+  import '../scripts/features.js';
+</script>
