@@ -78,11 +78,26 @@ body {
 }
 
 .card-meta {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: baseline;
-  gap: 0.75rem;
+  column-gap: 0.75rem;
   margin-top: 1rem;
 }
+
+.card-rank {
+  grid-row: 1 / span 2;
+  align-self: start;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  padding-top: 0.15rem;
+  min-width: 1.25rem;
+}
+
+/* Título e modelo empilham na coluna do meio; nota fica na terceira. */
+.card-title { grid-column: 2; }
+.card-model { grid-column: 2; }
 
 .card-title {
   margin: 0;
@@ -97,7 +112,8 @@ body {
 }
 
 .card-score {
-  margin-left: auto;
+  grid-column: 3;
+  grid-row: 1;
   color: var(--accent);
   font-variant-numeric: tabular-nums;
   font-size: 0.875rem;

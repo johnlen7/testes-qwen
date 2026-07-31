@@ -24,11 +24,27 @@ As notas exibidas vêm de avaliação por leitura estática de código contra a
 rubrica do PRD (animação 25, design 20, interatividade 15, código 15,
 acessibilidade 10, performance 10, extra 5). São preliminares.
 
-A afirmação mais frágil dessa leitura é "o scroll-telling faz scrubbing
-real". `scrub-probe.mjs` existe para medir isso em vez de supor: ele amostra
+Duas afirmações dessa leitura são frágeis demais para aceitar sem medir, e
+cada uma tem um probe:
+
+`scrub-probe.mjs` — "o scroll-telling faz scrubbing real". Amostra
 `transform`/`opacity` de todos os elementos em 8 posições de scroll e conta
 quantos valores distintos cada um assume. Scrubbing real produz elementos com
 muitos valores distintos; trigger com IntersectionObserver produz dois.
+
+`cascade-probe.mjs` — "o efeito escrito pelo JS chega à tela". Move o mouse
+por 5 posições e compara, por elemento, quantos valores distintos o
+`style.transform` inline assume contra quantos o transform COMPUTADO assume.
+Inline variando com computado parado significa que uma `animation` CSS (em
+geral com `forwards`) ou um `!important` venceu a cascata: o efeito existe no
+código e não existe na tela, sem erro no console. Três candidatos caíram
+nisso.
+
+Os dois probes têm limites conhecidos. O de cascata só enxerga elementos que
+recebem transform inline nas posições de mouse testadas — um tilt que só
+dispara com o ponteiro sobre o card não aparece. E um elemento com animação
+infinita tem o computado variando sozinho, o que mascara um efeito morto.
+Ausência de achado neles não é prova de ausência de defeito.
 
 ## Publicado em
 

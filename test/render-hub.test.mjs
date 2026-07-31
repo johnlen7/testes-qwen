@@ -98,14 +98,55 @@ test('referencia o screenshot do projeto', () => {
   assert.match(html, /shots\/qwen\.png/);
 });
 
-test('preserva a ordem do array', () => {
+function ordemDe(html) {
+  return [...html.matchAll(/href="\/p\/([^/]+)\//g)].map((m) => m[1]);
+}
+
+test('ordena por nota, da maior para a menor', () => {
   const lista = [
-    projeto,
-    { ...projeto, slug: 'flash', title: 'ÓRBITA por Flash' },
-    { ...projeto, slug: 'qwen-flash', title: 'ÓRBITA por Qwen Flash' },
+    { ...projeto, slug: 'baixo', score: 70 },
+    { ...projeto, slug: 'alto', score: 93 },
+    { ...projeto, slug: 'meio', score: 86 },
+  ];
+  const status = new Map(lista.map((p) => [p.slug, { ok: true }]));
+  assert.deepEqual(ordemDe(renderHub(lista, status)), ['alto', 'meio', 'baixo']);
+});
+
+test('empate preserva a ordem do manifesto', () => {
+  const lista = [
+    { ...projeto, slug: 'primeiro', score: 88 },
+    { ...projeto, slug: 'segundo', score: 88 },
+  ];
+  const status = new Map(lista.map((p) => [p.slug, { ok: true }]));
+  assert.deepEqual(ordemDe(renderHub(lista, status)), ['primeiro', 'segundo']);
+});
+
+test('projeto sem nota vai para o fim', () => {
+  const lista = [
+    { ...projeto, slug: 'sem-nota', score: null },
+    { ...projeto, slug: 'com-nota', score: 70 },
+  ];
+  const status = new Map(lista.map((p) => [p.slug, { ok: true }]));
+  assert.deepEqual(ordemDe(renderHub(lista, status)), ['com-nota', 'sem-nota']);
+});
+
+test('ordenar nao altera o array recebido', () => {
+  const lista = [
+    { ...projeto, slug: 'baixo', score: 70 },
+    { ...projeto, slug: 'alto', score: 93 },
+  ];
+  const status = new Map(lista.map((p) => [p.slug, { ok: true }]));
+  renderHub(lista, status);
+  assert.deepEqual(lista.map((p) => p.slug), ['baixo', 'alto']);
+});
+
+test('mostra a posicao no ranking', () => {
+  const lista = [
+    { ...projeto, slug: 'alto', score: 93 },
+    { ...projeto, slug: 'baixo', score: 70 },
   ];
   const status = new Map(lista.map((p) => [p.slug, { ok: true }]));
   const html = renderHub(lista, status);
-  const ordem = [...html.matchAll(/href="\/p\/([^/]+)\//g)].map((m) => m[1]);
-  assert.deepEqual(ordem, ['qwen', 'flash', 'qwen-flash']);
+  assert.match(html, /class="card-rank">1</);
+  assert.match(html, /class="card-rank">2</);
 });
