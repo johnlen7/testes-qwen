@@ -38,9 +38,14 @@ test('omite a nota quando é null', () => {
   assert.doesNotMatch(html, /class="card-score"/);
 });
 
-test('declara que as notas sao preliminares', () => {
+test('declara que a nota de design e julgamento estetico', () => {
   const html = renderHub([projeto], ok);
-  assert.match(html, /preliminar/i);
+  assert.match(html, /est[ée]tico/i);
+});
+
+test('linka a pagina de comparacao dos produtos', () => {
+  const html = renderHub([projeto], ok);
+  assert.match(html, /href="\/produtos\.html"/);
 });
 
 test('mostra a stack do projeto', () => {

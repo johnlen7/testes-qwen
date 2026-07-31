@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildApp } from './lib/build-app.mjs';
 import { renderHub } from './lib/render-hub.mjs';
+import { renderProdutos } from './lib/render-produtos.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const siteDir = path.join(root, 'site');
@@ -80,12 +81,21 @@ await fs.writeFile(
 );
 await fs.cp(path.join(root, 'hub', 'hub.css'), path.join(siteDir, 'hub.css'));
 
+await fs.writeFile(path.join(siteDir, 'produtos.html'), renderProdutos(projects));
+
 const shotsDir = path.join(root, 'hub', 'shots');
 if (existsSync(shotsDir)) {
   await fs.cp(shotsDir, path.join(siteDir, 'shots'), { recursive: true });
 } else {
   // Cards degradam para o gradiente da cor de destaque; não é motivo de falha.
   console.log('aviso: hub/shots/ ausente, cards sem screenshot');
+}
+
+const prodDir = path.join(root, 'hub', 'produto');
+if (existsSync(prodDir)) {
+  await fs.cp(prodDir, path.join(siteDir, 'produto'), { recursive: true });
+} else {
+  console.log('aviso: hub/produto/ ausente, pagina de comparacao sem imagens');
 }
 
 const falhas = [...results.values()].filter((r) => !r.ok).length;

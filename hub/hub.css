@@ -40,6 +40,74 @@ body {
   max-width: 52ch;
 }
 
+.head-note a { color: var(--fg); }
+
+.head-volta {
+  margin: 0 0 1.5rem;
+  font-size: 0.875rem;
+}
+
+.head-volta a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.head-volta a:hover { color: var(--fg); }
+
+/* Comparação dos produtos. Fundo claro porque quase todos os fones foram
+   desenhados sobre fundo claro — recorte escuro dentro de card escuro
+   sumiria a silhueta, que é justamente o que se quer comparar. */
+.prod-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  border-bottom: 1px solid var(--line);
+}
+
+.prod {
+  margin: 0;
+  padding: 1.25rem;
+  background: var(--bg);
+}
+
+.prod-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #f4f2ed;
+  border: 1px solid var(--line);
+}
+
+.prod-cap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 0.875rem;
+}
+
+.prod-link {
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+
+.prod-link:hover { color: var(--accent); }
+
+.prod-nota {
+  margin-left: auto;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9375rem;
+}
+
+.prod-max {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
 .grid {
   display: grid;
   gap: 1px;

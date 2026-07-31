@@ -11,8 +11,22 @@ const projects = JSON.parse(await fs.readFile(path.join(root, 'projects.json'), 
 
 const problemas = [];
 
-for (const arquivo of ['index.html', 'hub.css']) {
+for (const arquivo of ['index.html', 'hub.css', 'produtos.html']) {
   if (!existsSync(path.join(siteDir, arquivo))) problemas.push(`site/${arquivo} não existe`);
+}
+
+// A página de comparação é a evidência da nota de design. Um recorte faltando
+// vira um card sem imagem, e a nota fica sem o que a sustente.
+if (existsSync(path.join(siteDir, 'produtos.html'))) {
+  const produtos = await fs.readFile(path.join(siteDir, 'produtos.html'), 'utf8');
+  for (const m of produtos.matchAll(/src="(produto\/[^"]+)"/g)) {
+    if (!existsSync(path.join(siteDir, m[1]))) problemas.push(`produtos.html: recorte ausente ${m[1]}`);
+  }
+  for (const p of projects.filter((x) => x.enabled)) {
+    if (!produtos.includes(`produto/${p.slug}.png`)) {
+      problemas.push(`${p.slug}: habilitado mas ausente da página de produtos`);
+    }
+  }
 }
 
 const hub = existsSync(path.join(siteDir, 'index.html'))

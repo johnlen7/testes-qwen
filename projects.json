@@ -11,7 +11,8 @@
     "outDir": "dist",
     "enabled": true,
     "stack": "vanilla TS · Vite",
-    "date": "2026-07-23"
+    "date": "2026-07-23",
+    "design": 17
   },
   {
     "slug": "flash",
@@ -19,13 +20,14 @@
     "source": "flash",
     "title": "ÓRBITA por Flash no VS Code",
     "model": "DeepSeek V4 Flash · VS Code",
-    "score": 90,
+    "score": 85,
     "accent": "#5ba8ff",
     "builder": "vite",
     "outDir": "dist",
     "enabled": true,
     "stack": "vanilla TS · Vite",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 12
   },
   {
     "slug": "claude-01",
@@ -33,13 +35,14 @@
     "source": "claude-01",
     "title": "ÓRBITA por Claude",
     "model": "Claude",
-    "score": 85,
+    "score": 84,
     "accent": "#ff7a45",
     "builder": "vite",
     "outDir": "dist",
     "enabled": true,
     "stack": "vanilla TS · Vite",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 15
   },
   {
     "slug": "luna",
@@ -53,7 +56,8 @@
     "outDir": "dist",
     "enabled": true,
     "stack": "React TS · Vite",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 17
   },
   {
     "slug": "nemotron",
@@ -61,13 +65,14 @@
     "source": "nemotron",
     "title": "ÓRBITA por Flash no Kimi Code",
     "model": "DeepSeek V4 Flash · Kimi Code",
-    "score": 92,
+    "score": 88,
     "accent": "#ffb54a",
     "builder": "vite",
     "outDir": "dist",
     "enabled": true,
     "stack": "React TS · Vite",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 14
   },
   {
     "slug": "qwen-01",
@@ -75,13 +80,14 @@
     "source": "qwen-01",
     "title": "ÓRBITA por Qwen (SvelteKit)",
     "model": "Qwen",
-    "score": 75,
+    "score": 70,
     "accent": "#e8a040",
     "builder": "sveltekit",
     "outDir": "build",
     "enabled": true,
     "stack": "SvelteKit · adapter-static",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 11
   },
   {
     "slug": "qwen-02",
@@ -89,13 +95,14 @@
     "source": "qwen-02",
     "title": "ÓRBITA por Qwen com skills novas do Claude",
     "model": "Qwen · skills do Claude",
-    "score": 89,
+    "score": 90,
     "accent": "#f5a83c",
     "builder": "vite",
     "outDir": "dist",
     "enabled": true,
     "stack": "React TS · Vite",
-    "date": "2026-07-30"
+    "date": "2026-07-30",
+    "design": 18
   },
   {
     "slug": "vazio",
@@ -109,7 +116,8 @@
     "outDir": "dist",
     "enabled": true,
     "stack": "vanilla JS · Vite",
-    "date": "2026-07-30"
+    "date": "2026-07-30",
+    "design": 18
   },
   {
     "slug": "vazio-2",
@@ -117,13 +125,14 @@
     "source": "vazio-2",
     "title": "ÓRBITA por Kimi 2.7 com subagentes",
     "model": "Kimi 2.7 (subagentes)",
-    "score": 83,
+    "score": 74,
     "accent": "#f5a524",
     "builder": "vite",
     "outDir": "dist",
     "enabled": true,
     "stack": "vanilla TS · Vite",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 9
   },
   {
     "slug": "kimi-caveman",
@@ -131,13 +140,14 @@
     "source": "kimi-caveman",
     "title": "ÓRBITA por Kimi (caveman)",
     "model": "Kimi",
-    "score": 88,
+    "score": 86,
     "accent": "#ffae3d",
     "builder": "vite",
     "outDir": "dist",
     "enabled": true,
     "stack": "vanilla JS · Vite",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 16
   },
   {
     "slug": "qwen-caveman",
@@ -145,13 +155,14 @@
     "source": "qwen-caveman",
     "title": "ÓRBITA por Qwen (caveman)",
     "model": "Qwen",
-    "score": 82,
+    "score": 85,
     "accent": "#ff9e4a",
     "builder": "vite",
     "outDir": "dist",
     "enabled": true,
     "stack": "vanilla TS · Vite",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 18
   },
   {
     "slug": "kimi-qwen-code",
@@ -159,13 +170,14 @@
     "source": "kimi in qwen code",
     "title": "ÓRBITA por Kimi K3 no Qwen Code",
     "model": "Kimi K3 · Qwen Code + skills do Claude",
-    "score": 84,
+    "score": 80,
     "accent": "#ff4d24",
     "builder": "astro",
     "outDir": "dist",
     "enabled": true,
     "stack": "Astro",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 13
   },
   {
     "slug": "qwen-flash",
@@ -173,12 +185,13 @@
     "source": "qwen-flash",
     "title": "ÓRBITA por Qwen Flash",
     "model": "Qwen Flash",
-    "score": 82,
+    "score": 76,
     "accent": "#ff7a45",
     "builder": "vite",
     "outDir": "dist",
     "enabled": true,
     "stack": "vanilla JS · Vite",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "design": 12
   }
 ]
