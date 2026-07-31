@@ -1,0 +1,135 @@
+/* ════════════════════════════════════════════════════════════
+   4.7 CTA final + glow de encerramento
+   ════════════════════════════════════════════════════════════ */
+
+.finale {
+  position: relative;
+  text-align: center;
+  padding: var(--sp-section) var(--gutter) calc(var(--sp-section) * 1.2);
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.finale-glow {
+  position: absolute;
+  inset: -30% -10% auto;
+  height: 90%;
+  background: radial-gradient(ellipse 55% 70% at 50% 40%, var(--accent-soft), transparent 70%);
+  pointer-events: none;
+  animation: finale-breathe 9s var(--ease-in-out) infinite;
+}
+
+@keyframes finale-breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.07);
+  }
+}
+
+.finale > * {
+  position: relative;
+}
+
+.finale-visual {
+  margin-bottom: var(--sp-6);
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.35));
+}
+
+.finale .kicker {
+  justify-content: center;
+}
+
+.finale .kicker::before {
+  display: none;
+}
+
+.finale-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink-strong);
+  margin: var(--sp-4) 0 var(--sp-5);
+}
+
+.finale-sub {
+  color: var(--ink-muted);
+  max-width: 30rem;
+  margin-bottom: var(--sp-7);
+}
+
+.finale-sub strong {
+  color: var(--ink-strong);
+  font-family: var(--font-mono);
+}
+
+.finale-sub span {
+  color: var(--ink-strong);
+  font-weight: 600;
+}
+
+/* ── Botão magnético ── */
+.btn-magnetic {
+  padding: 1.1rem 2.4rem;
+  font-size: 1rem;
+  will-change: transform;
+}
+
+.btn-magnetic.is-near {
+  box-shadow: var(--glow), 0 0 0 6px var(--accent-soft);
+}
+
+.btn-magnetic-label {
+  position: relative;
+  z-index: 1;
+}
+
+/* ripple autoral — anel que cresce do ponto de clique */
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent-ink) 85%, transparent);
+  opacity: 0.35;
+  transform: scale(0);
+  animation: btn-ripple 650ms var(--ease-out) forwards;
+  pointer-events: none;
+}
+
+@keyframes btn-ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.finale-fineprint {
+  margin-top: var(--sp-5);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finale-glow {
+    animation: none;
+  }
+
+  .btn-magnetic {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .btn-ripple {
+    animation: none;
+    display: none;
+  }
+}

@@ -1,0 +1,12 @@
+.magnetic {
+  display: inline-block;
+  transition: transform var(--dur-2) var(--ease-spring);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magnetic {
+    transition: none;
+    transform: none !important;
+  }
+}

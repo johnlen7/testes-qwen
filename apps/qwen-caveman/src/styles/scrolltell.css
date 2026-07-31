@@ -1,0 +1,115 @@
+/* ============================================================
+   Scroll-telling · scrubbing dirigido pelo progresso do scroll
+   A ALTURA do driver (300vh) é o que dá curso ao scrub — fixa e intencional.
+   ============================================================ */
+
+.scrolltell {
+  position: relative;
+  background: var(--bg-1);
+  border-block: 1px solid var(--line);
+}
+
+.scrolltell-driver {
+  /* altura explícita = curso da animação */
+  height: 320vh;
+}
+
+.scrolltell-scene {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--sp-7);
+  padding-inline: clamp(var(--sp-5), 6vw, var(--sp-9));
+  overflow: clip;
+}
+
+.scrolltell-stage {
+  display: grid;
+  place-items: center;
+}
+.scrolltell-product {
+  width: min(100%, 460px);
+  filter: drop-shadow(0 40px 50px rgba(0, 0, 0, 0.45));
+}
+
+/* textos das etapas — JS controla opacity/translate via --p */
+.scrolltell-copy {
+  position: relative;
+  min-height: 240px;
+}
+.scrolltell-step {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp-3);
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: opacity, transform;
+}
+.scrolltell-step h3 {
+  font-size: var(--fs-h3);
+}
+.scrolltell-step p:last-child {
+  color: var(--ink-1);
+  max-width: 38ch;
+}
+.step-index {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+/* barra de progresso vertical */
+.scrolltell-progress {
+  position: absolute;
+  right: clamp(var(--sp-4), 3vw, var(--sp-7));
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 34vh;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+.scrolltell-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-flare);
+  transform-origin: top;
+  transform: scaleY(0);
+  will-change: transform;
+}
+
+@media (max-width: 820px) {
+  .scrolltell-driver {
+    height: 300vh;
+  }
+  .scrolltell-scene {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: var(--sp-5);
+    padding-top: var(--sp-8);
+  }
+  .scrolltell-product {
+    width: min(70vw, 320px);
+  }
+  .scrolltell-copy {
+    min-height: 180px;
+    text-align: center;
+  }
+  .scrolltell-step {
+    align-items: center;
+  }
+  .scrolltell-step p:last-child {
+    margin-inline: auto;
+  }
+  .scrolltell-progress {
+    display: none;
+  }
+}

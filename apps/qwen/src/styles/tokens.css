@@ -1,0 +1,101 @@
+/* ════════════════════════════════════════════════════════════
+   ÓRBITA — design tokens
+   Paleta dual-theme, tipografia, espaçamento, motion.
+   Nada de cor/duração hardcoded fora deste arquivo.
+   ════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Tipografia ── */
+  --font-display: 'Syne', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SF Mono', monospace;
+
+  --fs-display: clamp(2.9rem, 8vw, 6rem);
+  --fs-h2: clamp(1.9rem, 4vw, 3rem);
+  --fs-h3: clamp(1.15rem, 2vw, 1.4rem);
+  --fs-body: clamp(0.95rem, 0.6vw + 0.8rem, 1.0625rem);
+  --fs-small: 0.8125rem;
+  --fs-kicker: 0.75rem;
+
+  /* ── Espaçamento (base 4px) ── */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --sp-10: 8rem;
+  --sp-section: clamp(5rem, 10vw, 9rem);
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --container: min(72rem, 100% - var(--gutter) * 2);
+
+  /* ── Raios ── */
+  --r-small: 8px;
+  --r-card: 16px;
+  --r-pill: 999px;
+
+  /* ── Motion ── */
+  --t-instant: 150ms;
+  --t-base: 300ms;
+  --t-slow: 600ms;
+  --t-cinema: 1200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z ── */
+  --z-header: 100;
+  --z-canvas: 0;
+
+  /* ── Cores do produto (compartilhadas via store) ── */
+  --hp-shell: #2a2d34;
+  --hp-shell-hi: #43474f;
+  --hp-cushion: #17181c;
+  --hp-ring: #ff5c1a;
+}
+
+/* ── Tema escuro (padrão — espaço profundo) ── */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #07080c;
+  --bg-elevated: #0d0f16;
+  --bg-card: #10131c;
+  --ink: #e9eaf1;
+  --ink-strong: #ffffff;
+  --ink-muted: #8d90a3;
+  --line: rgba(160, 168, 200, 0.14);
+  --line-strong: rgba(160, 168, 200, 0.3);
+  --accent: #ff5c1a;
+  --accent-ink: #180500;
+  --accent-soft: rgba(255, 92, 26, 0.12);
+  --accent-2: #57e6c0;
+  --accent-2-ink: #03211a;
+  --shadow: 0 24px 64px -24px rgba(0, 0, 0, 0.7);
+  --glow: 0 0 80px -16px rgba(255, 92, 26, 0.35);
+  --noise-opacity: 0.05;
+}
+
+/* ── Tema claro (papel quente de laboratório) ── */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f2efe8;
+  --bg-elevated: #ffffff;
+  --bg-card: #faf8f3;
+  --ink: #15171d;
+  --ink-strong: #000000;
+  --ink-muted: #5c6070;
+  --line: rgba(21, 23, 29, 0.12);
+  --line-strong: rgba(21, 23, 29, 0.32);
+  --accent: #d9420a;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(217, 66, 10, 0.1);
+  --accent-2: #0c7a63;
+  --accent-2-ink: #ffffff;
+  --shadow: 0 24px 64px -32px rgba(21, 23, 29, 0.25);
+  --glow: 0 0 80px -24px rgba(217, 66, 10, 0.3);
+  --noise-opacity: 0.03;
+}

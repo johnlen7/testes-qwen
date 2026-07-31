@@ -1,0 +1,247 @@
+- generic [ref=e3]:
+  - link "Pular para o conteúdo" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link "ÓRBITA, voltar ao início" [ref=e7] [cursor=pointer]:
+        - /url: "#top"
+        - img "ÓRBITA" [ref=e8]
+      - navigation "Navegação principal" [ref=e15]:
+        - link "Sistema" [ref=e16] [cursor=pointer]:
+          - /url: "#sistema"
+        - link "Configurar" [ref=e17] [cursor=pointer]:
+          - /url: "#configurador"
+        - link "Dúvidas" [ref=e18] [cursor=pointer]:
+          - /url: "#duvidas"
+      - button "Ativar tema escuro" [pressed] [ref=e19] [cursor=pointer]:
+        - generic [ref=e22]: "Tema atual: claro"
+  - main [ref=e23]:
+    - region [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: FONE DE OUVIDO / 01
+          - heading "Escute o espaço." [level=1] [ref=e28]:
+            - generic [ref=e29]: Escute
+            - generic [ref=e30]: o espaço.
+          - paragraph [ref=e31]: Cancelamento de ruído adaptativo espacial. O silêncio também pode ter direção.
+          - generic [ref=e32]:
+            - link "Explorar o sistema" [ref=e33] [cursor=pointer]:
+              - /url: "#sistema"
+            - link "Configurar o seu" [ref=e35] [cursor=pointer]:
+              - /url: "#configurador"
+        - generic "Visual do fone ÓRBITA na cor Grafite" [ref=e37]:
+          - img "Fone ÓRBITA, Grafite Fone de ouvido premium com arco suspenso, conchas laterais, trajetórias orbitais e perfil Spatial." [ref=e38]:
+            - generic [ref=e83]: ORBITAL SIGNAL / GRA
+          - generic [ref=e85]: sinal em órbita / 01
+    - region [ref=e86]:
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - heading "Como o silêncio se organiza." [level=2] [ref=e89]
+          - paragraph [ref=e90]: O ÓRBITA lê a sala como um campo. A resposta muda com o lugar, não com um menu.
+          - generic "Etapas do sistema espacial" [ref=e91]:
+            - article [ref=e92]:
+              - heading "Isolamento" [level=3] [ref=e93]
+              - paragraph [ref=e94]: O fone encontra o ruído e o coloca fora do centro da sua atenção.
+            - article [ref=e95]:
+              - heading "Separação" [level=3] [ref=e96]
+              - paragraph [ref=e97]: Sensores e conchas trabalham em órbitas diferentes para desenhar o silêncio.
+            - article [ref=e98]:
+              - heading "Recomposição" [level=3] [ref=e99]
+              - paragraph [ref=e100]: Tudo volta ao eixo. O ambiente continua perto, só não precisa comandar a cena.
+        - generic "Animação de desmontagem do fone por etapas" [ref=e101]:
+          - img "Fone ÓRBITA, Grafite Fone de ouvido premium com arco suspenso, conchas laterais, trajetórias orbitais e perfil Spatial." [ref=e102]:
+            - generic [ref=e146]: ORBITAL SIGNAL / GRA
+        - paragraph [ref=e150]: A posição do produto acompanha o progresso da página.
+    - region [ref=e151]:
+      - generic [ref=e152]:
+        - generic "Prévia configurável do ÓRBITA, Grafite, perfil Spatial" [ref=e153]:
+          - img "Fone ÓRBITA, Grafite Fone de ouvido premium com arco suspenso, conchas laterais, trajetórias orbitais e perfil Spatial." [ref=e154]:
+            - generic [ref=e198]: ORBITAL SIGNAL / GRA
+        - generic [ref=e200]:
+          - generic [ref=e201]:
+            - heading "Dê um corpo ao seu silêncio." [level=2] [ref=e202]
+            - paragraph [ref=e203]: Escolha o acabamento e o perfil de escuta. A forma do produto acompanha a sua decisão.
+          - group "Acabamento" [ref=e204]:
+            - generic [ref=e206]:
+              - button "Grafite. A leitura mais precisa do objeto. Cinza mineral, sem reflexo fácil." [pressed] [ref=e207] [cursor=pointer]:
+                - generic [ref=e209]: Grafite
+              - button "Lunar. Um acabamento claro que devolve a luz em vez de disputar com ela." [ref=e210] [cursor=pointer]:
+                - generic [ref=e212]: Lunar
+              - button "Ember. Cor solar e baixa saturação. Um sinal quente no silêncio." [ref=e213] [cursor=pointer]:
+                - generic [ref=e215]: Ember
+              - button "Moss. Verde de baixa frequência, pensado para desaparecer no cotidiano." [ref=e216] [cursor=pointer]:
+                - generic [ref=e218]: Moss
+          - group "Perfil espacial" [ref=e219]:
+            - generic [ref=e221]:
+              - button "Focus incluído Isola vozes e detalhes com uma resposta mais seca." [ref=e222] [cursor=pointer]:
+                - strong [ref=e223]: Focus
+                - generic [ref=e224]: incluído
+                - generic [ref=e225]: Isola vozes e detalhes com uma resposta mais seca.
+              - button "Spatial + R$ 220 Abre o palco ao redor da cabeça para uma escuta mais ampla." [pressed] [ref=e226] [cursor=pointer]:
+                - strong [ref=e227]: Spatial
+                - generic [ref=e228]: + R$ 220
+                - generic [ref=e229]: Abre o palco ao redor da cabeça para uma escuta mais ampla.
+              - button "Open air + R$ 140 Mantém o ambiente próximo quando você precisa voltar a ele." [ref=e230] [cursor=pointer]:
+                - strong [ref=e231]: Open air
+                - generic [ref=e232]: + R$ 140
+                - generic [ref=e233]: Mantém o ambiente próximo quando você precisa voltar a ele.
+          - generic [ref=e234]:
+            - generic [ref=e235]: ÓRBITA / edição escolhida
+            - strong [ref=e236]: R$ 2.719
+          - button "Comprar ÓRBITA - Grafite, R$ 2.719" [ref=e237] [cursor=pointer]
+    - region [ref=e239]:
+      - generic [ref=e240]:
+        - generic [ref=e241]:
+          - generic [ref=e242]:
+            - generic [ref=e243]: O que continua quando o ruído some
+            - heading "Tecnologia que não pede atenção." [level=2] [ref=e244]
+          - paragraph [ref=e245]: Cinco decisões de engenharia para deixar a escuta no centro.
+        - generic [ref=e246]:
+          - article [ref=e247]:
+            - generic [ref=e249]:
+              - paragraph [ref=e250]: SILÊNCIO ADAPTATIVO
+              - heading "O espaço muda antes do ruído." [level=3] [ref=e251]
+              - paragraph [ref=e252]: Microfones internos leem a sala e ajustam o cancelamento em tempo real, sem menus.
+            - generic [ref=e257]:
+              - strong [ref=e258]: 360°
+              - generic [ref=e259]: leitura espacial
+          - article [ref=e260]:
+            - generic [ref=e262]:
+              - paragraph [ref=e263]: ENERGIA
+              - heading "Uma semana de escuta real." [level=3] [ref=e264]
+              - paragraph [ref=e265]: Até 42 horas por carga, com 10 minutos de energia para a próxima travessia.
+            - generic [ref=e271]:
+              - strong [ref=e272]: 42h
+              - generic [ref=e273]: por carga
+          - article [ref=e274]:
+            - generic [ref=e276]:
+              - paragraph [ref=e277]: MATERIAL
+              - heading "Leve onde importa." [level=3] [ref=e278]
+              - paragraph [ref=e279]: Arco de liga flexível e conchas que distribuem o peso, não apertam a cabeça.
+            - generic [ref=e285]:
+              - strong [ref=e286]: 248g
+              - generic [ref=e287]: de presença
+          - article [ref=e288]:
+            - generic [ref=e290]:
+              - paragraph [ref=e291]: CONEXÃO
+              - heading "Duas fontes. Um gesto." [level=3] [ref=e292]
+              - paragraph [ref=e293]: Troque do notebook para o telefone com uma pausa curta e sem procurar configurações.
+            - generic [ref=e298]:
+              - strong [ref=e299]: "02"
+              - generic [ref=e300]: fontes pareadas
+          - article [ref=e301]:
+            - generic [ref=e303]:
+              - paragraph [ref=e304]: CICLO
+              - heading "Feito para continuar." [level=3] [ref=e305]
+              - paragraph [ref=e306]: Almofadas, arco e bateria são substituíveis. O objeto acompanha o seu ritmo.
+            - generic [ref=e312]:
+              - strong [ref=e313]: "04"
+              - generic [ref=e314]: partes trocáveis
+    - region [ref=e315]:
+      - generic [ref=e317]:
+        - generic [ref=e318]:
+          - generic [ref=e319]: Escuta em primeira pessoa
+          - heading "Quando a sala muda, você nota." [level=2] [ref=e320]
+        - generic "Controles de depoimentos" [ref=e321]:
+          - button "Depoimento anterior" [ref=e322] [cursor=pointer]
+          - button "Próximo depoimento" [ref=e325] [cursor=pointer]
+      - generic "Depoimentos de pessoas que ouviram ÓRBITA" [ref=e328]:
+        - generic [ref=e329]:
+          - article [ref=e330]:
+            - paragraph [ref=e331]: “O mais perto que já cheguei de desligar a sala sem desligar o mundo.”
+            - generic [ref=e332]:
+              - generic [ref=e333]:
+                - strong [ref=e334]: Inês Viana
+                - generic [ref=e335]: Diretora de som
+              - generic [ref=e336]: São Paulo
+          - article [ref=e337]:
+            - paragraph [ref=e338]: “A troca de perfil é física. Você sente a sala abrir antes de perceber o botão.”
+            - generic [ref=e339]:
+              - generic [ref=e340]:
+                - strong [ref=e341]: Caio Furtado
+                - generic [ref=e342]: Arquiteto
+              - generic [ref=e343]: Recife
+          - article [ref=e344]:
+            - paragraph [ref=e345]: “Ele parece ter sido desenhado para ficar na mesa, não para ser escondido na mochila.”
+            - generic [ref=e346]:
+              - generic [ref=e347]:
+                - strong [ref=e348]: Maíra Sato
+                - generic [ref=e349]: Fotógrafa
+              - generic [ref=e350]: Curitiba
+          - article [ref=e351]:
+            - paragraph [ref=e352]: “O silêncio não é vazio aqui. Ele tem profundidade e direção.”
+            - generic [ref=e353]:
+              - generic [ref=e354]:
+                - strong [ref=e355]: Rafael Diniz
+                - generic [ref=e356]: Produtor musical
+              - generic [ref=e357]: Belo Horizonte
+          - article [ref=e358]:
+            - paragraph [ref=e359]: “O mais perto que já cheguei de desligar a sala sem desligar o mundo.”
+            - generic [ref=e360]:
+              - generic [ref=e361]:
+                - strong [ref=e362]: Inês Viana
+                - generic [ref=e363]: Diretora de som
+              - generic [ref=e364]: São Paulo
+          - article [ref=e365]:
+            - paragraph [ref=e366]: “A troca de perfil é física. Você sente a sala abrir antes de perceber o botão.”
+            - generic [ref=e367]:
+              - generic [ref=e368]:
+                - strong [ref=e369]: Caio Furtado
+                - generic [ref=e370]: Arquiteto
+              - generic [ref=e371]: Recife
+          - article [ref=e372]:
+            - paragraph [ref=e373]: “Ele parece ter sido desenhado para ficar na mesa, não para ser escondido na mochila.”
+            - generic [ref=e374]:
+              - generic [ref=e375]:
+                - strong [ref=e376]: Maíra Sato
+                - generic [ref=e377]: Fotógrafa
+              - generic [ref=e378]: Curitiba
+          - article [ref=e379]:
+            - paragraph [ref=e380]: “O silêncio não é vazio aqui. Ele tem profundidade e direção.”
+            - generic [ref=e381]:
+              - generic [ref=e382]:
+                - strong [ref=e383]: Rafael Diniz
+                - generic [ref=e384]: Produtor musical
+              - generic [ref=e385]: Belo Horizonte
+      - paragraph [ref=e386]: Arraste os depoimentos ou use os botões de navegação.
+    - region [ref=e387]:
+      - generic [ref=e388]:
+        - generic [ref=e389]:
+          - heading "Ainda orbitando uma dúvida?" [level=2] [ref=e390]
+          - paragraph [ref=e391]: Respostas curtas para as decisões que importam antes de colocar o som no ouvido.
+        - generic [ref=e392]:
+          - article [ref=e393]:
+            - button "O cancelamento funciona em ambientes diferentes?" [expanded] [ref=e394] [cursor=pointer]
+            - region "O cancelamento funciona em ambientes diferentes?" [ref=e399]:
+              - paragraph [ref=e401]: Sim. O sistema espacial mede o som dentro e fora das conchas e ajusta a resposta continuamente. Avião, café ou escritório entram na mesma leitura.
+          - article [ref=e402]:
+            - button "Como o ÓRBITA se comporta depois de algumas horas?" [ref=e403] [cursor=pointer]
+            - region "Como o ÓRBITA se comporta depois de algumas horas?":
+              - paragraph [ref=e408]: O arco distribui a pressão e as conchas têm espuma de memória com troca simples. O peso é distribuído em três pontos para não concentrar carga em um só lugar.
+          - article [ref=e409]:
+            - button "Posso alternar entre mais de um dispositivo?" [ref=e410] [cursor=pointer]
+            - region "Posso alternar entre mais de um dispositivo?":
+              - paragraph [ref=e415]: Você pode manter dois dispositivos pareados e alternar entre eles com um toque. O perfil de escuta continua salvo para cada contexto.
+          - article [ref=e416]:
+            - button "Quando o pedido é enviado?" [ref=e417] [cursor=pointer]
+            - region "Quando o pedido é enviado?":
+              - paragraph [ref=e422]: O envio simulado desta experiência considera até 3 dias úteis para preparação e rastreio por e-mail a partir da confirmação.
+    - region [ref=e423]:
+      - generic [ref=e425]:
+        - generic [ref=e426]:
+          - heading "Leve o silêncio com você." [level=2] [ref=e427]
+          - paragraph [ref=e428]: Grafite com perfil Spatial. O espaço que você escolheu, pronto para tocar.
+          - button "Garantir o meu ÓRBITA" [ref=e429] [cursor=pointer]
+        - generic "ÓRBITA em Grafite, perfil Spatial" [ref=e431]:
+          - img "Fone ÓRBITA, Grafite Fone de ouvido premium com arco suspenso, conchas laterais, trajetórias orbitais e perfil Spatial." [ref=e432]:
+            - generic [ref=e476]: ORBITAL SIGNAL / GRA
+  - contentinfo [ref=e478]:
+    - generic [ref=e479]:
+      - paragraph [ref=e480]: ÓRBITA / som espacial / 2026
+      - generic [ref=e481]:
+        - link "Início" [ref=e482] [cursor=pointer]:
+          - /url: "#top"
+        - link "Configurar" [ref=e483] [cursor=pointer]:
+          - /url: "#configurador"
+        - link "Suporte" [ref=e484] [cursor=pointer]:
+          - /url: "#duvidas"

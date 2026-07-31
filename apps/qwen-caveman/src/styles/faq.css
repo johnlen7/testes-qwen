@@ -1,0 +1,94 @@
+/* ============================================================
+   FAQ · accordion com grid-template-rows 0fr -> 1fr
+   ============================================================ */
+
+.faq {
+  padding: var(--sp-10) clamp(var(--sp-5), 5vw, var(--sp-8));
+}
+
+.faq-list {
+  width: min(100%, 760px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--bg-1);
+  overflow: hidden;
+  transition: border-color var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out);
+}
+.faq-item.is-open {
+  border-color: var(--line-strong);
+  background: var(--bg-2);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-5) var(--sp-6);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-align: left;
+  color: var(--ink-0);
+}
+.faq-trigger:hover {
+  color: var(--accent);
+}
+
+.faq-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+}
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: transform var(--dur-3) var(--ease-spring);
+}
+.faq-icon::before {
+  width: 16px;
+  height: 2px;
+}
+.faq-icon::after {
+  width: 2px;
+  height: 16px;
+}
+.faq-item.is-open .faq-icon::after {
+  transform: rotate(90deg);
+}
+.faq-item.is-open .faq-icon::before {
+  transform: rotate(180deg);
+}
+
+/* o truque: 0fr -> 1fr anima a altura sem medir nada */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-3) var(--ease-inout);
+}
+.faq-item.is-open .faq-panel {
+  grid-template-rows: 1fr;
+}
+.faq-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+.faq-panel-inner p {
+  padding: 0 var(--sp-6) var(--sp-6);
+  color: var(--ink-1);
+}

@@ -1,0 +1,162 @@
+/* ============================================================
+   ÓRBITA — FinalCta
+   ============================================================ */
+
+/* Seção com padding generoso e glow âmbar ao fundo */
+.section.fcta {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding-block: clamp(6rem, 10vw, 10rem);
+}
+
+.section.fcta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    58% 46% at 50% 40%,
+    var(--accent-soft),
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+/* Anel orbital decorativo + satélite girando lentamente */
+.fcta-orbit {
+  position: absolute;
+  top: 4%;
+  inset-inline: 0;
+  margin-inline: auto;
+  width: min(74vw, 560px);
+  aspect-ratio: 1;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  animation: spin-slow 72s linear infinite;
+  pointer-events: none;
+}
+
+.fcta-orbit::before {
+  content: '';
+  position: absolute;
+  top: -3.5px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 14px var(--accent);
+}
+
+.fcta-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+}
+
+/* Glow da cor atrás do produto — crossfade via custom property registrada */
+@property --fcta-glow-c {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: transparent;
+}
+
+.fcta-glow-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--s-2);
+}
+
+.fcta-glow {
+  position: absolute;
+  inset: -12%;
+  background: radial-gradient(
+    circle at 50% 45%,
+    var(--fcta-glow-c),
+    transparent 68%
+  );
+  transition: --fcta-glow-c var(--dur-3) var(--ease-in-out);
+  pointer-events: none;
+}
+
+.fcta-product {
+  position: relative;
+  width: clamp(240px, 34vw, 380px);
+}
+
+.fcta-title {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+}
+
+.fcta-lead {
+  margin: 0;
+  max-width: 44ch;
+}
+
+/* Resumo da configuração — linha mono */
+.fcta-config {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Botão magnético — o translate é aplicado no wrapper via rAF */
+.fcta-magnet {
+  display: inline-block;
+  position: relative;
+  margin-top: var(--s-2);
+  will-change: transform;
+}
+
+.fcta-btn {
+  padding: 1.1em 2.2em;
+  font-size: 1.05rem;
+  overflow: hidden;
+}
+
+.fcta-arrow {
+  transition: transform var(--dur-2) var(--ease-out-quart);
+}
+
+.fcta-btn:hover .fcta-arrow {
+  transform: translateX(3px);
+}
+
+/* Ripple — span criado via JS no ponto do clique */
+.fcta-ripple {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent-ink) 30%, transparent);
+  transform-origin: center;
+  animation: ripple var(--dur-3) var(--ease-out-quart) forwards;
+  pointer-events: none;
+}
+
+.fcta-note {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+}
+
+@media (max-width: 899px) {
+  .fcta-orbit {
+    width: min(88vw, 420px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fcta-orbit {
+    animation: none;
+  }
+}

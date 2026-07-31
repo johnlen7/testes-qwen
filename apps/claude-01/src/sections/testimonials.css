@@ -1,0 +1,144 @@
+/* ÓRBITA — 4.5 Depoimentos: marquee autoral (rAF + drag com inércia). */
+
+.testimonials {
+  overflow: hidden;
+}
+
+.testimonials__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-16);
+  max-width: 40rem;
+}
+
+.testimonials__title {
+  font-size: var(--fs-display-md);
+}
+
+.testimonials__lead {
+  color: var(--color-text-muted);
+  font-size: var(--fs-body-lg);
+  max-width: 34rem;
+}
+
+.testimonials__viewport {
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.testimonials__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.testimonials__viewport:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 6px;
+  border-radius: var(--radius-sm);
+}
+
+.testimonials__track {
+  display: flex;
+  gap: var(--space-6);
+  width: max-content;
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+
+.testimonial-card {
+  flex: 0 0 clamp(17.5rem, 28vw, 22rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  min-height: 15rem;
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    transform var(--dur-base) var(--ease-out-quint),
+    border-color var(--dur-base) var(--ease-out-quint);
+}
+
+.testimonials__viewport:not(.is-dragging) .testimonial-card:hover {
+  transform: translateY(-0.25rem);
+  border-color: var(--color-accent);
+}
+
+.testimonial-card__quote {
+  margin: 0;
+  position: relative;
+}
+
+.testimonial-card__quote::before {
+  content: '\201C';
+  display: block;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.45;
+  margin-bottom: var(--space-2);
+}
+
+.testimonial-card__quote p {
+  font-family: var(--font-display);
+  font-size: var(--fs-body-lg);
+  font-weight: 460;
+  line-height: var(--lh-snug);
+  color: var(--color-text);
+}
+
+.testimonial-card__author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+  font-style: normal;
+}
+
+.testimonial-card__name {
+  font-weight: 700;
+  font-size: var(--fs-body);
+  color: var(--color-text);
+}
+
+.testimonial-card__role {
+  font-size: var(--fs-small);
+  color: var(--color-signal);
+}
+
+/* ---- reduced motion: trilha estática, ainda navegável por scroll nativo ---- */
+.testimonials.is-static .testimonials__viewport {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  cursor: default;
+  scrollbar-width: thin;
+}
+
+.testimonials.is-static .testimonials__track {
+  will-change: auto;
+}
+
+.testimonials.is-static .testimonial-card {
+  scroll-snap-align: start;
+}
+
+.testimonials.is-static .testimonial-card[aria-hidden='true'] {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .testimonials__track {
+    gap: var(--space-4);
+  }
+
+  .testimonial-card {
+    padding: var(--space-6);
+  }
+}

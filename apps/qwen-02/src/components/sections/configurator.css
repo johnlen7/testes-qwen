@@ -1,0 +1,198 @@
+.config__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+  margin-top: var(--sp-8);
+}
+
+/* ---- Palco ---- */
+.config__stage {
+  position: relative;
+  padding: var(--sp-7);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(120% 120% at 50% 0%, var(--bg-2), var(--bg-1));
+  box-shadow:
+    inset 0 0 0 1px var(--line),
+    var(--shadow-1);
+  overflow: hidden;
+}
+.config__glow {
+  position: absolute;
+  inset: 12% 8% auto;
+  height: 60%;
+  background: radial-gradient(closest-side, var(--accent-glow), transparent 70%);
+  filter: blur(30px);
+  opacity: 0.4;
+}
+.config__stage svg {
+  position: relative;
+  max-width: 400px;
+  margin-inline: auto;
+}
+.config__stage-tag {
+  position: absolute;
+  left: var(--sp-5);
+  bottom: var(--sp-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* ---- Painel de controles ---- */
+.config__panel {
+  display: grid;
+  gap: var(--sp-7);
+}
+.config__field {
+  border: none;
+  padding: 0;
+}
+.config__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  font-weight: 600;
+  color: var(--text-0);
+  margin-bottom: var(--sp-4);
+}
+.config__label-value {
+  color: var(--accent-text);
+  font-size: var(--fs-body);
+}
+
+/* ---- Swatches de cor ---- */
+.config__swatches {
+  display: flex;
+  gap: var(--sp-3);
+}
+.config__swatch {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  transition:
+    transform var(--dur-1) var(--ease-spring),
+    box-shadow var(--dur-2) var(--ease-out);
+}
+.config__swatch-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.25),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.35);
+  transition: transform var(--dur-1) var(--ease-spring);
+}
+.config__swatch:hover {
+  transform: translateY(-3px);
+}
+.config__swatch[data-active='true'] {
+  box-shadow:
+    inset 0 0 0 1px var(--bg-0),
+    0 0 0 2px var(--accent);
+}
+.config__swatch[data-active='true'] .config__swatch-dot {
+  transform: scale(1.08);
+}
+
+/* ---- Tamanhos ---- */
+.config__sizes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+.config__size {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-1);
+  padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--r-md);
+  text-align: left;
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition:
+    box-shadow var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out),
+    transform var(--dur-1) var(--ease-spring);
+}
+.config__size:hover {
+  transform: translateY(-2px);
+}
+.config__size-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-0);
+}
+.config__size-price {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--text-2);
+}
+.config__size[data-active='true'] {
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+.config__size[data-active='true'] .config__size-price {
+  color: var(--accent-text);
+}
+.config__size-desc {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-small);
+  min-height: 2.6em;
+}
+
+/* ---- Compra ---- */
+.config__buy {
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--line);
+}
+.config__price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--sp-4);
+}
+.config__price-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.config__price-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--text-0);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.config__cta {
+  width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+}
+.config__note {
+  margin-top: var(--sp-3);
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--text-2);
+}
+
+/* ---- Responsivo ---- */
+@media (max-width: 900px) {
+  .config__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+  }
+  .config__stage {
+    padding: var(--sp-5);
+  }
+}

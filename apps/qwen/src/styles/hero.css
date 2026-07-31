@@ -1,0 +1,250 @@
+/* ════════════════════════════════════════════════════════════
+   4.1 Hero — entrada orquestrada, canvas orbital, parallax
+   ════════════════════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: clip;
+  padding: calc(var(--sp-10) + 3rem) var(--gutter) var(--sp-9);
+}
+
+.orbit-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-canvas);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: var(--sp-7);
+}
+
+/* ── Entrada orquestrada (stagger por --d) ── */
+.js .hero [style*='--d'] {
+  opacity: 0;
+}
+
+.js .is-loaded .hero [style*='--d'] {
+  animation: hero-rise var(--t-cinema) var(--ease-out) forwards;
+  animation-delay: calc(var(--d) * 120ms + 100ms);
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ── Tipografia do hero ── */
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  color: var(--ink-strong);
+  margin: var(--sp-5) 0 var(--sp-5);
+}
+
+.ht-line {
+  display: block;
+  font-size: var(--fs-display);
+  background: linear-gradient(105deg, var(--ink-strong) 55%, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ht-sub {
+  display: block;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: var(--sp-3);
+  letter-spacing: -0.01em;
+}
+
+.hero-sub {
+  color: var(--ink-muted);
+  max-width: 32rem;
+  margin-bottom: var(--sp-6);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-7);
+}
+
+/* ── Especificações em mono (HUD) ── */
+.hero-meta {
+  display: flex;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding-top: var(--sp-4);
+  max-width: 34rem;
+}
+
+.hero-meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-meta dt {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.hero-meta dd {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ink-strong);
+}
+
+/* ── Visual do produto ── */
+.hero-visual {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.hp-float {
+  animation: hp-float 7s var(--ease-in-out) infinite;
+  will-change: transform;
+}
+
+@keyframes hp-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  width: 120%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 62%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── Scroll cue ── */
+.scroll-cue {
+  position: absolute;
+  bottom: var(--sp-5);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--ink-muted);
+}
+
+.scroll-cue-line {
+  width: 1px;
+  height: 44px;
+  background: var(--line-strong);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-cue-line::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--accent);
+  animation: cue-drop 2s var(--ease-in-out) infinite;
+}
+
+@keyframes cue-drop {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(280%);
+    opacity: 0;
+  }
+}
+
+.scroll-cue-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 959px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  [data-headphone][data-size='lg'] {
+    width: clamp(220px, 55vw, 320px);
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 7rem;
+  }
+
+  .scroll-cue {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-float,
+  .scroll-cue-line::after {
+    animation: none;
+  }
+
+  .js .is-loaded .hero [style*='--d'] {
+    animation: none;
+    opacity: 1;
+  }
+}

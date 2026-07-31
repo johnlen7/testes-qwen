@@ -1,0 +1,52 @@
+/* ============================================================
+   ÓRBITA — entrypoint de estilos
+   ============================================================ */
+@import "./tokens.css";
+@import "./base.css";
+@import "./nav.css";
+@import "./hero.css";
+@import "./headphone.css";
+@import "./story.css";
+@import "./config.css";
+@import "./features.css";
+@import "./marquee.css";
+@import "./faq.css";
+@import "./cta.css";
+
+/* ============================================================
+   Reduced motion — desliga TODAS as animações decorativas
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .cursor { display: none; }
+  .reveal-up { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   Tema: segura transições durante o wipe circular
+   ============================================================ */
+html.no-anim,
+html.no-anim * {
+  transition: none !important;
+  animation-duration: 0.01ms !important;
+}
+
+/* ============================================================
+   Performance: seções abaixo da dobra renderizam sob demanda
+   (sem CLS: contain-intrinsic-size reserva a altura)
+   ============================================================ */
+.features,
+.praise,
+.faq,
+.finale,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}

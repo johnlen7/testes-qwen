@@ -1,0 +1,100 @@
+.feat__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--sp-5);
+  margin-top: var(--sp-8);
+}
+.feat__grid > li {
+  grid-column: span 2;
+}
+.feat__grid > li:nth-child(4),
+.feat__grid > li:nth-child(5) {
+  grid-column: span 3;
+}
+
+.feat__card {
+  position: relative;
+  height: 100%;
+  padding: var(--sp-6);
+  border-radius: var(--r-lg);
+  background: var(--bg-1);
+  box-shadow: inset 0 0 0 1px var(--line);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+  will-change: transform;
+}
+.feat__card:hover {
+  box-shadow:
+    inset 0 0 0 1px var(--line-strong),
+    var(--shadow-1);
+}
+.feat__card:focus-visible {
+  box-shadow:
+    inset 0 0 0 1px var(--line-strong),
+    var(--shadow-1);
+}
+
+.feat__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(340px circle at var(--gx, 50%) var(--gy, 50%), var(--accent-soft), transparent 62%);
+  transition: opacity var(--dur-2) var(--ease-out);
+}
+.feat__card:hover .feat__glow,
+.feat__card:focus-visible .feat__glow {
+  opacity: 1;
+}
+
+.feat__icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: var(--r-md);
+  color: var(--accent-text);
+  background: var(--accent-soft);
+  margin-bottom: var(--sp-5);
+  transition: transform var(--dur-2) var(--ease-spring);
+}
+.feat__card:hover .feat__icon {
+  transform: translateY(-4px) scale(1.07);
+}
+.feat__icon svg {
+  width: 27px;
+  height: 27px;
+}
+
+.feat__title {
+  font-size: var(--fs-title);
+  margin-bottom: var(--sp-2);
+}
+.feat__desc {
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 1000px) {
+  .feat__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .feat__grid > li,
+  .feat__grid > li:nth-child(4),
+  .feat__grid > li:nth-child(5) {
+    grid-column: auto;
+  }
+}
+@media (max-width: 600px) {
+  .feat__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feat__card {
+    transform: none !important;
+  }
+}

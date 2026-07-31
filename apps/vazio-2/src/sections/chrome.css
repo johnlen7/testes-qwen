@@ -1,0 +1,214 @@
+/**
+ * ÓRBITA — Chrome: header, navegação, toggle de tema e progresso orbital.
+ */
+
+/* ---------- header ---------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding-block: var(--space-3);
+  transition: background-color var(--dur-2) var(--ease-out),
+              backdrop-filter var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out),
+              box-shadow var(--dur-2) var(--ease-out);
+}
+
+.site-header.is-scrolled {
+  background-color: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand__icon {
+  width: 26px;
+  height: 26px;
+  color: var(--accent);
+}
+
+.brand__word {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+/* ---------- navegação ---------- */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.site-nav a {
+  position: relative;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color var(--dur-2) var(--ease-out);
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--ink);
+}
+
+.site-nav a.is-active {
+  color: var(--accent);
+}
+
+.site-nav a.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--glow);
+}
+
+/* ---------- ações do header ---------- */
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.theme-toggle {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out),
+              color var(--dur-2) var(--ease-out);
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  grid-area: 1 / 1;
+  transition: opacity var(--dur-2) var(--ease-out),
+              transform var(--dur-2) var(--ease-out);
+}
+
+/* Ícone indica o destino: sol aparece no tema escuro (clicar → claro). */
+.theme-toggle__sun {
+  opacity: 0;
+  transform: scale(0.7) rotate(-30deg);
+}
+
+.theme-toggle__moon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+:root[data-theme='dark'] .theme-toggle__sun {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+:root[data-theme='dark'] .theme-toggle__moon {
+  opacity: 0;
+  transform: scale(0.7) rotate(30deg);
+}
+
+/* ---------- theme veil ---------- */
+.theme-veil {
+  will-change: clip-path, opacity;
+}
+
+/* ---------- progresso orbital ---------- */
+.orbit-progress {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 40;
+  width: 56px;
+  height: 56px;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity var(--dur-3) var(--ease-out),
+              transform var(--dur-3) var(--ease-out);
+  pointer-events: none;
+}
+
+.orbit-progress.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.orbit-progress svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.orbit-progress__ring {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 150ms linear;
+}
+
+.orbit-progress__planet {
+  fill: var(--bg-3);
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.orbit-progress__satellite circle:first-child {
+  fill: var(--accent);
+}
+
+.orbit-progress__halo {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1;
+  opacity: 0.35;
+  transform-origin: center;
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 719px) {
+  .site-nav {
+    display: none;
+  }
+}

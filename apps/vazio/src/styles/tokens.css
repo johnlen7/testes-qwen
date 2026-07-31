@@ -1,0 +1,84 @@
+/* ============================================================
+   ÓRBITA · design tokens
+   Paleta por tema, tipografia, espaçamento, motion.
+   ============================================================ */
+
+:root {
+  /* Tipografia */
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-text: "Sora", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Escala tipográfica: 12/14/16/18/21/28/38/56/hero */
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-21: 1.3125rem;
+  --fs-28: 1.75rem;
+  --fs-38: 2.375rem;
+  --fs-56: 3.5rem;
+  --fs-hero: clamp(2.75rem, 7.2vw, 6rem);
+
+  /* Espaçamento (base 4px) */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-24: 6rem;
+  --sp-32: 8rem;
+
+  /* Motion */
+  --d1: 150ms;
+  --d2: 300ms;
+  --d3: 600ms;
+  --d4: 900ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Layout */
+  --max: 80rem;
+  --header-h: 4rem;
+  --radius: 0.75rem;
+
+  /* Produto (objeto físico: mesmas cores nos dois temas) */
+  --product-shell: #2a2e3a;      /* Grafite */
+  --product-shell-dark: #1d212c;
+  --product-band: #222634;
+  --product-cushion: #161a24;
+  --product-accent: #e8a33d;     /* Hélio */
+  --product-hair: rgba(236, 239, 248, 0.38);
+}
+
+/* Tema escuro (padrão) */
+:root[data-theme="dark"] {
+  --bg: #070910;
+  --surface: #0d111c;
+  --surface-2: #131829;
+  --ink: #eceff8;
+  --muted: #8b93a9;
+  --accent: #ffb547;
+  --accent-soft: rgba(255, 181, 71, 0.14);
+  --line: rgba(236, 239, 248, 0.1);
+  --on-accent: #0b0d14;
+  color-scheme: dark;
+}
+
+/* Tema claro */
+:root[data-theme="light"] {
+  --bg: #edeef2;
+  --surface: #ffffff;
+  --surface-2: #e3e5ec;
+  --ink: #12151f;
+  --muted: #5a6172;
+  --accent: #b45309;
+  --accent-soft: rgba(180, 83, 9, 0.1);
+  --line: rgba(18, 21, 31, 0.12);
+  --on-accent: #ffffff;
+  color-scheme: light;
+}

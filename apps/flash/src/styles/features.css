@@ -1,0 +1,103 @@
+/* ============================================================
+   Features — grade com tilt 3D, glow e ícones autorais
+   ============================================================ */
+
+.features {
+  position: relative;
+  padding: var(--sp-40) 0;
+  border-top: 1px solid var(--hairline);
+}
+.features-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-8);
+  margin-bottom: var(--sp-16);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+
+.feature {
+  position: relative;
+  --mx: 0;
+  --my: 0;
+  padding: var(--sp-8) var(--sp-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline);
+  background: var(--bg-elevated);
+  overflow: hidden;
+  transform: perspective(900px) rotateX(calc(var(--my) * 6deg)) rotateY(calc(var(--mx) * 6deg)) translateZ(0);
+  transition:
+    transform 180ms var(--ease-out-quart),
+    border-color var(--dur-2) var(--ease-out-quart),
+    box-shadow var(--dur-3) var(--ease-out-quart),
+    background-color 450ms var(--ease-out-quart);
+  will-change: transform;
+}
+.feature::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(320px circle at var(--mx-px, 50%) var(--my-px, 50%), var(--accent-soft) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--ease-out-quart);
+  pointer-events: none;
+}
+.feature:hover,
+.feature:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 30px 60px -24px var(--accent-glow);
+}
+.feature:hover::before,
+.feature:focus-within::before { opacity: 1; }
+
+.feature-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border: 1px solid var(--hairline);
+  margin-bottom: var(--sp-6);
+  transition: transform var(--dur-3) var(--ease-out-expo), color 450ms var(--ease-out-quart);
+}
+.feature:hover .feature-icon,
+.feature:focus-within .feature-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+.feature-icon svg { width: 26px; height: 26px; }
+
+.feature-idx {
+  position: absolute;
+  top: var(--sp-6);
+  right: var(--sp-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+}
+
+.feature h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--sp-3);
+}
+.feature p {
+  font-size: var(--text-sm);
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .features-head { flex-direction: column; align-items: flex-start; }
+  .features-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,118 @@
+/*
+  ÓRBITA — design tokens.
+  Direção: "calor no vazio" — void quase-preto profundo + acento cobre/âmbar (energia,
+  campo de som) e um sinal frio ciano usado em traços finos (telemetria/órbitas).
+  Evita deliberadamente o cliché roxo/azul-SaaS e glassmorphism decorativo.
+*/
+
+:root {
+  /* ---- cor: tema escuro (padrão) ---- */
+  --color-bg: #0a0b0f;
+  --color-bg-raised: #14161d;
+  --color-bg-overlay: #1c1f28;
+  --color-text: #f3f1ea;
+  --color-text-muted: #a3a7b5;
+  --color-border: #2a2d38;
+
+  --color-accent: #ff7a45; /* cobre/âmbar — energia */
+  --color-accent-strong: #ff9466;
+  --color-accent-ink: #180a04; /* texto sobre accent */
+  --color-signal: #5eead4; /* ciano — telemetria/órbita, uso pontual */
+
+  --color-focus: var(--color-accent-strong);
+
+  /* superfícies do produto (SVG do fone) — sobrescritas por cor escolhida no configurador */
+  --product-shell: #2a2d38;
+  --product-shell-light: #3c4051;
+  --product-cushion: #14161d;
+  --product-accent: var(--color-accent);
+
+  /* ---- tipografia ---- */
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --font-body: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-display-xl: clamp(2.75rem, 2rem + 3.5vw, 6rem);
+  --fs-display-lg: clamp(2.1rem, 1.6rem + 2.2vw, 3.75rem);
+  --fs-display-md: clamp(1.6rem, 1.35rem + 1.1vw, 2.5rem);
+  --fs-body-lg: clamp(1.1rem, 1rem + 0.4vw, 1.375rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.75rem;
+
+  --lh-tight: 1.05;
+  --lh-snug: 1.25;
+  --lh-body: 1.6;
+
+  /* ---- espaçamento (escala 4px) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-48: 12rem;
+
+  --content-max: 76rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+
+  /* ---- motion: duração ---- */
+  --dur-instant: 100ms;
+  --dur-fast: 200ms;
+  --dur-base: 350ms;
+  --dur-slow: 600ms;
+  --dur-slower: 900ms;
+  --dur-theme: 700ms;
+
+  /* ---- motion: easings customizados (não usar "ease" genérico) ---- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.16, 1.36, 0.34, 1);
+  --ease-in-quad: cubic-bezier(0.55, 0.09, 0.68, 0.53);
+  --ease-linear: cubic-bezier(0, 0, 1, 1);
+  --ease-magnetic: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-toast: 300;
+}
+
+[data-theme='light'] {
+  --color-bg: #f4f1ea;
+  --color-bg-raised: #ffffff;
+  --color-bg-overlay: #eae5d9;
+  --color-text: #14151a;
+  --color-text-muted: #5b5f6d;
+  --color-border: #ddd8c9;
+
+  --color-accent: #d95c25;
+  --color-accent-strong: #b8481a;
+  --color-accent-ink: #fff7f0;
+  --color-signal: #0f8a7a;
+
+  --product-shell: #e4e0d4;
+  --product-shell-light: #f4f1ea;
+  --product-cushion: #cfc9b8;
+}
+
+/* prefers-reduced-motion: fonte única de verdade também em CSS puro (transitions/keyframes) */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms;
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-slower: 0ms;
+    --dur-theme: 0ms;
+  }
+}

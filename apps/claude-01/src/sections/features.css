@@ -1,0 +1,114 @@
+#features {
+  background: var(--color-bg);
+}
+
+.features__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.features__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 42rem;
+}
+
+.features__title {
+  font-size: var(--fs-display-md);
+  margin-top: var(--space-2);
+}
+
+.features__lede {
+  color: var(--color-text-muted);
+  font-size: var(--fs-body-lg);
+  max-width: 38ch;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .features__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.features__item {
+  height: 100%;
+}
+
+.feature-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-8) var(--space-6);
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition:
+    border-color var(--dur-base) var(--ease-out-quint),
+    box-shadow var(--dur-base) var(--ease-out-quint);
+}
+
+.feature-card:hover,
+.feature-card:focus-visible {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+
+.feature-card:focus-visible {
+  outline-offset: 4px;
+}
+
+.feature-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-overlay);
+  color: var(--color-accent);
+  transition: filter var(--dur-base) var(--ease-out-quint);
+}
+
+.feature-card__icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.feature-card:hover .feature-card__icon,
+.feature-card:focus-visible .feature-card__icon {
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-accent) 70%, transparent));
+}
+
+.feature-card__title {
+  font-size: var(--fs-body-lg);
+  font-weight: 480;
+}
+
+.feature-card__desc {
+  color: var(--color-text-muted);
+  font-size: var(--fs-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card {
+    transform: none;
+  }
+}

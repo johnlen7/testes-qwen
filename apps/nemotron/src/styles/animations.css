@@ -1,0 +1,166 @@
+/* ============================================================
+   ÓRBITA — keyframes compartilhados
+   Todas as animações contínuas usam apenas transform/opacity/filter
+   ============================================================ */
+
+/* Ponto do eyebrow pulsando */
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+  70% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* Respiração do produto montado */
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.012);
+  }
+}
+
+/* Rotação lenta contínua */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-slow-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Satélite orbitando */
+@keyframes orbit-sat {
+  from {
+    transform: rotate(0deg) translateX(var(--orbit-r, 160px)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--orbit-r, 160px)) rotate(-360deg);
+  }
+}
+
+/* Poeira estelar derivando */
+@keyframes dust-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--dust-o, 0.6);
+  }
+  88% {
+    opacity: var(--dust-o, 0.6);
+  }
+  100% {
+    transform: translate3d(var(--dust-x, 40px), var(--dust-y, -70px), 0);
+    opacity: 0;
+  }
+}
+
+/* Ondas de áudio do driver (scroll-telling etapa 3 / modo espacial) */
+@keyframes wave-out {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+/* Barras de EQ do modo de som */
+@keyframes eq-bar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Brilho pulsante do halo */
+@keyframes glow-breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Entrada orquestrada do hero (fade + subida + leve blur) */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-in-soft {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Ripple do CTA final */
+@keyframes ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Cursor piscando do contador */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Marquee — fallback CSS (usado apenas se o JS estiver desligado) */
+@keyframes marquee-fallback {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes dust-drift {
+    to {
+      transform: none;
+      opacity: 0;
+    }
+  }
+}

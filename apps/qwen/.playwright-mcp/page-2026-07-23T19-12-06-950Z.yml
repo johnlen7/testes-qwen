@@ -1,0 +1,282 @@
+- generic [active] [ref=e1]:
+  - link "Pular para o conteúdo" [ref=e2] [cursor=pointer]:
+    - /url: "#conteudo"
+  - banner [ref=e3]:
+    - link "ÓRBITA — início" [ref=e4] [cursor=pointer]:
+      - /url: "#inicio"
+      - generic [ref=e9]: ÓRBITA
+    - navigation "Navegação principal" [ref=e10]:
+      - link "Como funciona" [ref=e11] [cursor=pointer]:
+        - /url: "#como-funciona"
+      - link "Configurar" [ref=e12] [cursor=pointer]:
+        - /url: "#configurador"
+      - link "Tecnologia" [ref=e13] [cursor=pointer]:
+        - /url: "#features"
+      - link "FAQ" [ref=e14] [cursor=pointer]:
+        - /url: "#faq"
+    - generic [ref=e15]:
+      - link "Comprar" [ref=e16] [cursor=pointer]:
+        - /url: "#comprar"
+      - button "Alternar tema claro e escuro" [ref=e17] [cursor=pointer]
+  - main [ref=e24]:
+    - region [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - paragraph [ref=e28]: Cancelamento de ruído adaptativo espacial
+          - heading "ÓRBITA O silêncio entrou em órbita." [level=1] [ref=e29]:
+            - generic [ref=e30]: ÓRBITA
+            - generic [ref=e31]: O silêncio entrou em órbita.
+          - paragraph [ref=e32]: Seis microfones mapeiam o espaço ao seu redor 500 vezes por segundo. O resultado não é silêncio — é a sua própria gravidade sonora.
+          - generic [ref=e33]:
+            - link "Configurar o meu" [ref=e34] [cursor=pointer]:
+              - /url: "#configurador"
+            - link "Ver como funciona" [ref=e35] [cursor=pointer]:
+              - /url: "#como-funciona"
+          - generic "Especificações principais" [ref=e36]:
+            - generic [ref=e37]:
+              - term [ref=e38]: Driver
+              - definition [ref=e39]: Ø 40 mm
+            - generic [ref=e40]:
+              - term [ref=e41]: ANC
+              - definition [ref=e42]: −42 dB
+            - generic [ref=e43]:
+              - term [ref=e44]: Bateria
+              - definition [ref=e45]: 40 h
+            - generic [ref=e46]:
+              - term [ref=e47]: Latência
+              - definition [ref=e48]: 18 ms
+        - img "Fone ÓRBITA em vista frontal" [ref=e51]
+      - link "Rolar para a seção como funciona" [ref=e94] [cursor=pointer]:
+        - /url: "#como-funciona"
+        - generic [ref=e96]: Role para decolar
+    - region [ref=e97]:
+      - generic [ref=e98]:
+        - paragraph [ref=e99]: Como funciona
+        - heading "Três movimentos. Um campo de silêncio." [level=2] [ref=e100]: Três movimentos.Um campo de silêncio.
+      - generic [ref=e104]:
+        - img:
+          - generic: ARCO · AL 6061
+          - generic: CONCHA · AL ANODIZADO
+          - generic: DRIVER · Ø 40 MM
+          - generic: ESPUMA · MEMÓRIA
+    - region [ref=e151]:
+      - generic [ref=e152]:
+        - paragraph [ref=e153]: Configurador
+        - heading "Monte a sua órbita." [level=2] [ref=e154]
+        - paragraph [ref=e155]: Quatro acabamentos. Dois modos de escuta. Uma assinatura sonora só sua.
+      - generic [ref=e156]:
+        - paragraph [ref=e202]: Grafite
+        - generic [ref=e203]:
+          - group "Acabamento" [ref=e204]:
+            - radiogroup "Cor do fone" [ref=e206]:
+              - radio "Grafite" [checked] [ref=e207] [cursor=pointer]
+              - radio "Areia Lunar" [ref=e210] [cursor=pointer]
+              - radio "Azul Abissal" [ref=e213] [cursor=pointer]
+              - radio "Flare Solar" [ref=e216] [cursor=pointer]
+          - group "Modo de escuta" [ref=e219]:
+            - radiogroup "Modo de som" [ref=e221]:
+              - radio "Estúdio Resposta plana, referência de mixagem Incluso" [checked] [ref=e222] [cursor=pointer]:
+                - generic [ref=e223]: Estúdio
+                - generic [ref=e224]: Resposta plana, referência de mixagem
+                - generic [ref=e225]: Incluso
+              - radio "Imersivo Áudio espacial com rastreamento de cabeça + R$ 300" [ref=e226] [cursor=pointer]:
+                - generic [ref=e227]: Imersivo
+                - generic [ref=e228]: Áudio espacial com rastreamento de cabeça
+                - generic [ref=e229]: + R$ 300
+          - generic [ref=e230]:
+            - generic [ref=e231]:
+              - paragraph [ref=e232]: Total
+              - paragraph [ref=e233]:
+                - generic [ref=e234]: R$
+                - generic [ref=e235]:
+                  - generic [ref=e237]:
+                    - generic [ref=e238]: "0"
+                    - generic [ref=e239]: "1"
+                    - generic [ref=e240]: "2"
+                    - generic [ref=e241]: "3"
+                    - generic [ref=e242]: "4"
+                    - generic [ref=e243]: "5"
+                    - generic [ref=e244]: "6"
+                    - generic [ref=e245]: "7"
+                    - generic [ref=e246]: "8"
+                    - generic [ref=e247]: "9"
+                  - generic [ref=e248]: .
+                  - generic [ref=e250]:
+                    - generic [ref=e251]: "0"
+                    - generic [ref=e252]: "1"
+                    - generic [ref=e253]: "2"
+                    - generic [ref=e254]: "3"
+                    - generic [ref=e255]: "4"
+                    - generic [ref=e256]: "5"
+                    - generic [ref=e257]: "6"
+                    - generic [ref=e258]: "7"
+                    - generic [ref=e259]: "8"
+                    - generic [ref=e260]: "9"
+                  - generic [ref=e262]:
+                    - generic [ref=e263]: "0"
+                    - generic [ref=e264]: "1"
+                    - generic [ref=e265]: "2"
+                    - generic [ref=e266]: "3"
+                    - generic [ref=e267]: "4"
+                    - generic [ref=e268]: "5"
+                    - generic [ref=e269]: "6"
+                    - generic [ref=e270]: "7"
+                    - generic [ref=e271]: "8"
+                    - generic [ref=e272]: "9"
+                  - generic [ref=e274]:
+                    - generic [ref=e275]: "0"
+                    - generic [ref=e276]: "1"
+                    - generic [ref=e277]: "2"
+                    - generic [ref=e278]: "3"
+                    - generic [ref=e279]: "4"
+                    - generic [ref=e280]: "5"
+                    - generic [ref=e281]: "6"
+                    - generic [ref=e282]: "7"
+                    - generic [ref=e283]: "8"
+                    - generic [ref=e284]: "9"
+            - button "Comprar ÓRBITA — Grafite" [ref=e285] [cursor=pointer]
+          - paragraph [ref=e286]: Frete grátis · 30 dias para devolução · 2 anos de garantia
+    - region [ref=e287]:
+      - generic [ref=e288]:
+        - paragraph [ref=e289]: Tecnologia
+        - heading "Engenharia que desaparece." [level=2] [ref=e290]
+        - paragraph [ref=e291]: Tudo que é complexo foi resolvido para que só sobre música.
+      - list [ref=e292]:
+        - listitem [ref=e293]:
+          - heading "ANC adaptativo espacial" [level=3] [ref=e297]
+          - paragraph [ref=e298]: Seis microfones recalibram o cancelamento para cada ambiente — do vagão do metrô ao open space.
+        - listitem [ref=e299]:
+          - heading "40 horas de bateria" [level=3] [ref=e303]
+          - paragraph [ref=e304]: "Uma carga, uma semana de voos. Carga rápida: 10 minutos na tomada valem 8 horas de silêncio."
+        - listitem [ref=e305]:
+          - heading "Driver Ø 40 mm" [level=3] [ref=e310]
+          - paragraph [ref=e311]: Diafragma em suspensão dupla com distorção de 0,04%. Graves que descem a 8 Hz sem esforço.
+        - listitem [ref=e312]:
+          - heading "Áudio espacial" [level=3] [ref=e317]
+          - paragraph [ref=e318]: Rastreamento de cabeça com giroscópio de 9 eixos. O palco sonoro fica parado no mundo, não em você.
+        - listitem [ref=e319]:
+          - heading "USB-C carga rápida" [level=3] [ref=e322]
+          - paragraph [ref=e323]: Carregue no mesmo cabo do notebook. Cinco minutos garantem a reunião inteira — com sobra.
+        - listitem [ref=e324]:
+          - heading "Latência de 18 ms" [level=3] [ref=e329]
+          - paragraph [ref=e330]: Modo jogo com codec proprietário. O tiro, a fala e a nota chegam quando têm que chegar.
+    - region [ref=e331]:
+      - generic [ref=e332]:
+        - paragraph [ref=e333]: Prova social
+        - heading "Quem orbitou, ficou." [level=2] [ref=e334]
+      - region "Depoimentos de clientes — arraste para navegar" [ref=e335]:
+        - generic [ref=e336]:
+          - article [ref=e337]:
+            - blockquote [ref=e338]: “Coloquei na decolagem e tirei no desembarque. Dez horas de voo viraram uma sala de estudo.”
+            - generic [ref=e339]:
+              - generic [ref=e340]: Marina Vasques
+              - generic [ref=e341]: Pesquisadora · 43 voos/ano
+          - article [ref=e342]:
+            - blockquote [ref=e343]: “Mixei um EP inteiro no modo Estúdio. A resposta plana não mente — e isso vale ouro.”
+            - generic [ref=e344]:
+              - generic [ref=e345]: Théo Almeida
+              - generic [ref=e346]: Produtor musical
+          - article [ref=e347]:
+            - blockquote [ref=e348]: “O cancelamento é tão bom que esqueci que o ar-condicionado do escritório existe.”
+            - generic [ref=e349]:
+              - generic [ref=e350]: Camila Rocha
+              - generic [ref=e351]: Dev · open space nível 5
+          - article [ref=e352]:
+            - blockquote [ref=e353]: “Áudio espacial em filme é trapaça. Você vira para o lado e a voz continua na TV.”
+            - generic [ref=e354]:
+              - generic [ref=e355]: Jorge Bianchi
+              - generic [ref=e356]: Crítico de cinema
+          - article [ref=e357]:
+            - blockquote [ref=e358]: “40 horas não é marketing. Carrego há seis dias e o app ainda marca 60%.”
+            - generic [ref=e359]:
+              - generic [ref=e360]: Letícia Faria
+              - generic [ref=e361]: Repórter de campo
+          - article [ref=e362]:
+            - blockquote [ref=e363]: “O modo Flare Solar é ridículo de bonito. Recebo pergunta no metrô todo dia.”
+            - generic [ref=e364]:
+              - generic [ref=e365]: Rafael Nunes
+              - generic [ref=e366]: Designer
+          - article [ref=e367]:
+            - blockquote [ref=e368]: “Coloquei na decolagem e tirei no desembarque. Dez horas de voo viraram uma sala de estudo.”
+            - generic [ref=e369]:
+              - generic [ref=e370]: Marina Vasques
+              - generic [ref=e371]: Pesquisadora · 43 voos/ano
+          - article [ref=e372]:
+            - blockquote [ref=e373]: “Mixei um EP inteiro no modo Estúdio. A resposta plana não mente — e isso vale ouro.”
+            - generic [ref=e374]:
+              - generic [ref=e375]: Théo Almeida
+              - generic [ref=e376]: Produtor musical
+          - article [ref=e377]:
+            - blockquote [ref=e378]: “O cancelamento é tão bom que esqueci que o ar-condicionado do escritório existe.”
+            - generic [ref=e379]:
+              - generic [ref=e380]: Camila Rocha
+              - generic [ref=e381]: Dev · open space nível 5
+          - article [ref=e382]:
+            - blockquote [ref=e383]: “Áudio espacial em filme é trapaça. Você vira para o lado e a voz continua na TV.”
+            - generic [ref=e384]:
+              - generic [ref=e385]: Jorge Bianchi
+              - generic [ref=e386]: Crítico de cinema
+          - article [ref=e387]:
+            - blockquote [ref=e388]: “40 horas não é marketing. Carrego há seis dias e o app ainda marca 60%.”
+            - generic [ref=e389]:
+              - generic [ref=e390]: Letícia Faria
+              - generic [ref=e391]: Repórter de campo
+          - article [ref=e392]:
+            - blockquote [ref=e393]: “O modo Flare Solar é ridículo de bonito. Recebo pergunta no metrô todo dia.”
+            - generic [ref=e394]:
+              - generic [ref=e395]: Rafael Nunes
+              - generic [ref=e396]: Designer
+    - region [ref=e397]:
+      - generic [ref=e398]:
+        - paragraph [ref=e399]: FAQ
+        - heading "Perguntas da torre de controle." [level=2] [ref=e400]
+      - generic [ref=e401]:
+        - generic [ref=e402]:
+          - heading [level=3] [ref=e403]:
+            - button "A bateria dura mesmo 40 horas com ANC ligado?" [ref=e404] [cursor=pointer]
+          - region "A bateria dura mesmo 40 horas com ANC ligado?":
+            - paragraph [ref=e406]: Sim — 40 h com ANC adaptativo ativo e 56 h no modo ambiente. A carga rápida USB-C entrega 8 horas de reprodução em 10 minutos, medida em laboratório com volume a 50%.
+        - generic [ref=e407]:
+          - heading [level=3] [ref=e408]:
+            - button "Como o ANC adaptativo espacial difere do ANC comum?" [ref=e409] [cursor=pointer]
+          - region "Como o ANC adaptativo espacial difere do ANC comum?":
+            - paragraph [ref=e411]: O ANC comum aplica um filtro fixo. O ÓRBITA remapeia o campo acústico 500 vezes por segundo com seis microfones beamforming e ajusta fase e amplitude por frequência — inclusive quando você vira a cabeça ou troca de ambiente.
+        - generic [ref=e412]:
+          - heading [level=3] [ref=e413]:
+            - button "Quais codecs Bluetooth são suportados?" [ref=e414] [cursor=pointer]
+          - region "Quais codecs Bluetooth são suportados?":
+            - paragraph [ref=e416]: LDAC, aptX Adaptive, AAC e SBC, com Bluetooth 5.4 e conexão simultânea em dois dispositivos. O modo de latência de 18 ms usa um codec proprietário ativado pelo app.
+        - generic [ref=e417]:
+          - heading [level=3] [ref=e418]:
+            - button "Posso testar e devolver se não gostar?" [ref=e419] [cursor=pointer]
+          - region "Posso testar e devolver se não gostar?":
+            - paragraph [ref=e421]: 30 dias de teste em casa, devolução sem perguntas e reembolso integral. A caixa vai com selo de retorno pré-pago — o único risco é você não querer devolver.
+        - generic [ref=e422]:
+          - heading [level=3] [ref=e423]:
+            - button "Qual o prazo de entrega e a garantia?" [ref=e424] [cursor=pointer]
+          - region "Qual o prazo de entrega e a garantia?":
+            - paragraph [ref=e426]: Envio em até 24 h úteis com frete grátis para todo o Brasil e entrega em 2 a 7 dias úteis. Garantia de 2 anos contra defeitos de fabricação, incluindo bateria abaixo de 80% da capacidade nominal.
+    - region [ref=e427]:
+      - paragraph [ref=e472]: Contagem regressiva zero
+      - heading "O silêncio está em órbita." [level=2] [ref=e473]: O silêncio estáem órbita.
+      - paragraph [ref=e474]:
+        - text: Seu ÓRBITA Grafite no modo Estúdio sai por
+        - strong [ref=e475]: R$ 2.499
+        - text: .
+      - button "Comprar ÓRBITA — Grafite · R$ 2.499" [ref=e476] [cursor=pointer]
+      - paragraph [ref=e478]: 30 dias de teste · frete grátis · garantia de 2 anos
+  - contentinfo [ref=e479]:
+    - generic [ref=e480]:
+      - paragraph [ref=e481]: ÓRBITA.
+      - navigation "Rodapé" [ref=e482]:
+        - link "Como funciona" [ref=e483] [cursor=pointer]:
+          - /url: "#como-funciona"
+        - link "Configurar" [ref=e484] [cursor=pointer]:
+          - /url: "#configurador"
+        - link "Tecnologia" [ref=e485] [cursor=pointer]:
+          - /url: "#features"
+        - link "FAQ" [ref=e486] [cursor=pointer]:
+          - /url: "#faq"
+    - generic [ref=e487]:
+      - paragraph [ref=e488]: MSN 0042 · ÓRBITA ACOUSTICS · SÃO PAULO — TÓQUIO
+      - paragraph [ref=e489]: © 2026 · PRODUTO FICTÍCIO PARA DEMONSTRAÇÃO

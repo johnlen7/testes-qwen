@@ -1,0 +1,101 @@
+/* ============================================================
+   Depoimentos · marquee autoral (loop + hover pause + drag)
+   ============================================================ */
+
+.voices {
+  padding: var(--sp-10) 0;
+  overflow: clip;
+}
+.voices .section-head {
+  padding-inline: var(--sp-5);
+}
+
+.marquee {
+  position: relative;
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+.marquee.is-dragging {
+  cursor: grabbing;
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--sp-5);
+  width: max-content;
+  padding-inline: var(--sp-5);
+  will-change: transform;
+  animation: marquee-scroll 46s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee.is-dragging .marquee-track,
+.marquee:focus-visible .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.voice-card {
+  flex: 0 0 auto;
+  width: min(88vw, 380px);
+  padding: var(--sp-6);
+  border-radius: var(--radius-m);
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  user-select: none;
+}
+.voice-stars {
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+}
+.voice-quote {
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+.voice-author {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: auto;
+}
+.voice-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent-ink);
+  background: var(--grad-flare);
+}
+.voice-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.voice-role {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}

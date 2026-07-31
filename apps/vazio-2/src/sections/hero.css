@@ -1,0 +1,219 @@
+/* ============================================================
+   ÓRBITA — Hero (§4.1)
+   Seção de lançamento imersiva: copy + stage com fone, anéis,
+   satélite, partículas e paralaxe.
+   ============================================================ */
+
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  padding-block: var(--space-7);
+}
+
+/* ---------- canvas de partículas: full-bleed atrás de tudo ---------- */
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ---------- layout: copy | stage ---------- */
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.hero__title {
+  font-size: var(--fs-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.hero__line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero__line > span {
+  display: block;
+}
+
+.hero__accent {
+  color: var(--accent);
+}
+
+.hero__sub {
+  color: var(--ink-2);
+  max-width: 48ch;
+  line-height: 1.6;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.hero__meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hero__meta li:not(:last-child)::after {
+  content: '·';
+  color: var(--ink-2);
+  opacity: 0.45;
+}
+
+/* ---------- stage: anéis, glow e fone ---------- */
+.hero__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  transform-style: preserve-3d;
+}
+
+.hero__glow {
+  position: absolute;
+  width: 120%;
+  max-width: 620px;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--glow) 0%, transparent 68%);
+  filter: blur(80px);
+  opacity: 0.75;
+  transform: translateZ(-40px);
+}
+
+.hero__rings {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.hero__rings svg {
+  width: 100%;
+  height: 100%;
+  max-width: 560px;
+  overflow: visible;
+}
+
+.hero__hp {
+  position: relative;
+  z-index: 2;
+  will-change: transform;
+}
+
+/* ---------- cue de scroll ---------- */
+.hero__cue {
+  position: absolute;
+  bottom: var(--space-5);
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-2);
+  text-decoration: none;
+  transform: translateX(-50%);
+  transition: color var(--dur-2) var(--ease-out);
+}
+
+.hero__cue:hover {
+  color: var(--accent);
+}
+
+.hero__cue svg {
+  width: 20px;
+  height: 20px;
+  animation: hero-bounce 2s var(--ease-inout) infinite;
+}
+
+@keyframes hero-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* ---------- estados de entrada (WAAPI) ---------- */
+.hero--armed [data-hero-enter] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.hero--armed .hero__line > [data-hero-enter] {
+  clip-path: inset(100% 0 0 0);
+}
+
+.hero--armed .hero__hp {
+  opacity: 0;
+  transform: scale(0.82);
+  filter: blur(14px);
+}
+
+/* ---------- desktop ---------- */
+@media (min-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .hero__stage {
+    min-height: 560px;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero--armed [data-hero-enter],
+  .hero--armed .hero__hp {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    clip-path: none;
+  }
+
+  .hero__cue svg {
+    animation: none;
+  }
+}

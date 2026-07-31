@@ -1,0 +1,303 @@
+/* ============================================================
+   ÓRBITA — Scroll-telling (showpiece)
+   Seção imersiva de 400vh com sticky, scrub real e
+   coreografia do fone em 3 etapas.
+   ============================================================ */
+
+.scrolly {
+  position: relative;
+  height: 400vh;
+}
+
+.scrolly__sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 55vh 1fr;
+  height: 100vh;
+  padding-top: 72px; /* livra o header fixo */
+  overflow: hidden;
+}
+
+.scrolly__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  isolation: isolate;
+}
+
+.scrolly__waves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.scrolly__hp {
+  position: relative;
+  z-index: 1;
+  width: min(86%, 420px);
+  will-change: transform;
+}
+
+.scrolly__labels {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+[data-part-label] {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.55em 0.85em;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--bg-2) 85%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateX(14px);
+  transition: opacity var(--dur-2) var(--ease-out),
+              transform var(--dur-2) var(--ease-out);
+}
+
+[data-part-label].is-on {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-part-label="driver"] {
+  top: 8%;
+  left: 6%;
+}
+
+[data-part-label="chip"] {
+  top: 8%;
+  right: 6%;
+}
+
+[data-part-label="mesh"] {
+  bottom: 8%;
+  right: 6%;
+}
+
+[data-part-label="battery"] {
+  bottom: 8%;
+  left: 6%;
+}
+
+.scrolly__anc-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(72%, 340px);
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--signal);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 0;
+}
+
+.scrolly.is-anc .scrolly__anc-ring {
+  opacity: 1;
+  animation: scrolly-anc-pulse 2.4s var(--ease-inout) infinite;
+}
+
+@keyframes scrolly-anc-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.18);
+  }
+}
+
+.scrolly__steps {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-areas: 'stack';
+  align-items: center;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-4) calc(var(--space-4) + 28px);
+}
+
+.scrolly__step {
+  grid-area: stack;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity var(--dur-3) var(--ease-out),
+              transform var(--dur-3) var(--ease-out);
+}
+
+.scrolly__step.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scrolly__step .eyebrow {
+  margin-block-end: var(--space-2);
+}
+
+.scrolly__step h3 {
+  margin-block-end: var(--space-2);
+}
+
+.scrolly__step p {
+  color: var(--ink-2);
+  max-width: 44ch;
+}
+
+.scrolly__progress {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+}
+
+.scrolly__track {
+  width: 120px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.scrolly__bar {
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+/* ---------- desktop: stage ao lado dos steps ---------- */
+@media (min-width: 900px) {
+  .scrolly__sticky {
+    grid-template-columns: 55% 45%;
+    grid-template-rows: 1fr;
+  }
+
+  .scrolly__stage {
+    height: auto;
+  }
+
+  .scrolly__hp {
+    width: min(78%, 440px);
+  }
+
+  .scrolly__steps {
+    padding: var(--space-6) var(--space-5) var(--space-6) var(--space-4);
+  }
+}
+
+/* ---------- mobile: labels do explode empilhados à esquerda ---------- */
+@media (max-width: 899px) {
+  [data-part-label] {
+    font-size: 0.62rem;
+    padding: 0.45em 0.7em;
+  }
+
+  [data-part-label="driver"] {
+    top: 3%;
+    left: 4%;
+  }
+
+  [data-part-label="chip"] {
+    top: 12%;
+    left: 4%;
+    right: auto;
+  }
+
+  [data-part-label="mesh"] {
+    bottom: 4%;
+    right: 4%;
+  }
+
+  [data-part-label="battery"] {
+    bottom: 4%;
+    left: 4%;
+  }
+}
+
+/* ---------- reduced motion: versão legível em fluxo ---------- */
+.scrolly.is-static {
+  height: auto;
+}
+
+.scrolly.is-static .scrolly__sticky {
+  position: static;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrolly.is-static .scrolly__stage {
+  height: 60vh;
+  min-height: 360px;
+}
+
+.scrolly.is-static .scrolly__waves,
+.scrolly.is-static .scrolly__labels,
+.scrolly.is-static .scrolly__anc-ring {
+  display: none;
+}
+
+.scrolly.is-static .scrolly__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: flex-start;
+  overflow: visible;
+  padding: var(--space-5) var(--space-4);
+}
+
+.scrolly.is-static .scrolly__step {
+  position: relative;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.scrolly.is-static .scrolly__progress {
+  display: none;
+}
+
+/* Desliga o pulso do anel quando o usuário prefere menos movimento. */
+@media (prefers-reduced-motion: reduce) {
+  .scrolly__anc-ring {
+    animation: none !important;
+  }
+}

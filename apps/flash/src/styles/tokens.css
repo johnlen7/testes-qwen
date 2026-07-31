@@ -1,0 +1,137 @@
+/* ============================================================
+   ÓRBITA — Design tokens
+   Paleta, tipografia, espaçamento, motion.
+   Tema claro/escuro + acento dinâmico por colorway.
+   ============================================================ */
+
+:root {
+  /* ---- Tipografia ---- */
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Consolas, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.375rem;
+  --text-xl: clamp(1.75rem, 3vw, 2.5rem);
+  --text-2xl: clamp(2.25rem, 4.5vw, 3.5rem);
+  --text-display: clamp(3rem, 8vw, 6.5rem);
+
+  /* ---- Espaçamento ---- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+  --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px; --sp-16: 64px;
+  --sp-20: 80px; --sp-24: 96px; --sp-30: 120px; --sp-40: 160px;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --container: 1200px;
+  --gutter: clamp(20px, 5vw, 48px);
+
+  /* ---- Motion ---- */
+  --dur-1: 120ms;
+  --dur-2: 240ms;
+  --dur-3: 480ms;
+  --dur-4: 800ms;
+  --dur-5: 1200ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.18, 1);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-linear: linear;
+
+  /* ---- Acentos por colorway (valores dark) ----
+     data-accent no <html>; a transição de 600ms tinge o site
+     inteiro quando o usuário troca a cor no configurador. */
+  --accent: #5BA8FF;
+  --accent-ink: #8FC4FF;
+  --accent-soft: rgba(91, 168, 255, 0.14);
+  --accent-glow: rgba(91, 168, 255, 0.35);
+}
+
+html[data-accent="grafite"] {
+  --accent: #7FD4FF;
+  --accent-ink: #A8E0FF;
+  --accent-soft: rgba(127, 212, 255, 0.13);
+  --accent-glow: rgba(127, 212, 255, 0.3);
+}
+html[data-accent="nebulosa"] {
+  --accent: #9D8CFF;
+  --accent-ink: #BFB3FF;
+  --accent-soft: rgba(157, 140, 255, 0.14);
+  --accent-glow: rgba(157, 140, 255, 0.32);
+}
+html[data-accent="aurora"] {
+  --accent: #3FE0B4;
+  --accent-ink: #7DF0D2;
+  --accent-soft: rgba(63, 224, 180, 0.13);
+  --accent-glow: rgba(63, 224, 180, 0.3);
+}
+html[data-accent="solar"] {
+  --accent: #FFB25E;
+  --accent-ink: #FFCB8F;
+  --accent-soft: rgba(255, 178, 94, 0.14);
+  --accent-glow: rgba(255, 178, 94, 0.32);
+}
+
+/* ---- Tema dark (padrão) ---- */
+html[data-theme="dark"] {
+  --bg: #070B12;
+  --bg-elevated: #0C121D;
+  --surface: #111927;
+  --surface-2: #16202F;
+  --text: #E9EDF5;
+  --text-2: #9AA6BC;
+  --text-3: #77839B; /* AA ≥ 4.5:1 sobre --bg */
+  --hairline: rgba(150, 170, 210, 0.14);
+  --hairline-strong: rgba(150, 170, 210, 0.24);
+  --btn-bg: #E9EDF5;
+  --btn-ink: #0A0F18;
+  --btn-hover-bg: #FFFFFF;
+  --nav-bg: rgba(7, 11, 18, 0.72);
+  --glow-opacity: 0.55;
+  color-scheme: dark;
+}
+
+/* ---- Tema light ---- */
+html[data-theme="light"] {
+  --bg: #F4F6F9;
+  --bg-elevated: #FFFFFF;
+  --surface: #EBEFF5;
+  --surface-2: #E2E8F1;
+  --text: #151A24;
+  --text-2: #45536B;
+  --text-3: #5A687E; /* AA ≥ 4.5:1 sobre --bg */
+  --hairline: rgba(20, 30, 60, 0.12);
+  --hairline-strong: rgba(20, 30, 60, 0.2);
+  --btn-bg: #151A24;
+  --btn-ink: #F4F6F9;
+  --btn-hover-bg: #2A3242;
+  --nav-bg: rgba(244, 246, 249, 0.78);
+  --glow-opacity: 0.32;
+  color-scheme: light;
+
+  --accent-ink: #1D63C9;
+}
+
+html[data-theme="light"][data-accent="grafite"] { --accent-ink: #0C66A3; --accent-glow: rgba(12, 102, 163, 0.22); }
+html[data-theme="light"][data-accent="nebulosa"] { --accent-ink: #5A3FD6; --accent-glow: rgba(90, 63, 214, 0.22); }
+html[data-theme="light"][data-accent="aurora"] { --accent-ink: #087258; --accent-glow: rgba(8, 114, 88, 0.22); }
+html[data-theme="light"][data-accent="solar"] { --accent-ink: #9A5206; --accent-glow: rgba(154, 82, 6, 0.22); }
+html[data-theme="light"] { --accent: var(--accent-ink); }
+
+/* Transição de tema (cores).
+   Superfícies estáticas usam .theme-smooth; elementos interativos
+   declaram as props de tema junto das próprias transições. */
+.theme-smooth {
+  transition:
+    background-color 450ms var(--ease-out-quart),
+    color 450ms var(--ease-out-quart),
+    border-color 450ms var(--ease-out-quart);
+}

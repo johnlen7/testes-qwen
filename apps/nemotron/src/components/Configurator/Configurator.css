@@ -1,0 +1,280 @@
+/* ============================================================
+   ÓRBITA — Configurator
+   Animações contínuas: transform/opacity/box-shadow apenas
+   ============================================================ */
+
+/* ------------------------------ Cabeçalho ------------------------------ */
+
+.cfg-head {
+  max-width: 640px;
+}
+
+.cfg-title {
+  margin-top: var(--s-3);
+  font-size: clamp(1.9rem, 3vw, 2.35rem);
+}
+
+.cfg-lead {
+  margin-top: var(--s-4);
+  max-width: 46ch;
+}
+
+/* ------------------------------ Grid ------------------------------ */
+
+.cfg-grid {
+  margin-top: clamp(var(--s-7), 6vw, var(--s-9));
+  display: grid;
+  gap: clamp(var(--s-7), 6vw, var(--s-9));
+}
+
+/* ------------------------------ Produto (esquerda, sticky) ------------------------------ */
+
+.cfg-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-block: var(--s-4);
+}
+
+/* Halo atrás do produto — o gradiente troca com a cor da concha */
+.cfg-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cfg-product {
+  width: min(100%, 340px);
+}
+
+@media (min-width: 960px) {
+  .cfg-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--s-9);
+  }
+
+  .cfg-stage {
+    position: sticky;
+    top: calc(var(--s-8) + 32px);
+    align-self: start;
+    padding-block: 0;
+  }
+
+  .cfg-product {
+    width: min(100%, 420px);
+  }
+}
+
+/* ------------------------------ Controles (direita) ------------------------------ */
+
+.cfg-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-7);
+}
+
+.cfg-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+/* Label mono de legenda / preço */
+.cfg-label {
+  display: block;
+  margin-bottom: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Swatches de cor da concha */
+.cfg-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-4);
+}
+
+.cfg-swatch {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-2);
+}
+
+.cfg-swatch-btn {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: box-shadow var(--dur-2) var(--ease-out-quart),
+    border-color var(--dur-2) var(--ease-out-quart),
+    transform var(--dur-2) var(--ease-out-quart);
+}
+
+.cfg-swatch-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* Selecionado: anel accent com folga de --bg */
+.cfg-swatch-btn[aria-pressed='true'] {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+/* Foco no círculo: anel próprio (o outline global ficaria quadrado) */
+.cfg-swatch-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent),
+    0 0 0 7px var(--accent-soft);
+}
+
+/* Check central — aparece com pop ao selecionar */
+.cfg-swatch-btn svg {
+  width: 15px;
+  height: 15px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--dur-2) var(--ease-out-quart),
+    transform var(--dur-2) var(--ease-spring);
+}
+
+.cfg-swatch-btn[aria-pressed='true'] svg {
+  opacity: 1;
+  transform: none;
+}
+
+.cfg-swatch-name {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  white-space: nowrap;
+  color: var(--muted);
+  transition: color var(--dur-2) var(--ease-out-quart);
+}
+
+.cfg-swatch-name.is-on {
+  color: var(--ink);
+}
+
+/* Cards de modo de som */
+.cfg-modes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.cfg-mode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  width: 100%;
+  padding: var(--s-4) var(--s-5);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease-out-quart),
+    border-color var(--dur-2) var(--ease-out-quart);
+}
+
+.cfg-mode:hover {
+  border-color: var(--accent-soft);
+}
+
+.cfg-mode[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.cfg-mode-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cfg-mode-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.cfg-mode-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.cfg-mode-delta {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  transition: color var(--dur-2) var(--ease-out-quart);
+}
+
+.cfg-mode[aria-pressed='true'] .cfg-mode-delta {
+  color: var(--accent);
+}
+
+/* ------------------------------ Preço ------------------------------ */
+
+.cfg-price {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--s-6);
+}
+
+.cfg-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+}
+
+.cfg-price-row .cfg-label {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.cfg-price-value {
+  font-family: var(--font-mono);
+  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.cfg-price-breakdown {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+}
+
+/* ------------------------------ CTA ------------------------------ */
+
+.cfg-cta {
+  width: 100%;
+  margin-top: var(--s-2);
+  padding-block: 1.15em;
+  justify-content: space-between;
+}
+
+.cfg-cta-price {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  opacity: 0.78;
+}

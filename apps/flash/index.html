@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-accent="ion">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="ÓRBITA X1 — o fone de ouvido com cancelamento adaptativo espacial. O silêncio, em órbita. Pré-venda aberta." />
+  <meta name="theme-color" content="#070B12" id="theme-color" />
+  <title>ÓRBITA X1 — O silêncio, em órbita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%235BA8FF' stroke-width='2.4'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%23E9EDF5'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+  <!-- Hairline de progresso da página -->
+  <div class="page-progress" aria-hidden="true"><span id="page-progress-bar"></span></div>
+
+  <!-- Follower de cursor orbital (desktop / RM-safe) -->
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor-ring"></span>
+    <span class="cursor-dot"></span>
+  </div>
+
+  <!-- Overlay do reveal circular de tema -->
+  <div class="theme-wipe" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner container">
+      <a class="wordmark" href="#top" aria-label="ÓRBITA — voltar ao topo">
+        <span class="wordmark-text">ÓRBITA</span>
+        <span class="wordmark-orbit" aria-hidden="true"><span class="wo-dot"></span></span>
+      </a>
+      <nav class="nav-links" aria-label="Seções da página">
+        <a href="#engenharia" class="nav-link"><span>Engenharia</span></a>
+        <a href="#configurador" class="nav-link"><span>Configurar</span></a>
+        <a href="#features" class="nav-link"><span>Recursos</span></a>
+        <a href="#faq" class="nav-link"><span>FAQ</span></a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar tema claro e escuro" aria-pressed="false">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M18.5 5.5l-1.4 1.4M6.9 17.1l-1.4 1.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 13.2A8 8 0 0 1 10.8 4a8 8 0 1 0 9.2 9.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm nav-cta" href="#configurador">Comprar</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 4.1 HERO ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+
+      <div class="hero-inner container">
+        <div class="hero-copy">
+          <p class="eyebrow reveal-up" style="--d:.05s">ÓRBITA X1 · Pré-venda aberta</p>
+          <h1 id="hero-title" class="hero-title">
+            <span class="hero-line" style="--d:.12s"><span class="hero-line-inner">O <em class="accent-serif">silêncio</em>,</span></span>
+            <span class="hero-line" style="--d:.22s"><span class="hero-line-inner">em <span class="hero-orbit">órbita</span><span class="hero-period">.</span></span></span>
+          </h1>
+          <p class="hero-sub reveal-up" style="--d:.28s">
+            Cancelamento adaptativo espacial. Áudio com profundidade de planeta.
+            O ÓRBITA X1 mapeia o ambiente 48.000 vezes por segundo e recalibra o som
+            antes que você perceba o ruído.
+          </p>
+          <div class="hero-ctas reveal-up" style="--d:.4s">
+            <a class="btn btn-primary btn-lg" href="#configurador">
+              <span class="btn-label">Configurar o seu</span>
+              <svg class="btn-arrow" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#engenharia">Ver a engenharia <span class="btn-down" aria-hidden="true">↓</span></a>
+          </div>
+          <dl class="hero-stats reveal-up" style="--d:.52s">
+            <div class="hs-item"><dt>ANC</dt><dd>48.000×/s</dd></div>
+            <div class="hs-item"><dt>Bateria</dt><dd>40 h</dd></div>
+            <div class="hs-item"><dt>Driver</dt><dd>42 mm</dd></div>
+            <div class="hs-item"><dt>Peso</dt><dd>289 g</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero-stage" id="hero-stage" aria-label="Visualização do fone ÓRBITA X1">
+          <div class="hero-rings" aria-hidden="true">
+            <span class="ring ring-1"></span>
+            <span class="ring ring-2"></span>
+            <span class="ring ring-3"></span>
+            <span class="ring-satellite"></span>
+          </div>
+          <div class="hero-hp" id="hero-hp" aria-hidden="true"></div>
+          <div class="hero-chip" id="hero-chip" aria-hidden="true">
+            <span class="hero-chip-dot"></span>
+            <span class="hero-chip-txt">ANC <b>ativo</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span class="hint-line"></span>
+        <span class="hint-label">role</span>
+      </div>
+    </section>
+
+    <!-- ============ 4.2 SCROLL-TELLING ============ -->
+    <section class="story" id="engenharia" aria-labelledby="story-title">
+      <div class="story-head container">
+        <p class="eyebrow reveal-up">Engenharia</p>
+        <h2 id="story-title" class="section-title reveal-up">Da percepção ao som,<br />em <em class="accent-serif">quatro</em> movimentos.</h2>
+        <p class="story-intro reveal-up">Desça devagar. O ÓRBITA X1 se desmonta para explicar como o silêncio funciona.</p>
+      </div>
+
+      <div class="story-scroll" id="story-scroll">
+      <div class="story-pin" id="story-pin">
+        <div class="story-bg" aria-hidden="true"></div>
+        <div class="story-visual" id="story-visual">
+          <div class="story-rings" aria-hidden="true"><span class="ring ring-s1"></span><span class="ring ring-s2"></span></div>
+          <div class="story-hp" id="story-hp" aria-hidden="true"></div>
+          <div class="callout" data-c="band">
+            <span class="callout-line"></span>
+            <span class="callout-txt"><b>Arco em titânio</b>· 289 g</span>
+          </div>
+          <div class="callout" data-c="pad">
+            <span class="callout-line"></span>
+            <span class="callout-txt"><b>Almofada</b>· memória de forma</span>
+          </div>
+          <div class="callout" data-c="driver">
+            <span class="callout-line"></span>
+            <span class="callout-txt"><b>Driver planar</b>· 42 mm, titânio</span>
+          </div>
+          <div class="callout" data-c="chip">
+            <span class="callout-line"></span>
+            <span class="callout-txt"><b>Chip Órbita S2</b>· 3,6 Bi op/s</span>
+          </div>
+        </div>
+
+        <div class="story-texts" id="story-texts">
+          <div class="story-text" data-stage="0">
+            <p class="story-text-idx">01 · Percepção</p>
+            <h3>Sensores lendo o espaço.</h3>
+            <p>Seis microfones e um giroscópio mapeiam a sala <b>200× por segundo</b>. O ÓRBITA conhece o seu ambiente melhor do que você.</p>
+          </div>
+          <div class="story-text" data-stage="1">
+            <p class="story-text-idx">02 · Processamento</p>
+            <h3>O chip Órbita S2.</h3>
+            <p><b>3,6 bilhões</b> de operações por segundo para isolar a sua voz do mundo — e o mundo, de você.</p>
+          </div>
+          <div class="story-text" data-stage="2">
+            <p class="story-text-idx">03 · Matéria</p>
+            <h3>Anatomia do silêncio.</h3>
+            <p>Driver planar de titânio, concha de alumínio usinado, almofada em memória de forma. Cada peça, uma decisão.</p>
+          </div>
+          <div class="story-text" data-stage="3">
+            <p class="story-text-idx">04 · Sintonia</p>
+            <h3>O som se ajusta a você.</h3>
+            <p>Áudio espacial com rastreamento de cabeça recalibra a cena a cada movimento. O palco entra em órbita com você.</p>
+          </div>
+        </div>
+
+        <div class="story-rail" aria-hidden="true">
+          <span class="story-rail-fill" id="story-rail-fill"></span>
+          <span class="story-dot" data-dot="0"></span>
+          <span class="story-dot" data-dot="1"></span>
+          <span class="story-dot" data-dot="2"></span>
+          <span class="story-dot" data-dot="3"></span>
+        </div>
+        <div class="story-counter" aria-hidden="true">
+          <span class="story-counter-num" id="story-counter-num">01</span>
+          <span class="story-counter-total">/ 04</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ 4.3 CONFIGURADOR ============ -->
+    <section class="config" id="configurador" aria-labelledby="config-title">
+      <div class="config-head container">
+        <p class="eyebrow reveal-up">Configurador</p>
+        <h2 id="config-title" class="section-title reveal-up">Monte a sua <em class="accent-serif">órbita</em>.</h2>
+        <p class="config-intro reveal-up">Cor, modo de som e preço respondem ao vivo. A cor escolhida tinge o site inteiro.</p>
+      </div>
+
+      <div class="config-grid container">
+        <div class="config-stage" id="config-stage">
+          <div class="config-glow" id="config-glow" aria-hidden="true"></div>
+          <div class="config-rings" aria-hidden="true"><span class="ring ring-c1"></span><span class="ring ring-c2"></span></div>
+          <div class="config-hp" id="config-hp" aria-hidden="true"></div>
+          <div class="config-tag" id="config-tag" aria-hidden="true">
+            <span class="ctag-swatch" id="ctag-swatch"></span>
+            <span id="ctag-name">Íon</span>
+            <span id="ctag-mode">· Espacial</span>
+          </div>
+        </div>
+
+        <div class="config-panel">
+          <fieldset class="cfg-group" id="color-group">
+            <legend class="cfg-label">01 · Cor</legend>
+            <div class="swatches" role="group" aria-label="Escolha a cor do fone">
+              <button class="swatch" data-color="ion" type="button" aria-label="Cor Íon (azul)" aria-pressed="true"><span class="swatch-core" style="--c:#5BA8FF"></span></button>
+              <button class="swatch" data-color="grafite" type="button" aria-label="Cor Grafite" aria-pressed="false"><span class="swatch-core" style="--c:#8FA3B8"></span></button>
+              <button class="swatch" data-color="nebulosa" type="button" aria-label="Cor Nebulosa (violeta)" aria-pressed="false"><span class="swatch-core" style="--c:#8B7BFF"></span></button>
+              <button class="swatch" data-color="aurora" type="button" aria-label="Cor Aurora (verde)" aria-pressed="false"><span class="swatch-core" style="--c:#3FE0B4"></span></button>
+              <button class="swatch" data-color="solar" type="button" aria-label="Cor Solar (âmbar)" aria-pressed="false"><span class="swatch-core" style="--c:#FFB25E"></span></button>
+            </div>
+            <p class="cfg-hint" id="color-hint" aria-live="polite">Íon — azul elétrico, edição limitada</p>
+          </fieldset>
+
+          <fieldset class="cfg-group" id="mode-group">
+            <legend class="cfg-label">02 · Modo de som</legend>
+            <div class="modes" role="group" aria-label="Escolha o modo de som">
+              <button class="mode" data-mode="espacial" type="button" aria-pressed="true">
+                <svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4.6" fill="none" stroke="currentColor" stroke-width="1.6" transform="rotate(-16 12 12)"/><circle cx="20.5" cy="7.5" r="1.6" fill="currentColor"/></svg>
+                <span class="mode-txt"><b>Espacial</b><i>cena fixa no espaço</i></span>
+                <span class="mode-price">+R$ 0</span>
+              </button>
+              <button class="mode" data-mode="silencioso" type="button" aria-pressed="false">
+                <svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M12 3 6 9h-3v6h3l6 6M12 3l6 6h3v6h-3l-6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <span class="mode-txt"><b>Silêncio Total</b><i>ANC máximo, mundo some</i></span>
+                <span class="mode-price">+R$ 300</span>
+              </button>
+              <button class="mode" data-mode="transparencia" type="button" aria-pressed="false">
+                <svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="2.4 2.8"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
+                <span class="mode-txt"><b>Transparência</b><i>ouça o mundo, com clareza</i></span>
+                <span class="mode-price">+R$ 150</span>
+              </button>
+            </div>
+          </fieldset>
+
+          <div class="cfg-price">
+            <div class="cfg-price-label">Total · à vista</div>
+            <div class="cfg-price-row">
+              <span class="cfg-price-num" id="price-num" aria-live="polite">R$ 2.499</span>
+              <span class="cfg-price-installment" id="price-installment">ou 12× de R$ 249</span>
+            </div>
+            <div class="cfg-price-note">Frete grátis · Garantia de 5 anos · Devolução em 30 dias</div>
+          </div>
+
+          <button class="btn btn-primary btn-lg cfg-cta" id="config-cta" type="button">
+            <span class="btn-label" id="config-cta-label">Comprar ÓRBITA — Íon · Espacial</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4.4 FEATURES ============ -->
+    <section class="features" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="features-head">
+          <p class="eyebrow reveal-up">Recursos</p>
+          <h2 id="features-title" class="section-title reveal-up">Obsessão, <em class="accent-serif">peça</em> a peça.</h2>
+        </div>
+        <div class="features-grid">
+          <article class="feature reveal-up" data-tilt>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 0 1 16 0M3.5 13.5a3.5 3.5 0 0 1 3.5 3.5M20.5 13.5a3.5 3.5 0 0 0-3.5 3.5M7 17a5 5 0 0 1 10 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/></svg>
+            </div>
+            <span class="feature-idx">01</span>
+            <h3>ANC adaptativo 3D</h3>
+            <p>Mapeia a sala e o movimento da sua cabeça para cancelar o ruído certo, na hora certa — inclusive o som de você mesmo.</p>
+          </article>
+          <article class="feature reveal-up" data-tilt>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10.5" ry="4.4" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(-14 12 12)"/><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M22 7.6c-2.6-2-6.2-3.2-10-3.2S4.6 5.6 2 7.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="feature-idx">02</span>
+            <h3>Áudio espacial com tracking</h3>
+            <p>A cena sonora fica fixa no espaço. Vire a cabeça — o palco não vira com você. É física de estúdio, na sua orelha.</p>
+          </article>
+          <article class="feature reveal-up" data-tilt>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 8.5h5l2-4 2 4h5l-4 3.5 1.5 4.5L12 14l-4.5 2.5L9 12z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="feature-idx">03</span>
+            <h3>Driver planar de titânio</h3>
+            <p>42 mm de membrana plana, resposta de 4 Hz a 40 kHz. Distorção abaixo de 0,02% — o som chega sem intermediários.</p>
+          </article>
+          <article class="feature reveal-up" data-tilt>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M13 2.5 5 13.5h5L9 21.5l9-11.5h-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="feature-idx">04</span>
+            <h3>40 horas de bateria</h3>
+            <p>Dez minutos de carga, seis horas de voo. Três semanas de uso casual sem ver um carregador.</p>
+          </article>
+          <article class="feature reveal-up" data-tilt>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2.8 20 7v10l-8 4.2L4 17V7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 9v3l2 1.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="feature-idx">05</span>
+            <h3>Alumínio usinado</h3>
+            <p>Concha fresada de um bloco único de alumínio aeroespacial. 289 g que você esquece — mas nunca ignora.</p>
+          </article>
+          <article class="feature reveal-up" data-tilt>
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 9c2.8-2.2 15.2-2.2 18 0M3 15c2.8 2.2 15.2 2.2 18 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <span class="feature-idx">06</span>
+            <h3>Lossless multiponto</h3>
+            <p>Três dispositivos conectados ao mesmo tempo, áudio sem perdas por USB-C e Bluetooth com codec próprio.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4.5 DEPOIMENTOS ============ -->
+    <section class="praise" id="depoimentos" aria-labelledby="praise-title">
+      <div class="container">
+        <div class="praise-head">
+          <p class="eyebrow reveal-up">Prova social</p>
+          <h2 id="praise-title" class="section-title reveal-up">Quem já está em <em class="accent-serif">órbita</em>.</h2>
+          <div class="praise-rating reveal-up">
+            <span class="stars" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="15" height="15"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9L6.6 19.6l1.1-6L3.2 9.4l6.1-.8z" fill="currentColor"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9L6.6 19.6l1.1-6L3.2 9.4l6.1-.8z" fill="currentColor"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9L6.6 19.6l1.1-6L3.2 9.4l6.1-.8z" fill="currentColor"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9L6.6 19.6l1.1-6L3.2 9.4l6.1-.8z" fill="currentColor"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9L6.6 19.6l1.1-6L3.2 9.4l6.1-.8z" fill="currentColor"/></svg>
+            </span>
+            <p><b>4,9 / 5</b> · 2.340 avaliações verificadas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="marquee" id="marquee-a" data-reverse="false">
+        <div class="marquee-track" role="list" aria-label="Depoimentos de quem usa o ÓRBITA X1">
+          <!-- conteúdo duplicado por JS (copia o template) -->
+        </div>
+      </div>
+      <div class="marquee" id="marquee-b" data-reverse="true">
+        <div class="marquee-track" role="list" aria-label="Mais depoimentos">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4.6 FAQ ============ -->
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid">
+        <div class="faq-head">
+          <p class="eyebrow reveal-up">FAQ</p>
+          <h2 id="faq-title" class="section-title reveal-up">Perguntas em <em class="accent-serif">órbita</em>.</h2>
+          <p class="faq-sub reveal-up">Não achou a sua? Escreva para <a href="mailto:oi@orbita.audio">oi@orbita.audio</a> — respondemos em um dia útil.</p>
+        </div>
+        <div class="faq-list reveal-up" id="faq-list">
+          <div class="faq-item" data-open="true">
+            <h3>
+              <button class="faq-btn" type="button" aria-expanded="true" aria-controls="faq-p1" id="faq-b1">
+                <span class="faq-q">O cancelamento funciona em qualquer ambiente?</span>
+                <span class="faq-ic" aria-hidden="true"><span class="faq-ic-h"></span><span class="faq-ic-v"></span></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p1" role="region" aria-labelledby="faq-b1">
+              <p>Sim. O ANC adaptativo calibra por ambiente em 0,2 s: avião, metrô, escritório aberto ou uma rua movimentada. O modo Silêncio Total usa os seis microfones para anular o ruído de banda larga; o modo Espacial prioriza isolar vozes ao seu redor.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <h3>
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p2" id="faq-b2">
+                <span class="faq-q">Quanto dura a bateria no modo espacial?</span>
+                <span class="faq-ic" aria-hidden="true"><span class="faq-ic-h"></span><span class="faq-ic-v"></span></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p2" role="region" aria-labelledby="faq-b2">
+              <p>Até 30 horas com áudio espacial e tracking de cabeça ativos. Com ANC simples, 40 horas. Dez minutos de carga USB-C devolvem seis horas de uso.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <h3>
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p3" id="faq-b3">
+                <span class="faq-q">Posso conectar em mais de um aparelho?</span>
+                <span class="faq-ic" aria-hidden="true"><span class="faq-ic-h"></span><span class="faq-ic-v"></span></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p3" role="region" aria-labelledby="faq-b3">
+              <p>Sim — até três dispositivos simultâneos com troca automática. O ÓRBITA detecta quem está tocando e migra sozinho, sem pausa perceptível.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <h3>
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p4" id="faq-b4">
+                <span class="faq-q">Como funciona a garantia de 5 anos?</span>
+                <span class="faq-ic" aria-hidden="true"><span class="faq-ic-h"></span><span class="faq-ic-v"></span></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p4" role="region" aria-labelledby="faq-b4">
+              <p>Cobre defeitos de fábrica por cinco anos, incluindo a bateria. Almofadas e cabos têm reposição vitalícia com desconto de 50%.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <h3>
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p5" id="faq-b5">
+                <span class="faq-q">Os modos de som mudam o visual do fone?</span>
+                <span class="faq-ic" aria-hidden="true"><span class="faq-ic-h"></span><span class="faq-ic-v"></span></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p5" role="region" aria-labelledby="faq-b5">
+              <p>No configurador, sim: experimente os três modos ali em cima e veja os anéis orbitais, as ondas ANC e a concha translúcida. No produto físico, o LED do núcleo orbital muda de cor conforme o modo ativo.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <h3>
+              <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p6" id="faq-b6">
+                <span class="faq-q">Quando chega?</span>
+                <span class="faq-ic" aria-hidden="true"><span class="faq-ic-h"></span><span class="faq-ic-v"></span></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-p6" role="region" aria-labelledby="faq-b6">
+              <p>A pré-venda já está aberta. Os primeiros lotes saem em outubro de 2026, em ordem de pedido. Quem pedir agora leva o estojo de transporte de cortesia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4.7 CTA FINAL ============ -->
+    <section class="finale" id="finale" aria-labelledby="finale-title">
+      <div class="finale-glow" aria-hidden="true"></div>
+      <div class="finale-inner container">
+        <div class="finale-copy">
+          <p class="eyebrow reveal-up">Pré-venda aberta</p>
+          <h2 id="finale-title" class="section-title reveal-up">O silêncio está <em class="accent-serif">pronto</em>.</h2>
+          <p class="finale-sub reveal-up">Seu ÓRBITA X1, na cor e no modo que você escolheu, sai em outubro. Frete grátis, garantia de 5 anos.</p>
+          <div class="finale-actions reveal-up">
+            <button class="btn btn-primary btn-lg btn-magnetic" id="finale-cta" type="button">
+              <span class="btn-label" id="finale-cta-label">Garantir o meu — Íon · Espacial</span>
+              <svg class="btn-arrow" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="finale-price">
+              <span class="finale-price-num" id="finale-price">R$ 2.499</span>
+              <span class="finale-price-sub">à vista · ou 12× de <b id="finale-installment">R$ 249</b></span>
+            </div>
+          </div>
+        </div>
+        <div class="finale-stage">
+          <div class="finale-rings" aria-hidden="true"><span class="ring ring-f1"></span><span class="ring ring-f2"></span></div>
+          <div class="finale-hp" id="finale-hp" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="wordmark" href="#top" aria-label="ÓRBITA — voltar ao topo">
+            <span class="wordmark-text">ÓRBITA</span>
+            <span class="wordmark-orbit" aria-hidden="true"><span class="wo-dot"></span></span>
+          </a>
+          <p class="footer-tagline">Som em órbita baixa, para cabeças que não param.</p>
+        </div>
+        <nav class="footer-col" aria-label="Produto">
+          <p class="footer-col-title">Produto</p>
+          <a href="#configurador">Configurar</a>
+          <a href="#engenharia">Engenharia</a>
+          <a href="#features">Recursos</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <nav class="footer-col" aria-label="Empresa">
+          <p class="footer-col-title">Empresa</p>
+          <a href="#top">Sobre</a>
+          <a href="#top">Carreiras</a>
+          <a href="#top">Imprensa</a>
+        </nav>
+        <nav class="footer-col" aria-label="Suporte">
+          <p class="footer-col-title">Suporte</p>
+          <a href="mailto:oi@orbita.audio">oi@orbita.audio</a>
+          <a href="#top">Rastrear pedido</a>
+          <a href="#top">Devoluções</a>
+        </nav>
+        <div class="footer-social" aria-label="Redes sociais">
+          <a href="#top" aria-label="ÓRBITA no X (Twitter)"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></a>
+          <a href="#top" aria-label="ÓRBITA no Instagram"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg></a>
+          <a href="#top" aria-label="ÓRBITA no YouTube"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.5 9.8v4.4l4-2.2z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Órbita Audio S.A. — um universo fictício, feito para o desafio.</p>
+        <p class="footer-love">Feito em órbita baixa <span class="footer-dot" aria-hidden="true"></span></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-hidden="true">
+    <svg class="toast-check" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12.5 10 17.5 19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span id="toast-msg">Pré-pedido registrado</span>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

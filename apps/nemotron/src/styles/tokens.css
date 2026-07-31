@@ -1,0 +1,88 @@
+/* ============================================================
+   ÓRBITA — design tokens
+   Direção de arte: "satélite solar" — preto quente + âmbar + editorial
+   ============================================================ */
+
+:root {
+  /* Tipografia */
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Easings autorais (nunca `ease` puro) */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Durações — sistema 150/300/600/900 */
+  --dur-1: 150ms;
+  --dur-2: 300ms;
+  --dur-3: 600ms;
+  --dur-4: 900ms;
+
+  /* Espaçamento (base 4) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  /* Layout */
+  --container: 1200px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-lg: 0 24px 80px -24px rgba(0, 0, 0, 0.55);
+  --glow-accent: 0 0 48px rgba(255, 181, 74, 0.22);
+
+  color-scheme: dark;
+}
+
+/* ------------------------------ Tema escuro (padrão) ------------------------------ */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0d0b08;
+  --bg-2: #12100b;
+  --surface: #16130e;
+  --surface-2: #1d1912;
+  --ink: #f4eee1;
+  --muted: #a89e8a;
+  --faint: #7d7462;
+  --accent: #ffb54a;
+  --accent-soft: rgba(255, 181, 74, 0.14);
+  --accent-ink: #241502;
+  --hairline: rgba(244, 238, 225, 0.14);
+  --hairline-strong: rgba(244, 238, 225, 0.28);
+  --header-bg: rgba(13, 11, 8, 0.72);
+  --scroll-thumb: rgba(244, 238, 225, 0.24);
+}
+
+/* ------------------------------ Tema claro ------------------------------ */
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f5f1e8;
+  --bg-2: #efe8d9;
+  --surface: #fffdf6;
+  --surface-2: #f3ecdd;
+  --ink: #1c1812;
+  --muted: #6b6150;
+  --faint: #8d8474;
+  --accent: #9a5f1e;
+  --accent-soft: rgba(154, 95, 30, 0.12);
+  --accent-ink: #fff8ec;
+  --hairline: rgba(28, 24, 18, 0.16);
+  --hairline-strong: rgba(28, 24, 18, 0.34);
+  --header-bg: rgba(245, 241, 232, 0.78);
+  --scroll-thumb: rgba(28, 24, 18, 0.3);
+  --shadow-lg: 0 24px 60px -28px rgba(28, 24, 18, 0.28);
+  --glow-accent: 0 0 48px rgba(154, 95, 30, 0.16);
+}

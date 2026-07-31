@@ -1,0 +1,310 @@
+/* ============================================================
+   Headphone — SVG autoral, colorways, modos de som, parts
+   O SVG é injetado por headphone.ts. Contêiner .hp-root recebe
+   data-colorway e data-mode; tudo é dirigido por CSS.
+   ============================================================ */
+
+.hp-root {
+  --cw-a: #3E7BD6;   /* base */
+  --cw-b: #1B3C74;   /* deep */
+  --cw-hi: #9FC6FF;  /* highlight */
+  --cw-pad: #161D2A; /* almofada (dark) */
+  --cw-dial: #10161F;
+  --cw-inner: #0B0F16;
+}
+html[data-theme="light"] .hp-root {
+  --cw-pad: #E6EAF1;
+  --cw-dial: #232B38;
+  --cw-inner: #1A2230;
+}
+
+.hp-root[data-colorway="grafite"] {
+  --cw-a: #7C8A9E;
+  --cw-b: #3A4354;
+  --cw-hi: #B9C4D4;
+}
+.hp-root[data-colorway="nebulosa"] {
+  --cw-a: #6E5BD6;
+  --cw-b: #362A6E;
+  --cw-hi: #AFA0FF;
+}
+.hp-root[data-colorway="aurora"] {
+  --cw-a: #2FA78A;
+  --cw-b: #0F4F43;
+  --cw-hi: #8AE7CC;
+}
+.hp-root[data-colorway="solar"] {
+  --cw-a: #C97E34;
+  --cw-b: #643A12;
+  --cw-hi: #F2BC7C;
+}
+.hp-root[data-colorway="ion"] {
+  --cw-a: #3E7BD6;
+  --cw-b: #1B3C74;
+  --cw-hi: #9FC6FF;
+}
+
+/* ---- materiais base ---- */
+.hp-band-metal {
+  fill: none;
+  stroke: var(--cw-a);
+  stroke-width: 34;
+  stroke-linecap: round;
+  transition: stroke 550ms var(--ease-out-quart);
+}
+.hp-band-edge {
+  fill: none;
+  stroke: var(--cw-hi);
+  stroke-width: 2.5;
+  opacity: 0.35;
+  transition: stroke 550ms var(--ease-out-quart);
+}
+.hp-band-pad {
+  fill: none;
+  stroke: var(--cw-pad);
+  stroke-width: 16;
+  stroke-linecap: round;
+  transition: stroke 550ms var(--ease-out-quart);
+}
+.hp-band-gloss {
+  stroke: var(--gloss-fill, url(#gloss));
+  stroke-width: 8;
+  stroke-linecap: round;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.hp-arm {
+  fill: none;
+  stroke: var(--cw-a);
+  stroke-width: 18;
+  stroke-linecap: round;
+  transition: stroke 550ms var(--ease-out-quart);
+}
+.hp-pivot {
+  fill: var(--bg);
+  stroke: var(--hairline-strong);
+  transition: fill 450ms var(--ease-out-quart);
+}
+.hp-pivot-dot {
+  fill: var(--accent);
+  transition: fill 450ms var(--ease-out-quart);
+}
+
+.hp-cushion {
+  fill: var(--cw-pad);
+  transition: fill 550ms var(--ease-out-quart);
+}
+.hp-cushion-line {
+  fill: none;
+  stroke: var(--hairline-strong);
+  stroke-width: 1.5;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.hp-shell-paint {
+  fill: var(--shell-fill, #3E7BD6);
+  transition: opacity 550ms var(--ease-out-quart), fill 550ms var(--ease-out-quart);
+}
+.hp-shell-grad-a { stop-color: var(--cw-hi); transition: stop-color 550ms var(--ease-out-quart); }
+.hp-shell-grad-b { stop-color: var(--cw-a); transition: stop-color 550ms var(--ease-out-quart); }
+.hp-shell-grad-c { stop-color: var(--cw-b); transition: stop-color 550ms var(--ease-out-quart); }
+.hp-shell-hi {
+  fill: var(--shell-hi-fill, #fff);
+  opacity: 0.5;
+  transition: opacity 550ms var(--ease-out-quart);
+}
+.hp-shell-edge {
+  fill: none;
+  stroke: var(--cw-hi);
+  stroke-width: 2;
+  opacity: 0.5;
+  transition: stroke 550ms var(--ease-out-quart);
+}
+.hp-shell-spec {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.45;
+  transition: opacity 550ms var(--ease-out-quart);
+  pointer-events: none;
+}
+.hp-root[data-mode="transparencia"] .hp-shell-spec { opacity: 0; }
+
+.hp-dial {
+  fill: var(--cw-dial);
+  transition: fill 550ms var(--ease-out-quart);
+}
+.hp-dial-rim {
+  fill: none;
+  stroke: var(--cw-a);
+  stroke-width: 1.6;
+  opacity: 0.55;
+  transition: stroke 550ms var(--ease-out-quart);
+}
+.hp-dial-ring {
+  fill: none;
+  stroke: var(--cw-a);
+  stroke-width: 3;
+  opacity: 0.9;
+  transition: stroke 550ms var(--ease-out-quart);
+}
+.hp-dial-detail {
+  fill: none;
+  stroke: var(--cw-hi);
+  stroke-width: 1.4;
+  opacity: 0.4;
+  stroke-dasharray: 2.5 4.5;
+  transition: stroke 550ms var(--ease-out-quart);
+}
+.hp-led {
+  fill: var(--accent);
+  transition: fill 450ms var(--ease-out-quart);
+}
+
+/* ---- satélites orbitais da concha (sempre ativos) ---- */
+.hp-sat {
+  fill: var(--accent);
+  transform-origin: 246px 571px;
+  animation: hp-sat-orbit 9s var(--ease-linear) infinite;
+  transition: fill 450ms var(--ease-out-quart);
+}
+.hp-sat-2 {
+  fill: var(--accent-ink);
+  transform-origin: 246px 571px;
+  animation: hp-sat-orbit 14s var(--ease-linear) infinite reverse;
+  transition: fill 450ms var(--ease-out-quart);
+}
+@keyframes hp-sat-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---- vista frontal: centros de órbita nas conchas frontais ---- */
+.hp-root[data-view="front"] .hp-sat,
+.hp-root[data-view="front"] .hp-sat-2,
+.hp-root[data-view="front"] .hp-orbit-dot,
+.hp-root[data-view="front"] .hp-orbit-dot2 {
+  transform-box: view-box;
+  transform-origin: 246px 470px;
+}
+.hp-root[data-view="front"] .hp-wave {
+  transform-box: view-box;
+  transform-origin: 246px 470px;
+}
+
+/* ---- modo espacial: anéis duplos com satélites extras ---- */
+.hp-orbit-ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 8;
+  opacity: 0;
+  transition: opacity 550ms var(--ease-out-quart);
+}
+.hp-root[data-mode="espacial"] .hp-orbit-ring { opacity: 0.85; }
+.hp-orbit-dot {
+  fill: var(--accent);
+  opacity: 0;
+  transform-origin: 246px 571px;
+  transition: opacity 550ms var(--ease-out-quart);
+}
+.hp-root[data-mode="espacial"] .hp-orbit-dot {
+  opacity: 1;
+  animation: hp-sat-orbit 6s var(--ease-linear) infinite;
+}
+.hp-root[data-mode="espacial"] .hp-orbit-dot2 {
+  animation-duration: 4s;
+  animation-direction: reverse;
+}
+
+/* ---- ondas ANC (modo silêncio total) ---- */
+.hp-wave {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 550ms var(--ease-out-quart);
+}
+.hp-root[data-mode="silencioso"] .hp-wave {
+  opacity: 0.85;
+  animation: hp-wave 2.6s var(--ease-in-out-quart) infinite;
+}
+.hp-root[data-mode="silencioso"] .hp-wave:nth-of-type(3) { animation-delay: 0.5s; }
+.hp-root[data-mode="silencioso"] .hp-wave:nth-of-type(4) { animation-delay: 1s; }
+@keyframes hp-wave {
+  0% { transform: scale(0.55); opacity: 0; }
+  35% { opacity: 0.9; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+/* ---- modo transparência: revela o driver ---- */
+.hp-inner { opacity: 0; transition: opacity 550ms var(--ease-out-quart); }
+.hp-root[data-mode="transparencia"] .hp-shell-paint,
+.hp-root[data-mode="transparencia"] .hp-shell-hi { opacity: 0.08; }
+.hp-root[data-mode="transparencia"] .hp-shell-edge { opacity: 0.9; }
+.hp-root[data-mode="transparencia"] .hp-inner { opacity: 1; }
+
+.hp-cone {
+  fill: var(--cone-fill, #434E5E);
+}
+.hp-magnet {
+  fill: var(--cw-dial);
+  stroke: var(--cw-hi);
+  stroke-width: 1.6;
+  opacity: 0.85;
+  transition: fill 550ms var(--ease-out-quart), stroke 550ms var(--ease-out-quart);
+}
+.hp-coil {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  opacity: 0.75;
+  transition: stroke 450ms var(--ease-out-quart);
+}
+.hp-chip {
+  fill: var(--surface-2);
+  stroke: var(--hairline-strong);
+  transition: fill 450ms var(--ease-out-quart);
+}
+.hp-chip-txt {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  fill: var(--text);
+  letter-spacing: 0.08em;
+}
+
+/* ---- glow de sintonia (etapa 4 do story) ---- */
+.hp-glow-ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-dasharray: 4 10;
+  opacity: 0;
+  transform-origin: 400px 430px;
+  transition: opacity 800ms var(--ease-out-quart);
+}
+.hp-root.is-tuned .hp-glow-ring {
+  opacity: 0.8;
+  animation: hp-glow-spin 18s var(--ease-linear) infinite;
+}
+@keyframes hp-glow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---- pop de cor (transição de colorway) ---- */
+.hp-root.cw-pop .hp-shell-paint,
+.hp-root.cw-pop .hp-cushion,
+.hp-root.cw-pop .hp-band-metal {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cw-pop 620ms var(--ease-elastic);
+}
+@keyframes cw-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.028); }
+  100% { transform: scale(1); }
+}

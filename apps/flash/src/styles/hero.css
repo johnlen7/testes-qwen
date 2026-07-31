@@ -1,0 +1,364 @@
+/* ============================================================
+   Hero — assinatura visual
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: clip;
+  padding: 140px 0 var(--sp-20);
+}
+
+/* ---- fundo ---- */
+.starfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.hero-glow {
+  position: absolute;
+  right: -8%;
+  top: 8%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 860px;
+  max-height: 860px;
+  border-radius: 50%;
+  z-index: 0;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 62%);
+  opacity: var(--glow-opacity);
+  transition: background 450ms var(--ease-out-quart);
+  pointer-events: none;
+}
+.hero-glow::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 55%);
+  filter: blur(0px);
+  animation: glow-breathe 7s var(--ease-in-out-quart) infinite;
+}
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 0%, transparent 75%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---- layout ---- */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+/* ---- copy ---- */
+.hero-copy { max-width: 620px; }
+
+.hero-title {
+  font-size: var(--text-display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin: var(--sp-6) 0 var(--sp-6);
+}
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.04em;
+}
+.hero-line-inner {
+  display: block;
+  transform: translateY(112%);
+  transition: transform var(--dur-5) var(--ease-out-expo);
+  transition-delay: var(--d, 0s);
+}
+.is-enter .hero-line-inner { transform: translateY(0); }
+
+.hero-orbit {
+  position: relative;
+  color: var(--accent-ink);
+  white-space: nowrap;
+}
+.hero-orbit::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.06em;
+  height: 0.06em;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.65;
+  transform-origin: left;
+  animation: orbit-underline 1.6s var(--ease-out-expo) 1.2s both;
+  animation-delay: var(--d, 1.2s);
+}
+@keyframes orbit-underline {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.hero-period {
+  display: inline-block;
+  color: var(--accent);
+  animation: period-pulse 3.2s var(--ease-in-out-quart) 2s infinite;
+}
+@keyframes period-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.hero-sub {
+  font-size: var(--text-md);
+  line-height: 1.65;
+  color: var(--text-2);
+  max-width: 52ch;
+  margin-bottom: var(--sp-8);
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-12);
+}
+
+/* ---- stats ---- */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: var(--sp-8);
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--sp-6);
+  width: fit-content;
+}
+.hs-item dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.hs-item dd {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2px;
+}
+
+/* ---- stage do produto ---- */
+.hero-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  opacity: 0;
+  transform: scale(0.86) rotate(-6deg);
+  transition:
+    opacity var(--dur-5) var(--ease-out-expo),
+    transform var(--dur-5) var(--ease-out-expo);
+  transition-delay: var(--d, 0.35s);
+}
+.is-enter .hero-stage {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.hero-hp {
+  position: relative;
+  z-index: 2;
+  width: min(540px, 62vw);
+  animation: hp-float 7s var(--ease-in-out-quart) infinite;
+}
+@keyframes hp-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.hero-hp svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- anéis orbitais do hero ---- */
+.hero-rings {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-rings .ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 50%;
+}
+.ring-1 {
+  width: 88%;
+  height: 88%;
+  border: 1px dashed var(--hairline-strong);
+  animation: ring-spin 90s linear infinite;
+}
+.ring-2 {
+  width: 72%;
+  height: 72%;
+  border: 1px solid var(--hairline);
+  animation: ring-spin 60s linear infinite reverse;
+}
+.ring-2::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+.ring-3 {
+  width: 56%;
+  height: 56%;
+  border: 1px dashed var(--hairline);
+  animation: ring-spin 40s linear infinite;
+}
+.ring-satellite {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 96%;
+  height: 96%;
+  border-radius: 50%;
+  animation: ring-spin 26s linear infinite;
+}
+.ring-satellite::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 0 14px var(--text-2);
+}
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---- chip flutuante ---- */
+.hero-chip {
+  position: absolute;
+  z-index: 3;
+  right: 4%;
+  bottom: 14%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  animation: chip-float 5.5s var(--ease-in-out-quart) 0.8s infinite;
+}
+.hero-chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: dot-blink 2.4s var(--ease-in-out-quart) infinite;
+}
+@keyframes dot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@keyframes chip-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* ---- hint de scroll ---- */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--sp-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: hint-in 0.8s var(--ease-out-expo) 2s forwards;
+}
+.hint-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.hint-line {
+  width: 1px;
+  height: 34px;
+  background: var(--hairline-strong);
+  position: relative;
+  overflow: hidden;
+}
+.hint-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  animation: hint-drop 1.8s var(--ease-in-out-quart) infinite;
+}
+@keyframes hint-drop {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(100%); }
+}
+@keyframes hint-in {
+  to { opacity: 1; }
+}
+
+/* ---- responsive ---- */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: var(--sp-10); }
+  .hero-stage { order: -1; max-width: 520px; margin-inline: auto; }
+  .hero-glow { top: 0; right: 50%; transform: translateX(50%); }
+  .hero { padding-top: 120px; }
+}
+@media (max-width: 479px) {
+  .hero-hp { width: 88vw; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); width: 100%; gap: var(--sp-6); }
+  .hero-scroll-hint { display: none; }
+}

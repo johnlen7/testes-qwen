@@ -1,0 +1,376 @@
+/* ============================================================
+   ÓRBITA — scroll-telling
+   A altura do track (400vh) DEFINE a duração do scrub.
+   Nunca zerar: altura zero = scrub morto.
+   ============================================================ */
+
+.story {
+  position: relative;
+  background: var(--bg-0);
+}
+
+.story__track {
+  /* A duração da narrativa: 4 telas de rolagem */
+  height: 400vh;
+  position: relative;
+}
+
+.story__stage {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  z-index: var(--z-base);
+}
+
+/* ---------- título da etapa (topo) ---------- */
+.story__heading {
+  position: absolute;
+  top: clamp(76px, 10vh, 110px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: var(--z-float);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.story__heading-text {
+  font-size: var(--fs-xl);
+  max-width: 14ch;
+  margin-inline: auto;
+  display: block;
+  transition: opacity var(--t-med) var(--e-out);
+}
+
+/* ---------- produto ---------- */
+.story__product {
+  position: relative;
+  width: min(64vw, 620px);
+  z-index: var(--z-float);
+  perspective: 1000px;
+}
+
+.story__product .hp {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 26px 70px rgba(0, 0, 0, 0.5));
+  transform-style: preserve-3d;
+}
+
+/* partes animáveis do fone */
+.story__product .hp .hp-band,
+.story__product .hp .hp-yoke,
+.story__product .hp .hp-pad,
+.story__product .hp .hp-cup,
+.story__product .hp .hp-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: none; /* scrub via JS: sem transição CSS */
+}
+
+.story__product .hp .hp-core {
+  opacity: 0;
+}
+
+/* ---------- callouts blueprint ---------- */
+.story__calls {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-float);
+}
+
+.story__call {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--text-2);
+  opacity: 0;
+  transition: opacity var(--t-med) var(--e-out);
+}
+
+.story__call::before {
+  content: '';
+  width: 44px;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform var(--t-med) var(--e-expo);
+}
+
+.story__call.is-on {
+  opacity: 1;
+}
+
+.story__call.is-on::before {
+  transform: scaleX(1);
+}
+
+.story__call--band {
+  top: 18%;
+  left: 6%;
+}
+
+.story__call--band::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: -12px;
+  width: 60px;
+  height: 70px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 50%;
+}
+
+.story__call--pad {
+  bottom: 22%;
+  left: 8%;
+}
+
+.story__call--pad::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -14px;
+  width: 46px;
+  height: 70px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 22px;
+}
+
+.story__call--driver {
+  bottom: 30%;
+  right: 7%;
+  flex-direction: row-reverse;
+}
+
+.story__call--driver::before {
+  transform-origin: right;
+}
+
+.story__call--driver::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  right: -14px;
+  width: 52px;
+  height: 52px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 50%;
+}
+
+.story__call--core {
+  top: 40%;
+  right: 6%;
+  flex-direction: row-reverse;
+}
+
+.story__call--core::before {
+  transform-origin: right;
+}
+
+.story__call--core::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: -12px;
+  width: 70px;
+  height: 70px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 50%;
+}
+
+/* ---------- progresso (barra vertical direita) ---------- */
+.story__progress {
+  position: absolute;
+  right: clamp(16px, 3vw, 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: min(38vh, 260px);
+  background: var(--line);
+  border-radius: 3px;
+  z-index: var(--z-float);
+  overflow: hidden;
+}
+
+.story__progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(var(--accent), var(--accent-2));
+  transform-origin: top;
+  transform: scaleY(0);
+  border-radius: 3px;
+}
+
+/* ---------- etapas narrativas ---------- */
+.story__steps {
+  position: absolute;
+  bottom: clamp(20px, 6vh, 56px);
+  left: clamp(16px, 5vw, 72px);
+  max-width: min(420px, 84vw);
+  z-index: var(--z-float);
+  counter-reset: step;
+}
+
+.story__step {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  gap: var(--sp-4);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--t-slow) var(--e-out),
+    transform var(--t-slow) var(--e-expo);
+  pointer-events: none;
+}
+
+.story__step.is-active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.story__step-num {
+  font-size: var(--fs-sm);
+  color: var(--accent);
+  font-weight: 700;
+  padding-top: 4px;
+}
+
+.story__step h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--sp-2);
+}
+
+.story__step p {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  max-width: 34ch;
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 900px) {
+  .story__product {
+    width: min(80vw, 460px);
+  }
+
+  .story__heading {
+    top: 68px;
+  }
+
+  .story__steps {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    text-align: center;
+    max-width: min(440px, 92vw);
+  }
+
+  .story__step {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+
+  .story__step-num {
+    padding-top: 0;
+  }
+
+  .story__call {
+    font-size: var(--fs-xs);
+  }
+
+  .story__call--band {
+    top: 16%;
+    left: 2%;
+  }
+
+  .story__call--driver {
+    right: 2%;
+  }
+
+  .story__call--core {
+    right: 1%;
+    top: 44%;
+  }
+}
+
+@media (max-width: 480px) {
+  .story__product {
+    width: 92vw;
+  }
+
+  .story__calls {
+    display: none; /* muito denso em telas pequenas: só o texto guia */
+  }
+}
+
+/* ---------- reduced-motion: sem scrub, conteúdo estático legível ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .story__track {
+    height: auto;
+  }
+
+  .story__stage {
+    position: static;
+    height: auto;
+    display: block;
+    padding: calc(88px + var(--sp-8)) 0 var(--sp-16);
+    overflow: visible;
+  }
+
+  .story__heading {
+    position: static;
+    transform: none;
+    align-items: center;
+    margin-bottom: var(--sp-12);
+  }
+
+  .story__product {
+    margin-inline: auto;
+    transform: none !important;
+    opacity: 1;
+  }
+
+  .story__calls {
+    display: none;
+  }
+
+  .story__steps {
+    position: static;
+    transform: none;
+    display: grid;
+    gap: var(--sp-6);
+    margin-top: var(--sp-12);
+    max-width: 560px;
+  }
+
+  .story__step {
+    position: static;
+    opacity: 1;
+    transform: none;
+  }
+
+  .story__progress {
+    display: none;
+  }
+
+  .story__product .hp .hp-core {
+    opacity: 1;
+    transform: none;
+  }
+}

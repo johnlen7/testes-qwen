@@ -1,0 +1,60 @@
+/* ============================================================
+   ÓRBITA — ThemeToggle
+   Sol/lua autorais (stroke), crossfade + rotação/scale
+   ============================================================ */
+
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--ink);
+  transition: color var(--dur-2) var(--ease-out-quart),
+    background-color var(--dur-2) var(--ease-out-quart),
+    transform var(--dur-1) var(--ease-out-quart);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+/* Ícones sobrepostos — a visibilidade depende do tema (classe no botão) */
+.theme-toggle-icon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 9px;
+  transition: opacity var(--dur-2) var(--ease-in-out),
+    transform var(--dur-2) var(--ease-out-expo);
+}
+
+/* Tema escuro (padrão): lua à mostra, sol recolhido */
+.theme-toggle--dark .theme-toggle-icon--moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle--dark .theme-toggle-icon--sun {
+  opacity: 0;
+  transform: rotate(60deg) scale(0.55);
+}
+
+/* Tema claro: sol à mostra, lua recolhida */
+.theme-toggle--light .theme-toggle-icon--moon {
+  opacity: 0;
+  transform: rotate(-60deg) scale(0.55);
+}
+
+.theme-toggle--light .theme-toggle-icon--sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}

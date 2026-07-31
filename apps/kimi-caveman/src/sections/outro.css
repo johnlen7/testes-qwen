@@ -1,0 +1,232 @@
+/* Outro / CTA final + footer */
+.outro {
+  position: relative;
+  background-color: var(--bg);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.outro-hero {
+  padding-block: var(--s8) var(--s7);
+  text-align: center;
+}
+
+.outro-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s5);
+}
+
+.outro-eyebrow {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.outro-title {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 700;
+  max-width: 16ch;
+  margin-inline: auto;
+  line-height: 1.05;
+}
+
+.outro-lead {
+  max-width: 46ch;
+  margin-inline: auto;
+  color: var(--ink-dim);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.outro-product-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.outro-product-wrap {
+  width: min(100%, 280px);
+}
+
+.outro-product-wrap .orbita-product {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Gradient color overrides + transitions for live color changes */
+.outro-product-wrap stop,
+#shellGrad-outro stop,
+#bandGrad-outro stop,
+#cushionGrad-outro stop {
+  transition: stop-color var(--dur-3) var(--ease-inout);
+}
+
+#shellGrad-outro stop[offset="0%"],
+#bandGrad-outro stop[offset="100%"] {
+  stop-color: var(--product-highlight);
+}
+
+#shellGrad-outro stop[offset="55%"],
+#bandGrad-outro stop[offset="40%"] {
+  stop-color: var(--product-shell);
+}
+
+#shellGrad-outro stop[offset="100%"],
+#bandGrad-outro stop[offset="0%"],
+#cushionGrad-outro stop[offset="0%"] {
+  stop-color: var(--product-shade);
+}
+
+#cushionGrad-outro stop[offset="100%"] {
+  stop-color: #090b0e;
+}
+
+/* Cup size scaling */
+.outro-product-wrap [data-part="cup-l"],
+.outro-product-wrap [data-part="cup-r"] {
+  transform: scale(var(--outro-cup-scale, 1));
+  transform-box: view-box;
+  transform-origin: 118px 236px;
+  transition: transform var(--dur-3) var(--ease-spring);
+  will-change: transform;
+}
+
+.outro-product-wrap [data-part="cup-r"] {
+  transform-origin: 282px 236px;
+}
+
+.outro-label {
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.outro-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s3) var(--s6);
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: filter var(--dur-2) var(--ease-out);
+  will-change: transform;
+}
+
+.outro-cta:hover {
+  filter: brightness(1.08);
+}
+
+.outro-cta-text {
+  position: relative;
+  z-index: 1;
+}
+
+.outro-cta-text.is-changing {
+  opacity: 0.7;
+}
+
+.outro-ripple {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: var(--accent-ink);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Footer */
+.outro-footer {
+  border-top: 1px solid var(--line);
+  padding-block: var(--s7) var(--s5);
+}
+
+.footer-grid {
+  display: grid;
+  gap: var(--s5);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--s6);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footer-wordmark {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.footer-col h3 {
+  margin-bottom: var(--s3);
+}
+
+.footer-heading {
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.footer-col a {
+  color: var(--ink);
+  font-size: 15px;
+  transition: color var(--dur-2) var(--ease-out);
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+}
+
+.footer-copyright {
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+.footer-note {
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+@media (min-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .outro-product-wrap [data-part="cup-l"],
+  .outro-product-wrap [data-part="cup-r"] {
+    transition: none;
+  }
+
+  .outro-cta {
+    transform: none !important;
+  }
+}

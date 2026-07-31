@@ -1,0 +1,100 @@
+.faq__container {
+  max-width: 840px;
+}
+
+.faq__list {
+  margin-top: var(--sp-7);
+}
+
+.faq__item {
+  border-top: 1px solid var(--line);
+}
+.faq__item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq__heading {
+  margin: 0;
+}
+
+.faq__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  width: 100%;
+  padding-block: var(--sp-5);
+  text-align: left;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.faq__question {
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  font-weight: 600;
+  color: var(--text-0);
+  letter-spacing: -0.01em;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.faq__trigger:hover .faq__question {
+  color: var(--accent-text);
+}
+
+/* ícone +/− */
+.faq__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+.faq__icon::before,
+.faq__icon::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+  border-radius: var(--r-pill);
+  transition: transform var(--dur-3) var(--ease-spring);
+}
+.faq__icon::before {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+}
+.faq__icon::after {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+}
+.faq__item[data-open='true'] .faq__icon::after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+/* animação de altura: 0fr → 1fr (sem height:auto quebrado) */
+.faq__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-3) var(--ease-out);
+}
+.faq__panel-inner {
+  overflow: hidden;
+}
+.faq__answer {
+  padding-bottom: var(--sp-5);
+  max-width: 68ch;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-out);
+}
+.faq__item[data-open='true'] .faq__panel {
+  grid-template-rows: 1fr;
+}
+.faq__item[data-open='true'] .faq__answer {
+  opacity: 1;
+  transform: none;
+  transition-delay: var(--dur-1);
+}

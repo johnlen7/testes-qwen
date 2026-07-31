@@ -1,0 +1,146 @@
+/**
+ * ÓRBITA — CTA final e footer.
+ */
+
+/* ---------- seção final ---------- */
+.final {
+  padding-block: var(--space-7) var(--space-8);
+}
+
+.final__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+}
+
+.final__stage {
+  position: relative;
+  width: min(100%, 320px);
+  margin-bottom: var(--space-3);
+}
+
+.final__ring {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  pointer-events: none;
+}
+
+.final__ring::before {
+  content: '';
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+  opacity: 0.55;
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.final__stage .hp-slot {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 280px);
+  margin-inline: auto;
+}
+
+.final__summary {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+}
+
+.final__note {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+[data-magnetic] {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.btn__icon {
+  width: 1.1em;
+  height: 1.1em;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.4em;
+}
+
+/* Ripple autoral no clique. */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- footer ---------- */
+.footer {
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+.footer__nav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color var(--dur-2) var(--ease-out);
+}
+
+.footer__nav a:hover,
+.footer__nav a:focus-visible {
+  color: var(--accent);
+}
+
+.footer__note {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+
+/* ---------- reveal ---------- */
+.final__stage,
+.final .eyebrow,
+.final h2,
+.final__summary,
+.final [data-magnetic],
+.final__note {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--dur-3) var(--ease-out),
+              transform var(--dur-3) var(--ease-out);
+}
+
+.final__stage.is-in,
+.final .eyebrow.is-in,
+.final h2.is-in,
+.final__summary.is-in,
+.final [data-magnetic].is-in,
+.final__note.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}

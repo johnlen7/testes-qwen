@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#06080D" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)" />
+    <meta
+      name="description"
+      content="ÓRBITA — fone de ouvido premium com cancelamento de ruído adaptativo espacial. Áudio que orbita você."
+    />
+    <meta property="og:title" content="ÓRBITA · Áudio que orbita você" />
+    <meta
+      property="og:description"
+      content="Cancelamento de ruído adaptativo espacial. Som de estúdio. 40h de bateria. Uma experiência sonora em órbita."
+    />
+    <meta property="og:type" content="website" />
+    <title>ÓRBITA · Áudio que orbita você</title>
+    <script>
+      // Aplica o tema antes do paint para evitar flash (FOUC de tema).
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('orbita-theme')
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches
+          var theme = stored || (prefersLight ? 'light' : 'dark')
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark')
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Este site precisa de JavaScript para as animações e o configurador interativo.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

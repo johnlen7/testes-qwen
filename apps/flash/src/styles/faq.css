@@ -1,0 +1,93 @@
+/* ============================================================
+   FAQ — accordion acessível com altura animada via WAAPI
+   ============================================================ */
+
+.faq {
+  padding: var(--sp-40) 0;
+  border-top: 1px solid var(--hairline);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--sp-16);
+}
+.faq-sub {
+  margin-top: var(--sp-4);
+  color: var(--text-2);
+  font-size: var(--text-sm);
+}
+.faq-sub a { text-decoration: underline; text-underline-offset: 3px; }
+
+.faq-list { display: flex; flex-direction: column; }
+
+.faq-item {
+  border-bottom: 1px solid var(--hairline);
+}
+.faq-item:first-child { border-top: 1px solid var(--hairline); }
+
+.faq-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  padding: var(--sp-6) 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text);
+  transition: color var(--dur-2) var(--ease-out-quart);
+}
+.faq-btn:hover { color: var(--accent-ink); }
+.faq-q {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.faq-ic {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-strong);
+  transition: border-color var(--dur-2), transform var(--dur-3) var(--ease-out-expo), background-color 450ms;
+}
+.faq-ic-h,
+.faq-ic-v {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 1.6px;
+  background: var(--text-2);
+  transform: translate(-50%, -50%);
+  border-radius: 1px;
+  transition: background-color var(--dur-2), transform var(--dur-3) var(--ease-out-expo);
+}
+.faq-ic-v { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-btn[aria-expanded="true"] .faq-ic {
+  border-color: var(--accent);
+  transform: rotate(135deg);
+}
+.faq-btn[aria-expanded="true"] .faq-ic-h,
+.faq-btn[aria-expanded="true"] .faq-ic-v { background: var(--accent-ink); }
+
+.faq-panel {
+  overflow: hidden;
+  height: 0;
+}
+.faq-panel.is-open { height: auto; }
+.faq-panel p {
+  padding: 0 0 var(--sp-6);
+  color: var(--text-2);
+  max-width: 60ch;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 1024px) {
+  .faq-grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "orbita-launch",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "ÓRBITA X1 — site de lançamento imersivo (frontend estático puro)",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "qa": "node scripts/qa.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.62.1",
+    "typescript": "^5.5.4",
+    "vite": "^6.0.7"
+  }
+}

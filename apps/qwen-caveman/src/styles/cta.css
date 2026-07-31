@@ -1,0 +1,96 @@
+/* ============================================================
+   CTA final + footer
+   ============================================================ */
+
+.finale {
+  position: relative;
+  padding: var(--sp-11) clamp(var(--sp-5), 5vw, var(--sp-8));
+  overflow: clip;
+  text-align: center;
+}
+.finale-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      70% 60% at 50% 40%,
+      var(--accent-soft) 0%,
+      transparent 70%
+    ),
+    var(--bg-1);
+  border-block: 1px solid var(--line);
+}
+.finale-inner {
+  position: relative;
+  width: min(100%, 820px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-6);
+}
+.finale-product {
+  width: min(60vw, 340px);
+  filter: drop-shadow(0 40px 50px rgba(0, 0, 0, 0.45));
+}
+.finale-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-5);
+}
+.finale-copy h2 {
+  font-size: var(--fs-h2);
+}
+.finale-copy > p {
+  color: var(--ink-1);
+  font-size: 1.1rem;
+}
+.finale-copy strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+.finale-note {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+/* ---- footer ---- */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  padding: var(--sp-7) clamp(var(--sp-5), 5vw, var(--sp-8));
+  border-top: 1px solid var(--line);
+}
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.footer-brand .brand-mark {
+  width: 22px;
+  height: 22px;
+}
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-5);
+}
+.footer-nav a {
+  color: var(--ink-1);
+  font-size: 0.9rem;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.footer-nav a:hover {
+  color: var(--accent);
+}
+.footer-legal {
+  width: 100%;
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+}

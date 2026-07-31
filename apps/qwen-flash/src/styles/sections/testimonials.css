@@ -1,0 +1,96 @@
+/* ============================================================
+   ÓRBITA — depoimentos: marquee infinito (pausa hover + drag)
+   A animação roda via Web Animations API no .marquee__wrap
+   (criado pelo JS). CSS aqui cobre layout e estados.
+   ============================================================ */
+
+.testimonials {
+  padding: var(--sp-24) 0;
+  background: var(--bg-1);
+  overflow: hidden;
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  margin-top: var(--sp-8);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee + .marquee {
+  margin-top: var(--sp-6);
+}
+
+.marquee__wrap {
+  display: flex;
+  width: max-content;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  will-change: transform;
+}
+
+.marquee__wrap:active {
+  cursor: grabbing;
+}
+
+/* Sem gap no wrap nem nos tracks: o espaçamento vive no margin de cada
+   item → o período do loop é exato (translateX -50% = um conjunto). */
+.marquee__track,
+.marquee__clone {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.marquee__item {
+  flex-shrink: 0;
+  width: clamp(280px, 30vw, 380px);
+  margin-right: var(--sp-4);
+}
+
+.marquee__item blockquote {
+  height: 100%;
+  padding: var(--sp-6);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--text-1);
+}
+
+.marquee__item cite {
+  font-style: normal;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-top: auto;
+}
+
+.marquee__item--muted blockquote {
+  color: var(--text-2);
+  background: transparent;
+  border-color: var(--line);
+}
+
+/* ---------- reduced motion: marquee parado, lista visível ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__wrap {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .marquee__clone {
+    display: none;
+  }
+
+  .marquee__item {
+    width: min(320px, 90vw);
+  }
+}

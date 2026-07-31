@@ -1,0 +1,166 @@
+/* ============================================================
+   ÓRBITA — ProductGraphic
+   Todas as transformações contínuas: transform/opacity apenas
+   ============================================================ */
+
+.pg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 26px 44px rgba(0, 0, 0, 0.35));
+}
+
+/* Halo pulsante */
+.pg-glow {
+  animation: glow-breathe 4.6s var(--ease-in-out) infinite;
+}
+
+/* Órbitas — rotação em torno do centro do produto */
+.pg-orbit-ring {
+  transform-box: view-box;
+  transform-origin: 240px 305px;
+  will-change: transform;
+}
+
+.pg-orbit-ring--a {
+  animation: spin-slow 26s linear infinite;
+}
+
+.pg-orbit-ring--b {
+  animation: spin-slow-rev 19s linear infinite;
+}
+
+.pg-sat {
+  transform-box: view-box;
+  transform-origin: 240px 305px;
+  animation: orbit-sat 17s linear infinite;
+  will-change: transform;
+}
+
+.pg-sat--b {
+  animation-duration: 12s;
+  animation-direction: reverse;
+}
+
+/* Respiração do produto montado */
+.pg-breath {
+  animation: breathe 7s var(--ease-in-out) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* ------------------------------ Scrubbing (explosão) ------------------------------ */
+
+.pg-band,
+.pg-yoke-l,
+.pg-yoke-r,
+.pg-cup-l,
+.pg-cup-r,
+.pg-driver-l,
+.pg-driver-r {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.pg-band {
+  transform: translateY(calc(var(--explode, 0) * -48px));
+}
+
+.pg-yoke-l {
+  transform: translate(
+    calc(var(--explode, 0) * -22px),
+    calc(var(--explode, 0) * 18px)
+  );
+}
+
+.pg-yoke-r {
+  transform: translate(
+    calc(var(--explode, 0) * 22px),
+    calc(var(--explode, 0) * 18px)
+  );
+}
+
+.pg-cup-l {
+  transform: translate(
+      calc(var(--explode, 0) * -92px),
+      calc(var(--explode, 0) * 66px)
+    )
+    rotate(calc(var(--explode, 0) * -18deg + var(--spin2, 0deg)));
+}
+
+.pg-cup-r {
+  transform: translate(
+      calc(var(--explode, 0) * 92px),
+      calc(var(--explode, 0) * 66px)
+    )
+    rotate(calc(var(--explode, 0) * 18deg + var(--spin2, 0deg)));
+}
+
+.pg-driver-l,
+.pg-driver-r {
+  opacity: var(--explode, 0);
+  transform: scale(calc(0.4 + var(--explode, 0) * 0.6));
+}
+
+/* Ondas de áudio */
+.pg-waves {
+  opacity: var(--wave, 0);
+}
+
+.pg-wave {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wave-out 2.6s var(--ease-in-out) infinite;
+}
+
+.pg-wave--b {
+  animation-delay: 1.3s;
+}
+
+.pg-core {
+  animation: pulse-dot 2.4s var(--ease-in-out) infinite;
+}
+
+/* ------------------------------ EQ ------------------------------ */
+
+.pg-eq {
+  opacity: 0.9;
+}
+
+.pg-eq-bar {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: eq-bar 1.15s var(--ease-in-out) infinite alternate;
+}
+
+.pg-eq-bar--2 {
+  animation-delay: 0.14s;
+}
+.pg-eq-bar--3 {
+  animation-delay: 0.28s;
+}
+.pg-eq-bar--4 {
+  animation-delay: 0.07s;
+}
+.pg-eq-bar--5 {
+  animation-delay: 0.21s;
+}
+
+/* Com o tema claro, o drop-shadow fica mais suave */
+[data-theme='light'] .pg {
+  filter: drop-shadow(0 22px 34px rgba(28, 24, 18, 0.18));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-glow,
+  .pg-orbit-ring,
+  .pg-sat,
+  .pg-breath,
+  .pg-wave,
+  .pg-core,
+  .pg-eq-bar {
+    animation: none;
+  }
+}

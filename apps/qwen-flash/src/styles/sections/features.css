@@ -1,0 +1,139 @@
+/* ============================================================
+   ÓRBITA — features: tilt 3D + glow spotlight + ícones SVG
+   ============================================================ */
+
+.features {
+  padding: var(--sp-24) 0;
+  background: var(--bg-0);
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+}
+
+.feature {
+  position: relative;
+  padding: var(--sp-8) var(--sp-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--bg-1);
+  overflow: hidden;
+  transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+  transform-style: preserve-3d;
+  /* tilt segue o mouse sem lag (sem transition de transform no hover);
+     ao sair, o retorno é suave via esta transition */
+  transition:
+    border-color var(--t-base) var(--e-out),
+    box-shadow var(--t-base) var(--e-out),
+    transform var(--t-slow) var(--e-out);
+}
+
+.feature:hover {
+  border-color: var(--line-strong);
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.55);
+  transition:
+    border-color var(--t-base) var(--e-out),
+    box-shadow var(--t-base) var(--e-out);
+}
+
+/* glow spotlight seguindo o mouse */
+.feature::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 50%),
+    var(--glow-soft),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity var(--t-med) var(--e-out);
+  pointer-events: none;
+}
+
+.feature:hover::before {
+  opacity: 1;
+}
+
+.feature__icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--sp-6);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  transform: translateZ(24px);
+  transition: color var(--t-base) var(--e-out), transform var(--t-med) var(--e-spring);
+}
+
+.feature__icon svg {
+  width: 38px;
+  height: 38px;
+}
+
+.feature__icon svg path,
+.feature__icon svg circle,
+.feature__icon svg rect {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 600ms var(--e-io);
+}
+
+.feature:hover .feature__icon {
+  color: var(--accent-strong);
+  transform: translateZ(40px) scale(1.06);
+}
+
+.feature:hover .feature__icon svg path,
+.feature:hover .feature__icon svg circle,
+.feature:hover .feature__icon svg rect {
+  stroke-dashoffset: 0;
+}
+
+.feature h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--sp-3);
+  transform: translateZ(16px);
+}
+
+.feature p {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  transform: translateZ(12px);
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 1024px) {
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature {
+    transform: none;
+  }
+
+  .feature:hover {
+    transform: none;
+  }
+}
+
+@media (hover: none) {
+  .feature {
+    transform: none !important;
+  }
+
+  .feature__icon {
+    transform: none;
+  }
+}

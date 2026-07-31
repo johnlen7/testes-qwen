@@ -1,0 +1,132 @@
+/* ============================================================
+   ÓRBITA — Testimonials (marquee autoral + drag)
+   ============================================================ */
+
+.ts-section {
+  background: var(--bg-2);
+}
+
+.ts-head {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ts-head .display {
+  margin-top: var(--s-4);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  max-width: 18ch;
+}
+
+/* Viewport do marquee — corta o track; drag com cursor grab */
+.ts-viewport {
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ts-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.ts-track {
+  display: flex;
+  width: max-content;
+  padding-block: var(--s-4);
+  will-change: transform;
+}
+
+/* Grupo = uma cópia da lista. O padding simétrico garante o mesmo
+   gap na emenda do loop (-50% do track) */
+.ts-group {
+  display: flex;
+  gap: var(--s-5);
+  padding-inline: calc(var(--s-5) / 2);
+}
+
+.ts-card {
+  width: clamp(300px, 32vw, 380px);
+  flex-shrink: 0;
+  padding: var(--s-6);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  transition: transform var(--dur-2) var(--ease-out-quart),
+    border-color var(--dur-2) var(--ease-out-quart);
+}
+
+.ts-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-soft);
+}
+
+.ts-quote {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.ts-author {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--hairline);
+}
+
+.ts-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+.ts-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ts-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.ts-role {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Reduced motion: track estático, scroll nativo no eixo X */
+@media (prefers-reduced-motion: reduce) {
+  .ts-track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    width: auto;
+    overflow-x: auto;
+  }
+
+  .ts-clone {
+    display: none;
+  }
+
+  .ts-viewport {
+    cursor: auto;
+    touch-action: auto;
+  }
+
+  .ts-card:hover {
+    transform: none;
+  }
+}

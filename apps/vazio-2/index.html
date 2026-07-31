@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ÓRBITA — O silêncio, em órbita</title>
+    <meta
+      name="description"
+      content="ÓRBITA: o fone de ouvido com cancelamento de ruído adaptativo espacial. Conheça a engenharia, personalize o seu e entre em órbita."
+    />
+    <meta name="theme-color" content="#090d16" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <script>
+      // Anti-FOUC: aplica o tema antes do primeiro paint (localStorage → prefers-color-scheme → escuro).
+      (function () {
+        var t = 'dark';
+        try {
+          t = localStorage.getItem('orbita-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        } catch (e) {}
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <!-- Ícones autorais (stroke geométrico, 24×24) -->
+    <svg class="svg-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="i-orbit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <ellipse cx="12" cy="12" rx="9.5" ry="5.8" transform="rotate(-24 12 12)" />
+          <circle cx="12" cy="12" r="2.6" />
+          <circle cx="19.4" cy="8.7" r="1.5" fill="currentColor" stroke="none" />
+        </symbol>
+        <symbol id="i-anc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path d="M4 13.5a8 8 0 0 1 16 0" />
+          <path d="M8 10.5a4 4 0 0 0 8 0" />
+          <path d="M11 17.5h2" />
+        </symbol>
+        <symbol id="i-driver" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <circle cx="12" cy="12" r="8.5" />
+          <circle cx="12" cy="12" r="4.5" />
+          <circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none" />
+        </symbol>
+        <symbol id="i-battery" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="8" width="16" height="9" rx="2.5" />
+          <path d="M21.5 11.2v2.6" />
+          <path d="M11.4 9.8l-2.1 3h2.5l-1.5 2.9" />
+        </symbol>
+        <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <rect x="9" y="3" width="6" height="11" rx="3" />
+          <path d="M5.5 11a6.5 6.5 0 0 0 13 0" />
+          <path d="M12 17.5V21" />
+        </symbol>
+        <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+          <path d="M12 3.5c3.2 3.8 6 7 6 10a6 6 0 0 1-12 0c0-3 2.8-6.2 6-10Z" />
+        </symbol>
+        <symbol id="i-multi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <rect x="3" y="6" width="11" height="13" rx="2.5" />
+          <rect x="13" y="3" width="8" height="11" rx="2.5" />
+          <path d="M7 12h3M16.5 8.5h1.5" />
+        </symbol>
+        <symbol id="i-stars" viewBox="0 0 120 24" fill="currentColor">
+          <path d="M12 2.8l2.8 5.8 6.4.9-4.6 4.4 1.1 6.3L12 17.2l-5.7 3 1.1-6.3L2.8 9.5l6.4-.9Z" />
+          <path d="M36 2.8l2.8 5.8 6.4.9-4.6 4.4 1.1 6.3L36 17.2l-5.7 3 1.1-6.3L26.8 9.5l6.4-.9Z" />
+          <path d="M60 2.8l2.8 5.8 6.4.9-4.6 4.4 1.1 6.3L60 17.2l-5.7 3 1.1-6.3L50.8 9.5l6.4-.9Z" />
+          <path d="M84 2.8l2.8 5.8 6.4.9-4.6 4.4 1.1 6.3L84 17.2l-5.7 3 1.1-6.3L74.8 9.5l6.4-.9Z" />
+          <path d="M108 2.8l2.8 5.8 6.4.9-4.6 4.4 1.1 6.3-5.7 3-5.7-3 1.1-6.3-4.6-4.4 6.4-.9Z" />
+        </symbol>
+        <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4v14m0 0 5-5m-5 5-5-5" />
+        </symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path d="M12 5v14M5 12h14" />
+        </symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4 19 19M19 5l-1.6 1.6M6.6 17.4 5 19" />
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+          <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" />
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4.5 12.5l5 5L19.5 7" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <a class="skip-link" href="#main">Pular para o conteúdo</a>
+    <div class="theme-veil" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header" data-header>
+      <div class="container site-header__inner">
+        <a class="brand" href="#hero" aria-label="ÓRBITA — voltar ao início">
+          <svg class="brand__icon" aria-hidden="true"><use href="#i-orbit" /></svg>
+          <span class="brand__word">ÓRBITA</span>
+        </a>
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a href="#como-funciona" data-nav-link>Como funciona</a>
+          <a href="#personalizar" data-nav-link>Personalizar</a>
+          <a href="#recursos" data-nav-link>Recursos</a>
+          <a href="#faq" data-nav-link>FAQ</a>
+        </nav>
+        <div class="site-header__actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Alternar entre tema claro e escuro">
+            <svg class="theme-toggle__sun" aria-hidden="true"><use href="#i-sun" /></svg>
+            <svg class="theme-toggle__moon" aria-hidden="true"><use href="#i-moon" /></svg>
+          </button>
+          <a class="btn btn--primary btn--sm" href="#comprar">Comprar</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 4.1 HERO ============ -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <canvas class="hero__canvas" data-hero-canvas aria-hidden="true"></canvas>
+        <div class="hero__inner container">
+          <div class="hero__copy">
+            <p class="eyebrow" data-hero-enter><span class="eyebrow__dot" aria-hidden="true"></span>ANC espacial · Série 01</p>
+            <h1 class="hero__title" id="hero-title">
+              <span class="hero__line"><span data-hero-enter>O silêncio,</span></span>
+              <span class="hero__line"><span class="hero__accent" data-hero-enter>em órbita.</span></span>
+            </h1>
+            <p class="hero__sub" data-hero-enter>
+              Doze microfones mapeiam o ambiente 200 vezes por segundo e criam uma zona de silêncio
+              que gira com você. Este é o ÓRBITA — cancelamento de ruído adaptativo espacial.
+            </p>
+            <div class="hero__ctas" data-hero-enter>
+              <a class="btn btn--primary" href="#comprar">Comprar — R$ 2.499</a>
+              <a class="btn btn--ghost" href="#como-funciona">Como funciona</a>
+            </div>
+            <ul class="hero__meta" data-hero-enter>
+              <li>36 h de bateria</li>
+              <li>IPX5</li>
+              <li>Bluetooth 5.4</li>
+            </ul>
+          </div>
+          <div class="hero__stage" role="img" aria-label="Fone de ouvido ÓRBITA flutuando entre anéis orbitais">
+            <div class="hero__glow" data-depth="0.12" aria-hidden="true"></div>
+            <div class="hero__rings" data-depth="0.3" aria-hidden="true">
+              <svg viewBox="0 0 600 600" fill="none">
+                <ellipse cx="300" cy="300" rx="270" ry="160" transform="rotate(-18 300 300)" stroke="var(--line)" stroke-width="1" />
+                <ellipse cx="300" cy="300" rx="215" ry="126" transform="rotate(-18 300 300)" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 7" />
+                <ellipse cx="300" cy="300" rx="160" ry="92" transform="rotate(-18 300 300)" stroke="var(--glow)" stroke-width="1" />
+                <g data-satellite>
+                  <circle r="5" fill="var(--accent)" />
+                  <circle r="10" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.4" />
+                </g>
+              </svg>
+            </div>
+            <div class="hero__hp" data-depth="0.55">
+              <div class="hp-slot hp-slot--hero" data-headphone-slot="hero"></div>
+            </div>
+          </div>
+        </div>
+        <a class="hero__cue" href="#como-funciona" data-hero-enter>
+          <span>Role para explorar</span>
+          <svg aria-hidden="true"><use href="#i-arrow-down" /></svg>
+        </a>
+      </section>
+
+      <!-- ============ 4.2 SCROLL-TELLING ============ -->
+      <section class="scrolly" id="como-funciona" data-scrolly aria-labelledby="scrolly-title">
+        <h2 class="visually-hidden" id="scrolly-title">Como funciona o ÓRBITA</h2>
+        <div class="scrolly__sticky" data-scrolly-sticky>
+          <div class="scrolly__stage">
+            <canvas class="scrolly__waves" data-anc-canvas aria-hidden="true"></canvas>
+            <div class="scrolly__hp" data-scrolly-hp>
+              <div
+                class="hp-slot hp-slot--lg"
+                data-headphone-slot="scrolly"
+                role="img"
+                aria-label="Fone ÓRBITA se abrindo em seus componentes: concha, driver, chip e haste"
+              ></div>
+            </div>
+            <ul class="scrolly__labels" aria-hidden="true">
+              <li data-part-label="driver">Driver de grafeno · 11 mm</li>
+              <li data-part-label="chip">Chip H2 · ANC espacial</li>
+              <li data-part-label="mesh">Malha acústica</li>
+              <li data-part-label="battery">Célula de íon · 36 h</li>
+            </ul>
+          </div>
+          <div class="scrolly__steps">
+            <article class="scrolly__step" data-step="0">
+              <p class="eyebrow">01 · Escultura</p>
+              <h3>Feito para desaparecer</h3>
+              <p>
+                Polímero de fibra mineral, 4,9 gramas e um centro de gravidade calculado para o
+                fone sumir no seu ouvido — e ficar.
+              </p>
+            </article>
+            <article class="scrolly__step" data-step="1">
+              <p class="eyebrow">02 · Engenharia</p>
+              <h3>Tudo no lugar exato</h3>
+              <p>
+                Driver de grafeno de 11 mm, chip H2 e doze microfones em um volume menor que uma
+                uva. Cada componente ganhou sua órbita.
+              </p>
+            </article>
+            <article class="scrolly__step" data-step="2">
+              <p class="eyebrow">03 · Silêncio</p>
+              <h3>O mundo sai de cena</h3>
+              <p>
+                O ANC espacial amostra o ambiente 200 vezes por segundo e responde em antifase
+                calibrada. O ruído se cancela. A música fica.
+              </p>
+            </article>
+          </div>
+          <div class="scrolly__progress" aria-hidden="true">
+            <span class="scrolly__num" data-scrolly-num>01</span>
+            <div class="scrolly__track"><div class="scrolly__bar" data-scrolly-bar></div></div>
+            <span class="scrolly__num">03</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 4.3 CONFIGURADOR ============ -->
+      <section class="config" id="personalizar" data-configurator aria-labelledby="config-title">
+        <div class="container config__grid">
+          <div class="config__stage">
+            <div class="config__ring" aria-hidden="true"></div>
+            <div
+              class="hp-slot hp-slot--lg"
+              data-headphone-slot="config"
+              role="img"
+              aria-label="ÓRBITA no acabamento selecionado"
+            ></div>
+          </div>
+          <div class="config__panel">
+            <p class="eyebrow">Personalize</p>
+            <h2 id="config-title">O seu ÓRBITA</h2>
+            <div class="config__group">
+              <p class="config__label" id="config-colors-label">Acabamento</p>
+              <div class="config__swatches" role="radiogroup" aria-labelledby="config-colors-label">
+                <button type="button" class="swatch is-active" data-color="grafite" role="radio" aria-checked="true">
+                  <span class="swatch__dot" style="--swatch: #2b3038" aria-hidden="true"></span>Grafite
+                </button>
+                <button type="button" class="swatch" data-color="lunar" role="radio" aria-checked="false">
+                  <span class="swatch__dot" style="--swatch: #e6e2d8" aria-hidden="true"></span>Lunar
+                </button>
+                <button type="button" class="swatch" data-color="cobre" role="radio" aria-checked="false">
+                  <span class="swatch__dot" style="--swatch: #b4693b" aria-hidden="true"></span>Cobre
+                </button>
+                <button type="button" class="swatch" data-color="aurora" role="radio" aria-checked="false">
+                  <span class="swatch__dot" style="--swatch: #3f7d6b" aria-hidden="true"></span>Aurora
+                </button>
+              </div>
+            </div>
+            <div class="config__group">
+              <p class="config__label" id="config-shells-label">Concha</p>
+              <div class="config__shells" role="radiogroup" aria-labelledby="config-shells-label">
+                <button type="button" data-shell="compact" role="radio" aria-checked="false">
+                  Compacta <span>− R$ 100</span>
+                </button>
+                <button type="button" class="is-active" data-shell="standard" role="radio" aria-checked="true">
+                  Padrão
+                </button>
+                <button type="button" data-shell="max" role="radio" aria-checked="false">
+                  Max <span>+ R$ 200</span>
+                </button>
+              </div>
+            </div>
+            <div class="config__buy">
+              <p class="config__price">
+                <span class="visually-hidden">Preço: </span>
+                <span class="config__currency" aria-hidden="true">R$</span>
+                <span class="config__value" data-price aria-live="polite">2.499</span>
+              </p>
+              <button class="btn btn--primary btn--xl" type="button" data-config-cta>
+                Comprar ÓRBITA — Grafite, R$ 2.499
+              </button>
+              <p class="config__note">Frete grátis · 30 dias para trocar a cor</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 4.4 FEATURES ============ -->
+      <section class="features" id="recursos" aria-labelledby="features-title">
+        <div class="container">
+          <p class="eyebrow">Recursos</p>
+          <h2 id="features-title">Engenharia que se ouve</h2>
+          <p class="section-sub">
+            Seis razões para aposentar o volume — e o ruído.
+          </p>
+          <ul class="features__grid" data-features>
+            <li class="feature" data-feature>
+              <span class="feature__icon" aria-hidden="true"><svg><use href="#i-anc" /></svg></span>
+              <h3>ANC espacial</h3>
+              <p>Doze microfones mapeiam o ambiente 200× por segundo. O silêncio acompanha cada movimento da sua cabeça.</p>
+              <span class="feature__tag">200×/s</span>
+            </li>
+            <li class="feature" data-feature>
+              <span class="feature__icon" aria-hidden="true"><svg><use href="#i-driver" /></svg></span>
+              <h3>Driver de grafeno</h3>
+              <p>Diafragma de 11 mm com rigidez atômica: graves que descem a 14 Hz sem turvar os médios.</p>
+              <span class="feature__tag">11 mm</span>
+            </li>
+            <li class="feature" data-feature>
+              <span class="feature__icon" aria-hidden="true"><svg><use href="#i-battery" /></svg></span>
+              <h3>Bateria orbital</h3>
+              <p>9 horas contínuas, 36 com o estojo. Dez minutos na carga devolvem 3 horas de som.</p>
+              <span class="feature__tag">36 h</span>
+            </li>
+            <li class="feature" data-feature>
+              <span class="feature__icon" aria-hidden="true"><svg><use href="#i-mic" /></svg></span>
+              <h3>Chamadas nítidas</h3>
+              <p>Beamforming isola a sua voz do vento e da rua. Do outro lado, só você passa.</p>
+              <span class="feature__tag">6 mics de voz</span>
+            </li>
+            <li class="feature" data-feature>
+              <span class="feature__icon" aria-hidden="true"><svg><use href="#i-drop" /></svg></span>
+              <h3>À prova de treino</h3>
+              <p>IPX5 contra suor e chuva. Da academia à órbita baixa, sem cerimônia.</p>
+              <span class="feature__tag">IPX5</span>
+            </li>
+            <li class="feature" data-feature>
+              <span class="feature__icon" aria-hidden="true"><svg><use href="#i-multi" /></svg></span>
+              <h3>Multiponto</h3>
+              <p>Dois dispositivos conectados ao mesmo tempo, troca sem atrito. Bluetooth 5.4.</p>
+              <span class="feature__tag">BT 5.4</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 4.5 DEPOIMENTOS ============ -->
+      <section class="quotes" id="depoimentos" aria-labelledby="quotes-title">
+        <div class="container quotes__head">
+          <p class="eyebrow">Prova social</p>
+          <h2 id="quotes-title">Quem ouviu, orbita</h2>
+        </div>
+        <div class="quotes__marquee" data-marquee>
+          <ul class="quotes__track" data-marquee-track>
+            <li class="quote">
+              <svg class="quote__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas"><use href="#i-stars" /></svg>
+              <blockquote>“O ÓRBITA não cancela o ruído. Ele reedita o mundo ao redor.”</blockquote>
+              <footer>Revista SOM</footer>
+            </li>
+            <li class="quote">
+              <svg class="quote__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas"><use href="#i-stars" /></svg>
+              <blockquote>“O melhor cancelamento de ruído que já testamos. Ponto final.”</blockquote>
+              <footer>Canal HiFi Lab</footer>
+            </li>
+            <li class="quote">
+              <svg class="quote__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas"><use href="#i-stars" /></svg>
+              <blockquote>“Design de outro planeta, preço deste.”</blockquote>
+              <footer>TecnoCast</footer>
+            </li>
+            <li class="quote">
+              <svg class="quote__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas"><use href="#i-stars" /></svg>
+              <blockquote>“Usei num voo de 11 horas e esqueci que turbinas existiam.”</blockquote>
+              <footer>Marina Duarte, testadora</footer>
+            </li>
+            <li class="quote">
+              <svg class="quote__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas"><use href="#i-stars" /></svg>
+              <blockquote>“O configurador é perigosamente divertido.”</blockquote>
+              <footer>UX Weekly</footer>
+            </li>
+          </ul>
+        </div>
+        <p class="quotes__hint" aria-hidden="true">Arraste para navegar</p>
+      </section>
+
+      <!-- ============ 4.6 FAQ ============ -->
+      <section class="faq" id="faq" aria-labelledby="faq-title">
+        <div class="container faq__inner">
+          <div class="faq__head">
+            <p class="eyebrow">FAQ</p>
+            <h2 id="faq-title">Perguntas de quem ainda não orbitou</h2>
+          </div>
+          <div class="faq__list" data-faq>
+            <div class="faq__item" data-faq-item>
+              <h3 class="faq__q">
+                <button type="button" data-faq-button aria-expanded="false" aria-controls="faq-p1" id="faq-b1">
+                  O cancelamento de ruído funciona sem música?
+                  <svg class="faq__chev" aria-hidden="true"><use href="#i-plus" /></svg>
+                </button>
+              </h3>
+              <div class="faq__panel" data-faq-panel id="faq-p1" role="region" aria-labelledby="faq-b1">
+                <div class="faq__panel-inner">
+                  <p>Sim. O modo Silêncio liga o ANC espacial sem tocar nada — útil para foco, sono em voos e escritórios barulhentos. Um toque na haste alterna para o modo Ambiente, que devolve os sons importantes.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq__item" data-faq-item>
+              <h3 class="faq__q">
+                <button type="button" data-faq-button aria-expanded="false" aria-controls="faq-p2" id="faq-b2">
+                  Qual é a autonomia real da bateria?
+                  <svg class="faq__chev" aria-hidden="true"><use href="#i-plus" /></svg>
+                </button>
+              </h3>
+              <div class="faq__panel" data-faq-panel id="faq-p2" role="region" aria-labelledby="faq-b2">
+                <div class="faq__panel-inner">
+                  <p>9 horas de reprodução contínua com ANC ligado e mais 27 horas no estojo — 36 no total. Uma carga rápida de 10 minutos rende 3 horas. O estojo carrega por USB-C ou base sem fio.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq__item" data-faq-item>
+              <h3 class="faq__q">
+                <button type="button" data-faq-button aria-expanded="false" aria-controls="faq-p3" id="faq-b3">
+                  O ÓRBITA é resistente à água?
+                  <svg class="faq__chev" aria-hidden="true"><use href="#i-plus" /></svg>
+                </button>
+              </h3>
+              <div class="faq__panel" data-faq-panel id="faq-p3" role="region" aria-labelledby="faq-b3">
+                <div class="faq__panel-inner">
+                  <p>Os fones têm certificação IPX5: aguentam suor intenso e chuva. O estojo não é resistente à água — seque os fones antes de guardar.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq__item" data-faq-item>
+              <h3 class="faq__q">
+                <button type="button" data-faq-button aria-expanded="false" aria-controls="faq-p4" id="faq-b4">
+                  Posso trocar a cor depois da compra?
+                  <svg class="faq__chev" aria-hidden="true"><use href="#i-plus" /></svg>
+                </button>
+              </h3>
+              <div class="faq__panel" data-faq-panel id="faq-p4" role="region" aria-labelledby="faq-b4">
+                <div class="faq__panel-inner">
+                  <p>Você tem 30 dias para trocar de acabamento sem custo, quantas vezes quiser. Basta levar o par a uma órbita de atendimento — ou pedir a coleta em casa.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq__item" data-faq-item>
+              <h3 class="faq__q">
+                <button type="button" data-faq-button aria-expanded="false" aria-controls="faq-p5" id="faq-b5">
+                  Funciona com Android e iOS?
+                  <svg class="faq__chev" aria-hidden="true"><use href="#i-plus" /></svg>
+                </button>
+              </h3>
+              <div class="faq__panel" data-faq-panel id="faq-p5" role="region" aria-labelledby="faq-b5">
+                <div class="faq__panel-inner">
+                  <p>Sim. Bluetooth 5.4 com multiponto para dois dispositivos, codecs AAC e LDAC, e o app ÓRBITA (Android, iOS e desktop) para equalização, mapa de toques e localização dos fones.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 4.7 CTA FINAL ============ -->
+      <section class="final" id="comprar" aria-labelledby="final-title">
+        <div class="container final__inner">
+          <div class="final__stage" role="img" aria-label="ÓRBITA no acabamento que você escolheu">
+            <div class="final__ring" aria-hidden="true"></div>
+            <div class="hp-slot hp-slot--lg" data-headphone-slot="final"></div>
+          </div>
+          <p class="eyebrow">Pré-venda aberta</p>
+          <h2 id="final-title">Sua órbita<br />começa agora</h2>
+          <p class="final__summary" data-final-summary>ÓRBITA · Grafite · Concha Padrão — R$ 2.499</p>
+          <button class="btn btn--primary btn--xl" type="button" data-magnetic data-final-cta>
+            Comprar ÓRBITA — Grafite, R$ 2.499
+          </button>
+          <p class="final__note">Envio a partir de dezembro · produto fictício, checkout simulado</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <a class="brand" href="#hero" aria-label="ÓRBITA — voltar ao início">
+          <svg class="brand__icon" aria-hidden="true"><use href="#i-orbit" /></svg>
+          <span class="brand__word">ÓRBITA</span>
+        </a>
+        <nav class="footer__nav" aria-label="Rodapé">
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#personalizar">Personalizar</a>
+          <a href="#recursos">Recursos</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <p class="footer__note">
+          ÓRBITA é um produto fictício criado para um desafio de frontend. Feito à mão com CSS, SVG
+          e requestAnimationFrame — nenhuma biblioteca de animação.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Assinatura: satélite que percorre a órbita conforme o scroll -->
+    <div class="orbit-progress" data-orbit-progress aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none">
+        <ellipse class="orbit-progress__ring" cx="32" cy="32" rx="26" ry="16" transform="rotate(-24 32 32)" />
+        <circle class="orbit-progress__planet" cx="32" cy="32" r="6.5" />
+        <g data-orbit-satellite>
+          <circle r="3.2" />
+          <circle r="6.4" class="orbit-progress__halo" />
+        </g>
+      </svg>
+    </div>
+  </body>
+</html>

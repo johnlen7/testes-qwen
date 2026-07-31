@@ -1,0 +1,54 @@
+/* Fone ÓRBITA — SVG */
+
+.hp {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* O atributo transform de cupScale (nos copos) precisa de origem fixa em 0 0,
+   senão o transform-origin padrão do SVG desloca as conchas no On-ear. */
+.hp [data-part='cup-l'],
+.hp [data-part='cup-r'] {
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+
+/* Transição suave de cor ao trocar no configurador */
+.hp-fill {
+  transition: fill var(--dur-3) var(--ease-in-out);
+}
+
+/* Anel de assinatura = âmbar da marca, consistente em todas as cores */
+.hp-ring {
+  stroke: var(--accent);
+  fill: none;
+  transition: stroke var(--dur-3) var(--ease-in-out);
+}
+
+.hp-accent {
+  fill: var(--accent);
+  transition: fill var(--dur-3) var(--ease-in-out);
+}
+
+/* Pulso sutil do anel (decorativo — desligado no reduced-motion) */
+.hp-ring {
+  animation: hp-ring-pulse 4.5s var(--ease-in-out) infinite;
+}
+
+@keyframes hp-ring-pulse {
+  0%,
+  100% {
+    stroke-opacity: 0.55;
+  }
+  50% {
+    stroke-opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-ring {
+    animation: none;
+    stroke-opacity: 0.9;
+  }
+}

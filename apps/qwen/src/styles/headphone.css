@@ -1,0 +1,181 @@
+/* ════════════════════════════════════════════════════════════
+   Fone ÓRBITA — estilos do SVG paramétrico.
+   Cores via CSS vars globais (--hp-*) — troca de cor do configurador
+   é uma transição de fill de 600ms, sem repaint de markup.
+   ════════════════════════════════════════════════════════════ */
+
+[data-headphone] {
+  aspect-ratio: 560 / 560;
+  width: clamp(240px, 26vw, 360px);
+}
+
+[data-headphone][data-size='lg'] {
+  width: clamp(280px, 34vw, 470px);
+}
+
+[data-headphone][data-size='sm'] {
+  width: clamp(150px, 15vw, 230px);
+}
+
+.hp {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* transição de cor — o "pintura animada" do configurador */
+.hp * {
+  transition: fill var(--t-slow) var(--ease-in-out),
+    stroke var(--t-slow) var(--ease-in-out);
+}
+
+.hp-shadow {
+  fill: rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme='light'] .hp-shadow {
+  fill: rgba(21, 23, 29, 0.18);
+}
+
+/* ── Arco ── */
+.hp-band-outer {
+  fill: none;
+  stroke: var(--hp-shell);
+  stroke-width: 30;
+  stroke-linecap: round;
+}
+
+.hp-band-pad {
+  fill: none;
+  stroke: var(--hp-cushion);
+  stroke-width: 11;
+  stroke-linecap: round;
+}
+
+.hp-band-gloss {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+/* ── Hastes ── */
+.hp-stem rect,
+.hp-stem circle:not(.hp-pivot-dot) {
+  fill: var(--hp-shell-hi);
+}
+
+.hp-pivot-dot {
+  fill: var(--hp-ring);
+}
+
+/* ── Conchas ── */
+.hp-shell {
+  fill: var(--hp-shell);
+}
+
+.hp-cup-shade {
+  fill: rgba(0, 0, 0, 0.2);
+}
+
+.hp-gloss {
+  fill: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Almofadas ── */
+.hp-cushion-main {
+  fill: var(--hp-cushion);
+}
+
+.hp-cushion-hole {
+  fill: rgba(0, 0, 0, 0.55);
+}
+
+/* ── Drivers ── */
+.hp-driver circle:first-child {
+  fill: rgba(0, 0, 0, 0.6);
+  stroke: var(--hp-shell-hi);
+  stroke-width: 2;
+}
+
+.hp-driver-ring {
+  fill: none;
+  stroke: var(--hp-ring);
+  stroke-width: 1.6;
+  stroke-dasharray: 3 5;
+}
+
+.hp-driver-core {
+  fill: var(--hp-ring);
+}
+
+/* ── Anel orbital (motivo do nome) ── */
+.hp-orbit {
+  fill: none;
+  stroke: var(--hp-ring);
+  stroke-width: 1.6;
+  stroke-dasharray: 2 8;
+  stroke-linecap: round;
+}
+
+.hp-orbit-dot {
+  fill: var(--hp-ring);
+}
+
+.hp-orbit-spin {
+  animation: hp-orbit-rotate 16s linear infinite;
+  transform-box: view-box;
+  transform-origin: 410px 392px;
+}
+
+@keyframes hp-orbit-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Ondas EQ (modo Imersivo) ── */
+.hp-eq path {
+  fill: none;
+  stroke: var(--hp-ring);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+
+.hp-eq path:nth-child(even) {
+  opacity: 0.4;
+}
+
+.hp-eq {
+  transition: opacity var(--t-slow) var(--ease-in-out);
+}
+
+[data-mode='imersivo'] .hp-eq {
+  opacity: 1 !important;
+  animation: hp-eq-pulse 1.8s var(--ease-in-out) infinite;
+}
+
+@keyframes hp-eq-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+}
+
+/* vista explodida revela drivers */
+[data-exploded] .hp-driver {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-orbit-spin,
+  [data-mode='imersivo'] .hp-eq {
+    animation: none;
+  }
+}

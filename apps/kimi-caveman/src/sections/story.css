@@ -1,0 +1,447 @@
+.story {
+  position: relative;
+  height: 400vh;
+  background-color: var(--bg);
+  color: var(--ink);
+  --progress: 0;
+}
+
+.story__stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-inline: clamp(var(--s3), 6vw, var(--s7));
+  overflow: hidden;
+}
+
+/* Decorative progress rail */
+.story__rail {
+  position: absolute;
+  left: clamp(var(--s3), 4vw, var(--s5));
+  top: 50%;
+  width: 2px;
+  height: 120px;
+  transform: translateY(-50%);
+}
+
+.story__rail-track {
+  position: absolute;
+  inset: 0;
+  background-color: var(--line);
+  opacity: 0.5;
+}
+
+.story__rail-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent);
+  transform: scaleY(var(--progress));
+  transform-origin: top;
+  transition: transform 0.05s linear;
+  will-change: transform;
+}
+
+.story__rail-ticks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.story__tick {
+  display: block;
+  width: 8px;
+  height: 2px;
+  margin-left: -3px;
+  background-color: var(--ink);
+  opacity: 0.35;
+  transition: opacity 0.05s linear;
+}
+
+.story__tick[data-tick="0"] {
+  opacity: calc(0.35 + 0.65 * clamp(0, var(--progress) * 3, 1));
+}
+
+.story__tick[data-tick="1"] {
+  opacity: calc(0.35 + 0.65 * clamp(0, (var(--progress) - 0.33) * 3, 1));
+}
+
+.story__tick[data-tick="2"] {
+  opacity: calc(0.35 + 0.65 * clamp(0, (var(--progress) - 0.66) * 3, 1));
+}
+
+/* Visual stage */
+.story__visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.story__rings {
+  position: absolute;
+  width: min(55vw, 520px);
+  aspect-ratio: 1 / 1;
+  transform: scale(calc(1 + clamp(0, (var(--progress) - 0.33) * 3, 1) * 0.25));
+  will-change: transform;
+}
+
+.story__rings-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.story__ring {
+  transform-origin: 200px 200px;
+}
+
+.story__ring--1 {
+  animation: story-orbit 50s linear infinite;
+}
+
+.story__ring--2 {
+  animation: story-orbit 80s linear infinite reverse;
+}
+
+.story__ring--3 {
+  animation: story-orbit 120s linear infinite;
+}
+
+@keyframes story-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.story__product-whole,
+.story__product-exploded {
+  position: absolute;
+  width: min(42vw, 360px);
+  transition: opacity 0.05s linear;
+  will-change: transform, opacity;
+}
+
+.story__product-whole {
+  opacity: 1;
+  transform: rotate(calc(clamp(0, (var(--progress) - 0.33) * 3, 1) * 35deg));
+}
+
+.story__product-exploded {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+/* Exploded reveal during CANCELAR */
+.story__product-whole {
+  opacity: calc(1 - clamp(0, (var(--progress) - 0.66) * 3, 1));
+}
+
+.story__product-exploded {
+  opacity: calc(clamp(0, (var(--progress) - 0.66) * 3, 1));
+  transform: scale(calc(0.95 + 0.05 * clamp(0, (var(--progress) - 0.66) * 3, 1)));
+}
+
+.story__product-whole .orbita-product,
+.story__product-exploded .orbita-product {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+/* Sound-wave arcs for CAPTAR */
+.story__waves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.story__wave {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1;
+  stroke-dasharray: 80;
+  stroke-dashoffset: calc(80 * (1 - clamp(0, var(--progress) * 3 - var(--i) * 0.08, 1)));
+  opacity: calc((0.65 - var(--i) * 0.1) * clamp(0, (0.66 - var(--progress)) / 0.08, 1));
+  transition: stroke-dashoffset 0.05s linear;
+  will-change: stroke-dashoffset;
+}
+
+/* Measurement callouts for MEDIR */
+.story__measurements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: calc(clamp(0, (var(--progress) - 0.36) / 0.05, 1) * clamp(0, (0.63 - var(--progress)) / 0.05, 1));
+}
+
+.story__measure {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: 12px;
+  color: var(--ink-dim);
+  transform: translateY(calc((1 - clamp(0, (var(--progress) - 0.36) / 0.05, 1) * clamp(0, (0.63 - var(--progress)) / 0.05, 1)) * 16px));
+  transition: opacity 0.05s linear;
+}
+
+.story__value {
+  color: var(--ink);
+}
+
+.story__unit {
+  color: var(--ink-dim);
+}
+
+.story__measure--db {
+  top: 18%;
+  left: 8%;
+}
+
+.story__measure--hz {
+  top: 42%;
+  right: 2%;
+}
+
+.story__measure--rate {
+  bottom: 22%;
+  left: 12%;
+}
+
+.story__measure-line {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background-color: var(--line);
+}
+
+/* Exploded labels for CANCELAR */
+.story__explode-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: calc(clamp(0, (var(--progress) - 0.66) * 3, 1));
+}
+
+.story__explode-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: 11px;
+  color: var(--ink);
+  transform: translateY(calc((1 - clamp(0, (var(--progress) - 0.66) * 3, 1)) * 16px));
+  transition: opacity 0.05s linear;
+}
+
+.story__explode-label--driver {
+  top: 56%;
+  left: 6%;
+}
+
+.story__explode-label--mesh {
+  top: 34%;
+  right: 4%;
+}
+
+.story__explode-label--cushion {
+  bottom: 26%;
+  right: 10%;
+}
+
+.story__explode-label--band {
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc((1 - clamp(0, (var(--progress) - 0.66) * 3, 1)) * 16px));
+}
+
+.story__explode-line {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--line);
+}
+
+/* Text panels */
+.story__text {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding-left: var(--s5);
+}
+
+.story__panel {
+  grid-area: 1 / 1;
+  max-width: 44ch;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.05s linear, transform 0.05s linear;
+  will-change: transform, opacity;
+}
+
+.story__panel[data-stage="0"] {
+  --stage-opacity: calc(clamp(0, (0.33 - var(--progress)) / 0.08, 1));
+}
+
+.story__panel[data-stage="1"] {
+  --stage-opacity: calc(clamp(0, (var(--progress) - 0.33) / 0.08, 1) * clamp(0, (0.66 - var(--progress)) / 0.08, 1));
+}
+
+.story__panel[data-stage="2"] {
+  --stage-opacity: calc(clamp(0, (var(--progress) - 0.66) / 0.08, 1) * clamp(0, (1 - var(--progress)) / 0.08, 1));
+}
+
+.story__panel {
+  opacity: var(--stage-opacity);
+  transform: translateY(calc((1 - var(--stage-opacity)) * 24px));
+}
+
+.story__label {
+  display: block;
+  margin-bottom: var(--s3);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.story__heading {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  margin-bottom: var(--s3);
+  letter-spacing: -0.02em;
+}
+
+.story__body {
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .story__stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    gap: var(--s4);
+    padding-top: var(--s6);
+    padding-bottom: var(--s6);
+  }
+
+  .story__visual {
+    grid-row: 1;
+    height: 50vh;
+  }
+
+  .story__text {
+    grid-row: 2;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .story__product-whole,
+  .story__product-exploded {
+    width: min(70vw, 300px);
+  }
+
+  .story__rings {
+    width: min(80vw, 420px);
+  }
+
+  .story__rail {
+    left: var(--s3);
+    height: 96px;
+  }
+}
+
+@media (max-width: 360px) {
+  .story__visual {
+    height: 42vh;
+  }
+
+  .story__heading {
+    font-size: 26px;
+  }
+
+  .story__measure,
+  .story__explode-label {
+    font-size: 10px;
+  }
+}
+
+/* Reduced motion / static fallback */
+@media (prefers-reduced-motion: reduce) {
+  .story {
+    height: auto;
+  }
+
+  .story__stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s8);
+    padding-block: var(--s8);
+    min-height: auto;
+  }
+
+  .story__visual {
+    position: relative;
+    height: auto;
+    min-height: 50vh;
+  }
+
+  .story__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s7);
+  }
+
+  .story__panel {
+    position: relative;
+    grid-area: auto;
+    opacity: 1;
+    transform: none;
+  }
+
+  .story__rail,
+  .story__waves,
+  .story__measurements,
+  .story__explode-labels {
+    display: none;
+  }
+
+  .story__product-whole,
+  .story__product-exploded {
+    position: relative;
+    opacity: 1;
+    transform: none;
+  }
+
+  .story__product-whole {
+    display: none;
+  }
+
+  .story__product-exploded {
+    display: block;
+  }
+
+  .story__ring {
+    animation: none;
+  }
+}

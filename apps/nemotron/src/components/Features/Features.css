@@ -1,0 +1,143 @@
+/* ============================================================
+   ÓRBITA — Features (tilt 3D + glare)
+   ============================================================ */
+
+.feat-head {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.feat-head .display {
+  margin-top: var(--s-4);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  max-width: 14ch;
+}
+
+/* Grid responsivo: 1 coluna → 2 (640) → 3 (1024) */
+.feat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-6);
+}
+
+@media (min-width: 640px) {
+  .feat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .feat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card — o tilt vive num wrapper interno (.feat-tilt) para não
+   colidir com o transform do reveal (.rv, globals.css) */
+.feat-card {
+  position: relative;
+  isolation: isolate;
+  padding: var(--s-6);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px -24px rgba(0, 0, 0, 0.5);
+  transition: border-color var(--dur-2) var(--ease-out-quart);
+}
+
+[data-theme='light'] .feat-card {
+  box-shadow: 0 16px 36px -26px rgba(28, 24, 18, 0.22);
+}
+
+.feat-card:hover {
+  border-color: var(--hairline-strong);
+}
+
+/* Glare — brilho que acompanha o cursor (vars escritas pelo tilt) */
+.feat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    600px circle at var(--gx, 50%) var(--gy, 50%),
+    var(--accent-soft) 0%,
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-out-quart);
+  pointer-events: none;
+}
+
+.feat-card:hover::after {
+  opacity: 1;
+}
+
+/* Tilt 3D — apenas com a classe feat-card--tilt (fine pointer + sem reduced) */
+.feat-card--tilt .feat-tilt {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform var(--dur-2) var(--ease-out-quart);
+  will-change: transform;
+}
+
+.feat-card--tilt:hover .feat-tilt {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    translateY(-4px);
+}
+
+/* Movimento contínuo: transform sem transição (vars reescritas a cada frame) */
+.feat-card--tilt.is-tracking .feat-tilt {
+  transition: none;
+}
+
+/* Ícone — bounce sutil no hover, stroke vira accent */
+.feat-icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--s-5);
+  color: var(--muted);
+  transition: color var(--dur-2) var(--ease-out-quart);
+}
+
+.feat-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.feat-card:hover .feat-icon {
+  color: var(--accent);
+}
+
+.feat-card:hover .feat-icon svg {
+  animation: feat-icon-bounce var(--dur-3) var(--ease-spring);
+}
+
+@keyframes feat-icon-bounce {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  45% {
+    transform: translateY(-5px) scale(1.06);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Tipografia do card */
+.feat-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+.feat-desc {
+  margin-top: var(--s-3);
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}

@@ -1,0 +1,129 @@
+.faq {
+  padding-block: var(--s8) var(--s7);
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+.faq__header {
+  margin-bottom: var(--s6);
+}
+
+.faq__eyebrow {
+  display: block;
+  color: var(--accent);
+  font-size: 12px;
+  margin-bottom: var(--s3);
+}
+
+.faq__title {
+  font-size: clamp(32px, 5vw, 48px);
+  letter-spacing: -0.02em;
+}
+
+.faq__list {
+  border-top: 1px solid var(--line);
+}
+
+.faq__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding-block: var(--s4);
+  text-align: left;
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.faq__question:hover {
+  color: var(--accent);
+}
+
+.faq__question:hover .faq__icon span {
+  background-color: var(--accent);
+}
+
+.faq__index {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-dim);
+  min-width: 2.5ch;
+  text-align: left;
+}
+
+.faq__question-text {
+  flex: 1;
+  padding-right: var(--s3);
+}
+
+.faq__icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.faq__icon span {
+  position: absolute;
+  background-color: var(--ink);
+  transition: background-color 600ms var(--ease-inout);
+}
+
+.faq__icon span:first-child {
+  top: 7px;
+  left: 0;
+  width: 16px;
+  height: 2px;
+}
+
+.faq__icon span:last-child {
+  top: 0;
+  left: 7px;
+  width: 2px;
+  height: 16px;
+}
+
+.faq__question[aria-expanded='true'] .faq__icon {
+  transform: rotate(45deg);
+}
+
+.faq__panel {
+  height: 0;
+  overflow: hidden;
+  transition: height var(--dur-2) var(--ease-out);
+  will-change: height;
+}
+
+.faq__answer {
+  padding-bottom: var(--s4);
+  padding-left: calc(2.5ch + var(--s3));
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.6;
+  border-left: 2px solid var(--line);
+  transition: border-color 600ms var(--ease-inout);
+}
+
+.faq__item.is-open .faq__answer {
+  border-color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .faq__question {
+    font-size: 16px;
+    padding-block: var(--s3);
+  }
+
+  .faq__answer {
+    font-size: 15px;
+    padding-bottom: var(--s3);
+  }
+}

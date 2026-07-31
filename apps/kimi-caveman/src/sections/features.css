@@ -1,0 +1,135 @@
+.features {
+  padding-block: var(--s8) var(--s7);
+}
+
+.features__header {
+  max-width: 720px;
+  margin-bottom: var(--s6);
+}
+
+.features__eyebrow {
+  display: block;
+  color: var(--accent);
+  font-size: 12px;
+  margin-bottom: var(--s3);
+}
+
+.features__title {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: var(--s3);
+}
+
+.features__sub {
+  color: var(--ink-dim);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4);
+}
+
+@media (max-width: 1024px) {
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  padding: var(--s4);
+  background-color: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: border-color var(--dur-2) var(--ease-out);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-out);
+}
+
+.feature-card:hover::before,
+.feature-card:focus-within::before {
+  opacity: 1;
+}
+
+.feature-card:hover,
+.feature-card:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+
+.feature-icon-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--accent);
+}
+
+.feature-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.feature-title {
+  position: relative;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-top: var(--s2);
+}
+
+.feature-desc {
+  position: relative;
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.feature-spec {
+  position: relative;
+  display: inline-block;
+  margin-top: auto;
+  padding-top: var(--s3);
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .feature-card::before,
+  .feature-glow {
+    opacity: 0 !important;
+  }
+}

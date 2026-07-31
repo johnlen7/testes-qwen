@@ -1,0 +1,1 @@
+leia o prompt.md e execute ele completamente. use skill necessarias para deixar o deign frontend bonito e organizado, use subagantes para ser mais rapido

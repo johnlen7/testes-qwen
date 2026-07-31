@@ -1,0 +1,194 @@
+/* ============================================================
+   Configurador
+   ============================================================ */
+
+.configurator {
+  padding: var(--sp-10) clamp(var(--sp-5), 5vw, var(--sp-8));
+}
+
+.configurator-grid {
+  width: min(100%, var(--container));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+
+.configurator-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-7);
+  border-radius: var(--radius-l);
+  background: radial-gradient(
+      120% 120% at 50% 0%,
+      var(--bg-2) 0%,
+      var(--bg-1) 70%
+    );
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.configurator-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    60% 50% at 50% 45%,
+    var(--accent-soft) 0%,
+    transparent 70%
+  );
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+.configurator-product {
+  position: relative;
+  width: min(100%, 400px);
+  /* a troca de cor do produto é animada */
+  transition: --hp-shell var(--dur-3) var(--ease-inout);
+}
+.configurator-product .hp-svg {
+  filter: drop-shadow(0 40px 46px rgba(0, 0, 0, 0.4));
+}
+
+.configurator-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+}
+
+.config-group legend {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: var(--sp-4);
+}
+
+/* swatches de cor */
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+}
+.swatch-dot {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 34% 30%,
+    var(--sw) 0%,
+    var(--sw2) 100%
+  );
+  border: 2px solid var(--line-strong);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.18),
+    0 6px 16px -8px rgba(0, 0, 0, 0.6);
+  transition: transform var(--dur-2) var(--ease-spring),
+    border-color var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+}
+.swatch-name {
+  font-size: var(--fs-small);
+  color: var(--ink-1);
+  transition: color var(--dur-2) var(--ease-out);
+}
+.swatch:hover .swatch-dot {
+  transform: translateY(-3px) scale(1.05);
+}
+.swatch.is-active .swatch-dot {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft),
+    inset 0 2px 6px rgba(255, 255, 255, 0.18);
+}
+.swatch.is-active .swatch-name {
+  color: var(--ink-0);
+  font-weight: 600;
+}
+
+/* segmented (modo de som) */
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+.segmented-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-m);
+  font-weight: 600;
+  text-align: left;
+  color: var(--ink-1);
+  transition: border-color var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out),
+    color var(--dur-2) var(--ease-out),
+    transform var(--dur-2) var(--ease-spring);
+}
+.segmented-btn small {
+  font-weight: 400;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+.segmented-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+.segmented-btn.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink-0);
+}
+
+/* resumo + preço */
+.config-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--line);
+}
+.config-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.config-price-label {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.config-price-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-variant-numeric: tabular-nums;
+}
+.config-price-value .currency {
+  font-size: 0.55em;
+  color: var(--ink-1);
+  margin-right: 0.2em;
+}
+.config-note {
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+@media (max-width: 860px) {
+  .configurator-grid {
+    grid-template-columns: 1fr;
+  }
+  .configurator-stage {
+    order: -1;
+  }
+}

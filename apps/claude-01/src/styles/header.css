@@ -1,0 +1,102 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-block: var(--space-3);
+}
+
+.site-header__logo {
+  font-family: var(--font-display);
+  font-size: var(--fs-body-lg);
+  font-weight: 480;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.site-header__nav ul {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.site-header__nav a {
+  text-decoration: none;
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  transition: color var(--dur-fast) var(--ease-out-quint);
+}
+
+.site-header__nav a:hover,
+.site-header__nav a:focus-visible {
+  color: var(--color-text);
+}
+
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  transition: border-color var(--dur-fast) var(--ease-out-quint), transform var(--dur-fast) var(--ease-magnetic);
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+}
+
+.theme-toggle:active {
+  transform: scale(0.92);
+}
+
+.theme-toggle svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.site-header__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-magnetic), background-color var(--dur-fast) var(--ease-out-quint);
+}
+
+.site-header__cta:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .site-header__nav {
+    display: none;
+  }
+
+  .site-header__cta {
+    display: none;
+  }
+}
+
+main {
+  display: block;
+}

@@ -1,0 +1,95 @@
+/* ============================================================
+   Features · cards com tilt + glow que segue o cursor
+   ============================================================ */
+
+.features {
+  padding: var(--sp-10) clamp(var(--sp-5), 5vw, var(--sp-8));
+  background: var(--bg-1);
+  border-block: 1px solid var(--line);
+}
+
+.features-grid {
+  width: min(100%, var(--container));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+}
+
+.feature-card {
+  position: relative;
+  padding: var(--sp-6);
+  border-radius: var(--radius-m);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+  will-change: transform;
+}
+/* glow que segue o ponteiro (--mx/--my setados via JS) */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-soft) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-out);
+  pointer-events: none;
+}
+.feature-card:hover::before,
+.feature-card:focus-within::before {
+  opacity: 1;
+}
+.feature-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  margin-bottom: var(--sp-5);
+  border-radius: var(--radius-s);
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: translateZ(30px);
+}
+.feature-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.feature-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: var(--sp-2);
+  transform: translateZ(20px);
+}
+.feature-card p {
+  color: var(--ink-1);
+  font-size: 0.96rem;
+  transform: translateZ(12px);
+}
+
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,197 @@
+.story {
+  position: relative;
+}
+.story__track {
+  height: 340vh;
+}
+.story__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.story__layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  gap: var(--sp-7);
+  width: 100%;
+}
+
+.story__title {
+  font-size: var(--fs-display-md);
+  margin-block: var(--sp-4) var(--sp-6);
+}
+
+/* ---- Painéis narrativos (cross-fade por estágio) ---- */
+.story__panels {
+  display: grid;
+  min-height: 210px;
+}
+.story__panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity var(--dur-3) var(--ease-out),
+    transform var(--dur-3) var(--ease-out);
+}
+.story__panel[data-active='true'] {
+  opacity: 1;
+  transform: none;
+}
+.story__index {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.24em;
+  color: var(--accent-text);
+  margin-bottom: var(--sp-3);
+}
+.story__panel-title {
+  font-size: var(--fs-title);
+  margin-bottom: var(--sp-2);
+}
+.story__panel-desc {
+  max-width: 44ch;
+}
+
+/* ---- Trilho de progresso ---- */
+.story__rail {
+  display: flex;
+  align-items: stretch;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+  height: 120px;
+}
+.story__rail-track {
+  position: relative;
+  width: 2px;
+  background: var(--line);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.story__rail-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.story__rail-dots {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 2px;
+}
+.story__rail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition:
+    background var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+}
+.story__rail-dot[data-active='true'] {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* ---- Palco do produto ---- */
+.story__stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin-inline: auto;
+}
+.story__wave {
+  position: absolute;
+  inset: -22%;
+  opacity: 0;
+  transform: scale(0.82);
+  transform-origin: center;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.story__wave svg {
+  width: 100%;
+  height: 100%;
+  animation: story-wave-spin 40s linear infinite;
+}
+@keyframes story-wave-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Origem de transform das partes animadas (não afeta cup-l/r com scale) */
+.story [data-part='all'],
+.story [data-part='band'],
+.story [data-part='yokes'],
+.story [data-part^='cushion'],
+.story [data-part^='face'],
+.story [data-part^='driver'] {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* ---- Versão reduced-motion (estática) ---- */
+.story--static .story__static-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: center;
+  gap: var(--sp-7);
+  margin-top: var(--sp-7);
+}
+.story__static-hp {
+  max-width: 360px;
+  margin-inline: auto;
+}
+.story__static-steps {
+  display: grid;
+  gap: var(--sp-6);
+}
+.story__static-step {
+  display: flex;
+  gap: var(--sp-4);
+}
+.story__static-step h3 {
+  font-size: var(--fs-title);
+  margin-bottom: var(--sp-2);
+}
+
+/* ---- Responsivo ---- */
+@media (max-width: 900px) {
+  .story__layout {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+  .story__stage {
+    order: -1;
+    max-width: 260px;
+  }
+  .story__title {
+    margin-block: var(--sp-3) var(--sp-4);
+  }
+  .story__panels {
+    min-height: 250px;
+  }
+  .story__rail {
+    display: none;
+  }
+  .story--static .story__static-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story__wave svg {
+    animation: none;
+  }
+}

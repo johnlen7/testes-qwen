@@ -1,0 +1,58 @@
+:root {
+  /* Palette — dark (default) */
+  --bg: #0d1015;
+  --bg-raise: #141821;
+  --ink: #eef1f4;
+  --ink-dim: #9aa4b0;
+  --line: #262c38;
+  --accent: #ffae3d;
+  --accent-ink: #1a1206;
+
+  /* Product surface variable — sections define --product-shell */
+  --product-shell: #2a2e36;
+  --product-shade: #1f2329;
+  --product-highlight: #3d424d;
+
+  /* Spacing scale */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 16px;
+  --s4: 24px;
+  --s5: 40px;
+  --s6: 64px;
+  --s7: 104px;
+  --s8: 168px;
+
+  /* Durations */
+  --dur-1: 150ms;
+  --dur-2: 300ms;
+  --dur-3: 600ms;
+  --dur-4: 1000ms;
+
+  /* Easings */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+[data-theme="light"] {
+  --bg: #f5f2eb;
+  --bg-raise: #ece8de;
+  --ink: #15181d;
+  --ink-dim: #5a616b;
+  --line: #d8d2c4;
+  --accent: #c77400;
+  --accent-ink: #fff8ec;
+
+  --product-shell: #e8e4da;
+  --product-shade: #cfc9bc;
+  --product-highlight: #ffffff;
+}
+
+/* Theme transitions (avoid layout properties) */
+html,
+html * {
+  transition: background-color 600ms var(--ease-inout), color 600ms var(--ease-inout),
+    border-color 600ms var(--ease-inout), fill 600ms var(--ease-inout),
+    stroke 600ms var(--ease-inout);
+}

@@ -1,0 +1,334 @@
+/* ============================================================
+   ÓRBITA — ScrollTelling (scroll-telling real, 400vh)
+   Coreografia: o produto explode/roda exatamente enquanto os
+   textos trocam. O rAF escreve só transform/opacity — 60fps.
+   ============================================================ */
+
+.scrub {
+  position: relative;
+  height: 400vh;
+}
+
+.scrub-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* ------------------------------ Fundo por etapa ------------------------------ */
+
+.scrub-tone {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.scrub-tone--1 {
+  /* passo 01 — silêncio: frio discreto vindo da base */
+  background: radial-gradient(560px 480px at 16% 82%, rgba(140, 160, 190, 0.09), transparent 68%);
+}
+
+.scrub-tone--2 {
+  /* passo 02 — revelação: calor âmbar atrás do produto */
+  background: radial-gradient(720px 560px at 50% 50%, rgba(255, 181, 74, 0.14), transparent 66%);
+}
+
+.scrub-tone--3 {
+  /* passo 03 — espaço: o calor desloca para o canto superior */
+  background: radial-gradient(640px 520px at 78% 24%, rgba(255, 181, 74, 0.12), transparent 65%);
+}
+
+/* ------------------------------ Produto ------------------------------ */
+
+.scrub-product {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(60vmin, 560px);
+  pointer-events: none;
+}
+
+/* ------------------------------ Etapas ------------------------------ */
+
+.scrub-anchor {
+  position: absolute;
+  z-index: 2;
+}
+
+/* 01 — esquerda baixa · 02 — direita baixa · 03 — centro acima do produto */
+.scrub-anchor--1 {
+  left: clamp(24px, 5.5vw, 76px);
+  bottom: clamp(76px, 13vh, 128px);
+  width: min(400px, 34vw);
+}
+
+.scrub-anchor--2 {
+  right: clamp(24px, 5.5vw, 76px);
+  bottom: clamp(76px, 13vh, 128px);
+  width: min(400px, 34vw);
+}
+
+.scrub-anchor--3 {
+  left: 50%;
+  top: clamp(52px, 9vh, 88px);
+  transform: translateX(-50%);
+  width: min(520px, 62vw);
+  text-align: center;
+}
+
+.scrub-step {
+  opacity: 0; /* o rAF assume o controle já no primeiro frame */
+  will-change: opacity, transform;
+}
+
+.scrub-step-num {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-bottom: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.scrub-step-num::after {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.7;
+}
+
+.scrub-step-title {
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1.05;
+  margin-bottom: var(--s-4);
+}
+
+.scrub-step-text {
+  max-width: 38ch;
+}
+
+.scrub-anchor--3 .scrub-step-text {
+  margin-inline: auto;
+}
+
+/* ------------------------------ Rail de progresso (desktop) ------------------------------ */
+
+.scrub-rail {
+  position: absolute;
+  right: clamp(18px, 2.4vw, 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.scrub-rail-track {
+  position: relative;
+  width: 1px;
+  height: min(200px, 26vh);
+  background: var(--hairline-strong);
+  overflow: hidden;
+}
+
+.scrub-rail-fill {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleY(var(--s, 0));
+  transform-origin: bottom;
+}
+
+.scrub-rail-num-slot {
+  position: relative;
+  width: 30px;
+  height: 14px;
+}
+
+.scrub-rail-num {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+/* Número atual: janelas calc sobre --s, sincronizadas com os textos.
+   O fallback anterior ao calc cobre motores sem multiplicação em calc(). */
+.scrub-rail-num--1 {
+  opacity: 1;
+  opacity: calc(1 - min(max((var(--s, 0) - 0.36) * 10, 0), 1));
+}
+
+.scrub-rail-num--2 {
+  opacity: 0;
+  opacity: calc(
+    min(max((var(--s, 0) - 0.4) * 10, 0), 1) *
+    (1 - min(max((var(--s, 0) - 0.7) * 10, 0), 1))
+  );
+}
+
+.scrub-rail-num--3 {
+  opacity: 0;
+  opacity: calc(min(max((var(--s, 0) - 0.72) * 10, 0), 1));
+}
+
+/* ------------------------------ Cue inicial ------------------------------ */
+
+.scrub-cue {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 5vh, 44px);
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  opacity: calc(1 - min(max((var(--s, 0) - 0.1) * 10, 0), 1));
+  pointer-events: none;
+}
+
+.scrub-cue-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.scrub-cue-line {
+  width: 1px;
+  height: 26px;
+  background: var(--accent);
+  animation: scrub-cue-line 1.8s var(--ease-in-out) infinite;
+}
+
+@keyframes scrub-cue-line {
+  0% {
+    transform: translateY(-8px) scaleY(0.35);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(8px) scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* ------------------------------ Mobile ------------------------------ */
+
+@media (max-width: 767.98px) {
+  .scrub-rail {
+    display: none;
+  }
+
+  /* textos centralizados; 01/02 embaixo, 03 em cima */
+  .scrub-anchor {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(88vw, 380px);
+    text-align: center;
+  }
+
+  .scrub-anchor--1,
+  .scrub-anchor--2 {
+    bottom: clamp(60px, 10vh, 88px);
+  }
+
+  .scrub-anchor--3 {
+    top: clamp(48px, 8vh, 80px);
+    bottom: auto;
+  }
+
+  .scrub-step-text {
+    margin-inline: auto;
+  }
+
+  .scrub-step-title {
+    font-size: clamp(1.7rem, 6vw, 2.2rem);
+  }
+}
+
+/* Paisagem / viewports baixas: produto menor, textos colados nas bordas */
+@media (max-height: 520px) {
+  .scrub-product {
+    width: min(40vmin, 300px);
+  }
+
+  .scrub-anchor--1,
+  .scrub-anchor--2 {
+    bottom: 40px;
+  }
+
+  .scrub-anchor--3 {
+    top: 32px;
+  }
+}
+
+/* ------------------------------ Reduced motion ------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .scrub {
+    height: auto;
+  }
+
+  .scrub-sticky {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+
+  .scrub-tone,
+  .scrub-product,
+  .scrub-rail,
+  .scrub-cue {
+    display: none;
+  }
+
+  /* blocos estáticos em fluxo — o usuário rola e lê os três */
+  .scrub-anchor {
+    position: static;
+    inset: auto;
+    transform: none;
+    width: min(92vw, 640px);
+    margin-inline: auto;
+    padding-block: var(--s-6) var(--s-7);
+    text-align: center;
+  }
+
+  .scrub-step {
+    opacity: 1 !important; /* anula o inline gravado pelo rAF */
+    transform: none !important;
+  }
+
+  .scrub-step-text {
+    margin-inline: auto;
+  }
+
+  .scrub-step-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .scrub-cue-line {
+    animation: none;
+  }
+}

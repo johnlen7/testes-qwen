@@ -1,0 +1,110 @@
+/* ============================================================
+   ÓRBITA — FAQ (accordion editorial)
+   ============================================================ */
+
+.faq-container {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.faq-head {
+  margin-bottom: var(--s-7);
+}
+
+.faq-head .eyebrow {
+  margin: 0;
+}
+
+.faq-title {
+  margin: var(--s-4) 0 0;
+  font-size: clamp(2.1rem, 4vw, 2.9rem);
+}
+
+/* Lista sem borda no container — hairline só divide os itens */
+.faq-list {
+  margin: 0;
+  padding: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--hairline);
+}
+
+.faq-q-title {
+  margin: 0;
+}
+
+.faq-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  width: 100%;
+  padding: var(--s-5) 0;
+  background: none;
+  border: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.faq-q {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Ícone "+" → "×" ao abrir (rotação de 45°) */
+.faq-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  color: var(--muted);
+  transition: transform var(--dur-2) var(--ease-out-quart),
+    color var(--dur-2) var(--ease-out-quart),
+    border-color var(--dur-2) var(--ease-out-quart);
+}
+
+.faq-btn:hover .faq-icon {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.faq-icon.is-open {
+  transform: rotate(45deg);
+}
+
+/* Painel — altura animada com grid (0fr → 1fr), sem height fixo */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-3) var(--ease-in-out);
+}
+
+.faq-panel.is-open {
+  grid-template-rows: 1fr;
+}
+
+.faq-panel-inner {
+  overflow: hidden;
+  padding-top: var(--s-4);
+  padding-bottom: var(--s-5);
+}
+
+.faq-panel-inner p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "orbita",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "ÓRBITA — landing imersiva de lançamento de um fone premium. Frontend estático puro.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}

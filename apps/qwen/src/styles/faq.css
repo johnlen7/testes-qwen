@@ -1,0 +1,133 @@
+/* ════════════════════════════════════════════════════════════
+   4.6 FAQ — accordion com grid-template-rows 0fr → 1fr
+   ════════════════════════════════════════════════════════════ */
+
+.faq {
+  padding-bottom: var(--sp-section);
+}
+
+.accordion {
+  width: min(46rem, var(--container));
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+}
+
+.acc-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.acc-item h3 {
+  margin: 0;
+}
+
+.acc-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  text-align: left;
+  padding: var(--sp-5) var(--sp-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  color: var(--ink-strong);
+  transition: color var(--t-base) var(--ease-in-out);
+}
+
+.acc-trigger:hover {
+  color: var(--accent);
+}
+
+/* ícone + → − (dois traços, um rotaciona) */
+.acc-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  position: relative;
+  transition: transform var(--t-base) var(--ease-spring),
+    border-color var(--t-base) var(--ease-in-out),
+    background-color var(--t-base) var(--ease-in-out);
+}
+
+.acc-icon::before,
+.acc-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition: transform var(--t-base) var(--ease-spring);
+}
+
+.acc-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.acc-item.is-open .acc-icon {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: rotate(180deg);
+}
+
+.acc-item.is-open .acc-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* a mágica da altura: 0fr → 1fr é interpolável */
+.acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--t-base) var(--ease-out);
+}
+
+.acc-item.is-open .acc-panel {
+  grid-template-rows: 1fr;
+}
+
+.acc-body {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.acc-body p {
+  color: var(--ink-muted);
+  padding: 0 var(--sp-2) var(--sp-5);
+  max-width: 40rem;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+}
+
+.acc-item.is-open .acc-body p {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 80ms;
+}
+
+/* fallback para navegadores sem grid-rows animável */
+@supports not (grid-template-rows: 0fr) {
+  .acc-panel {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--t-base) var(--ease-out);
+  }
+
+  .acc-item.is-open .acc-panel {
+    max-height: 20rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acc-body p {
+    transform: none;
+  }
+}

@@ -1,0 +1,72 @@
+/* ============================================================
+   ÓRBITA — design tokens
+   Fonte única de verdade: cor, tipo, espaço, motion.
+   Tema escuro é o padrão; o claro vem de [data-theme="light"].
+   ============================================================ */
+
+:root {
+  /* ——— Paleta · tema escuro (padrão) ——— */
+  --bg: #090d16;          /* tinta espacial: azul-preto profundo */
+  --bg-2: #0e1420;        /* superfície elevada */
+  --bg-3: #141c2b;        /* cartões */
+  --ink: #eae6dc;         /* osso — texto principal */
+  --ink-2: #8e96a6;       /* cinza frio — texto secundário */
+  --line: rgba(234, 230, 220, 0.1);
+  --accent: #f5a524;      /* âmbar VU — sinal principal */
+  --accent-strong: #ffc14d;
+  --on-accent: #171106;   /* texto sobre âmbar */
+  --signal: #6fe3c1;      /* menta telemetria — uso parcimonioso */
+  --glow: rgba(245, 165, 36, 0.32);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+
+  /* ——— Tipografia ——— */
+  --font-display: 'Unbounded', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --fs-display: clamp(2.6rem, 7.5vw, 6.4rem);
+  --fs-h2: clamp(2rem, 4.5vw, 3.4rem);
+  --fs-h3: clamp(1.15rem, 2vw, 1.5rem);
+  --fs-body: clamp(1rem, 1.4vw, 1.125rem);
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.75rem;
+
+  /* ——— Espaçamento (escala 4px) ——— */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+  --space-7: 6.5rem;
+  --space-8: 10.5rem;
+  --container: 75rem;
+  --radius: 1.25rem;
+  --radius-sm: 0.75rem;
+
+  /* ——— Motion ——— */
+  --dur-1: 150ms;
+  --dur-2: 300ms;
+  --dur-3: 600ms;
+  --dur-4: 1200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);     /* saída longa — padrão */
+  --ease-snap: cubic-bezier(0.22, 1.4, 0.36, 1); /* overshoot sutil — micro-interações */
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);  /* simétrico — tema/loops */
+}
+
+:root[data-theme='light'] {
+  --bg: #f3efe7;          /* papel osso */
+  --bg-2: #ebe6da;
+  --bg-3: #faf8f2;
+  --ink: #12161f;
+  --ink-2: #5c6270;
+  --line: rgba(18, 22, 31, 0.12);
+  --accent: #8a5704;      /* âmbar queimado — contraste AA sobre papel */
+  --accent-strong: #6d4502;
+  --on-accent: #faf8f2;
+  --signal: #0b7c62;
+  --glow: rgba(138, 87, 4, 0.22);
+  --shadow: 0 24px 60px rgba(18, 22, 31, 0.16);
+  color-scheme: light;
+}

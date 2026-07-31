@@ -1,0 +1,102 @@
+/* ============================================================
+   ÓRBITA · Design tokens
+   Tema escuro = padrão. [data-theme="light"] sobrescreve.
+   ============================================================ */
+
+:root {
+  /* ---- Cor (tema escuro: "amanhecer em órbita") ---- */
+  --bg-0: #06070c;
+  --bg-1: #0b0d16;
+  --bg-2: #141726;
+  --ink-0: #f2efe8;
+  --ink-1: #a7acbd;
+  --ink-2: #5c6276;
+  --line: rgba(242, 239, 232, 0.1);
+  --line-strong: rgba(242, 239, 232, 0.18);
+
+  --accent: #ff9e4a;
+  --accent-hot: #ff5e3a;
+  --accent-ink: #1a0d04; /* texto sobre acento */
+  --accent-soft: rgba(255, 158, 74, 0.14);
+
+  --grad-flare: linear-gradient(120deg, var(--accent-hot), var(--accent));
+
+  /* sombras / brilhos */
+  --shadow-lg: 0 40px 120px -30px rgba(0, 0, 0, 0.75);
+  --glow-accent: 0 0 60px -10px var(--accent-soft);
+
+  /* ---- Cor do produto (acabamento Grafite, default) ---- */
+  --hp-shell: #3a3d46;
+  --hp-shell-hi: #5b5f6c;
+  --hp-shell-2: #1a1c22;
+  --hp-band: #2b2e37;
+  --hp-band-hi: #4c505c;
+  --hp-cushion: #131419;
+  --hp-metal: #9298a6;
+  --hp-accent: var(--accent);
+
+  /* ---- Tipografia ---- */
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+
+  --fs-display: clamp(2.75rem, 8vw, 6.25rem);
+  --fs-h2: clamp(1.9rem, 4.5vw, 3.4rem);
+  --fs-h3: clamp(1.2rem, 2vw, 1.6rem);
+  --fs-body: clamp(1rem, 1.05vw, 1.125rem);
+  --fs-small: 0.9rem;
+  --fs-micro: 0.72rem;
+
+  /* ---- Espaço (escala de 4px) ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+  --sp-11: 192px;
+
+  --radius-s: 10px;
+  --radius-m: 18px;
+  --radius-l: 28px;
+  --radius-pill: 999px;
+
+  --container: 1200px;
+
+  /* ---- Motion ---- */
+  --dur-1: 150ms;
+  --dur-2: 300ms;
+  --dur-3: 600ms;
+  --dur-4: 1000ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-theme="light"] {
+  --bg-0: #f3efe6;
+  --bg-1: #ece7db;
+  --bg-2: #e1dac9;
+  --ink-0: #14161f;
+  --ink-1: #54596a;
+  --ink-2: #8b8f9d;
+  --line: rgba(20, 22, 31, 0.12);
+  --line-strong: rgba(20, 22, 31, 0.2);
+
+  --accent: #c25a1f;
+  --accent-hot: #dd431f;
+  --accent-ink: #fff6ee;
+  --accent-soft: rgba(194, 90, 31, 0.14);
+
+  --shadow-lg: 0 40px 100px -40px rgba(60, 45, 20, 0.35);
+  --glow-accent: 0 0 60px -14px var(--accent-soft);
+
+  /* produto um pouco mais escuro para legibilidade no claro */
+  --hp-shell-2: #101218;
+  --hp-cushion: #0e0f14;
+}

@@ -1,0 +1,63 @@
+/* Estilo compartilhado do SVG do fone (svg/headphone.ts) — usado no hero,
+   scroll-telling, configurador e CTA final. Cor muda só via custom properties,
+   nunca por re-render do SVG. */
+
+.orbita-svg {
+  overflow: visible;
+}
+
+.orbita-svg .grad-stop-light {
+  stop-color: var(--product-shell-light);
+  transition: stop-color var(--dur-base) var(--ease-in-out-quart);
+}
+
+.orbita-svg .grad-stop-base {
+  stop-color: var(--product-shell);
+  transition: stop-color var(--dur-base) var(--ease-in-out-quart);
+}
+
+.orbita-svg .part-band-highlight {
+  stroke: var(--product-shell-light);
+  transition: stroke var(--dur-base) var(--ease-in-out-quart);
+}
+
+.orbita-svg .part-cup-sheen {
+  fill: var(--product-shell-light);
+  transition: fill var(--dur-base) var(--ease-in-out-quart);
+}
+
+.orbita-svg .part-cushion {
+  fill: var(--product-cushion);
+  transition: fill var(--dur-base) var(--ease-in-out-quart);
+}
+
+.orbita-svg .part-signal {
+  /* ciano, deliberadamente distinto do laranja do glow de fundo do hero — mantém os anéis legíveis */
+  stroke: var(--color-signal);
+}
+
+.orbita-svg .part-signal-fill {
+  fill: var(--product-accent);
+  filter: url(#orbita-glow);
+}
+
+.orbita-rings {
+  transform-origin: 160px 150px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .orbita-svg.is-spinning .orbita-rings {
+    /* balanço pequeno, não giro completo: uma elipse achatada "colapsa" visualmente
+       ao cruzar ~90° de rotação — oscilar poucos graus mantém o halo elegante e contínuo */
+    animation: orbita-sway 9s var(--ease-in-out-quart) infinite alternate;
+  }
+}
+
+@keyframes orbita-sway {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}

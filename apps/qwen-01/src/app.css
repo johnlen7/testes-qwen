@@ -1,0 +1,235 @@
+/* ═══════════════════════════════════════════
+   ÓRBITA — Design Tokens & Global Styles
+   ═══════════════════════════════════════════ */
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	min-height: 100dvh;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+canvas {
+	display: block;
+	max-width: 100%;
+}
+
+button,
+input,
+select {
+	font: inherit;
+	color: inherit;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	background: none;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* --- Design Tokens --- */
+:root {
+	/* Palette — Dark (default) */
+	--bg: #0a0a0f;
+	--bg-elevated: #111116;
+	--surface: #1a1a22;
+	--surface-hover: #22222c;
+	--text: #f0ede8;
+	--text-muted: #8a8690;
+	--accent: #e8a040;
+	--accent-glow: #f0b860;
+	--accent-dim: #a06c20;
+	--ring: #2a2a35;
+	--border: #252530;
+
+	/* Typography */
+	--font-display: 'Syne', sans-serif;
+	--font-body: 'Inter', system-ui, sans-serif;
+
+	/* Spacing (4px base) */
+	--sp-1: 0.25rem;
+	--sp-2: 0.5rem;
+	--sp-3: 0.75rem;
+	--sp-4: 1rem;
+	--sp-6: 1.5rem;
+	--sp-8: 2rem;
+	--sp-12: 3rem;
+	--sp-16: 4rem;
+	--sp-24: 6rem;
+	--sp-32: 8rem;
+	--sp-48: 12rem;
+
+	/* Motion */
+	--dur-micro: 150ms;
+	--dur-standard: 300ms;
+	--dur-dramatic: 600ms;
+	--dur-cinematic: 1200ms;
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+	--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+	/* Layout */
+	--max-width: 72rem;
+	--radius: 0.75rem;
+	--radius-lg: 1.25rem;
+	--header-h: 4.5rem;
+}
+
+/* --- Light Theme --- */
+[data-theme='light'] {
+	--bg: #faf9f7;
+	--bg-elevated: #f2f0ed;
+	--surface: #e8e5e1;
+	--surface-hover: #ddd9d4;
+	--text: #1a1a1f;
+	--text-muted: #6b6770;
+	--accent: #b87820;
+	--accent-glow: #d09030;
+	--accent-dim: #8a5a10;
+	--ring: #d5d0ca;
+	--border: #ddd8d2;
+}
+
+/* --- Base Styles --- */
+body {
+	font-family: var(--font-body);
+	background-color: var(--bg);
+	color: var(--text);
+	transition: background-color var(--dur-dramatic) var(--ease-in-out),
+		color var(--dur-dramatic) var(--ease-in-out);
+}
+
+/* --- Focus Visible (autoral) --- */
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+main:focus {
+	outline: none;
+}
+
+/* --- Skip Link --- */
+.skip-link {
+	position: fixed;
+	top: var(--sp-3);
+	left: var(--sp-3);
+	z-index: 1000;
+	padding: var(--sp-2) var(--sp-4);
+	background: var(--accent);
+	color: #0a0a0f;
+	font-weight: 600;
+	font-size: 0.85rem;
+	border-radius: 100px;
+	transform: translateY(-200%);
+	transition: transform var(--dur-standard) var(--ease-out-expo);
+}
+
+.skip-link:focus-visible {
+	transform: none;
+}
+
+/* --- Âncoras sob o header fixo --- */
+section[id] {
+	scroll-margin-top: calc(var(--header-h) + 2rem);
+}
+
+/* --- Typography Utilities --- */
+.heading-display {
+	font-family: var(--font-display);
+	font-weight: 800;
+	line-height: 1.05;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+.heading-section {
+	font-family: var(--font-display);
+	font-weight: 700;
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+	text-wrap: balance;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+.text-muted {
+	color: var(--text-muted);
+}
+
+/* --- Layout Utilities --- */
+.container {
+	width: 100%;
+	max-width: var(--max-width);
+	margin-inline: auto;
+	padding-inline: var(--sp-6);
+}
+
+.section {
+	padding-block: var(--sp-32);
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* --- Selection --- */
+::selection {
+	background: var(--accent);
+	color: var(--bg);
+}
+
+/* --- Scrollbar (subtle) --- */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--ring);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--text-muted);
+}

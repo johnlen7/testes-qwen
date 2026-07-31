@@ -1,0 +1,370 @@
+/* ============================================================
+   ÓRBITA — configurador
+   ============================================================ */
+
+.config {
+  position: relative;
+  padding: var(--sp-24) 0;
+  background: var(--bg-1);
+}
+
+.config__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-16);
+  align-items: center;
+}
+
+/* ---------- visual do produto ---------- */
+.config__visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.config__product {
+  position: relative;
+  width: min(100%, 500px);
+  transform-style: preserve-3d;
+  /* sem transition de transform: o tilt rAF escreve por frame e a
+     animação de swap (keyframes) cuida do efeito de troca */
+}
+
+.config__product.is-swapping {
+  animation: product-swap 700ms var(--e-spring);
+}
+
+.config__product .hp {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 26px 60px rgba(0, 0, 0, 0.42));
+}
+
+.config__product .hp .hp-ring {
+  transition: stroke var(--t-med) var(--e-out), filter var(--t-med) var(--e-out);
+}
+
+.config__product .hp .hp-logo {
+  transition: fill var(--t-med) var(--e-out), stroke var(--t-med) var(--e-out);
+}
+
+/* pulso do anel ao trocar cor */
+.config__product .hp .hp-ring {
+  animation: ring-idle 4.5s ease-in-out infinite;
+}
+
+@keyframes ring-idle {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.55; }
+}
+
+@keyframes product-swap {
+  0% { transform: rotate(0deg) scale(1); }
+  35% { transform: rotate(-5deg) scale(0.985); }
+  70% { transform: rotate(3deg) scale(1.01); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* equalizador */
+.config__wave {
+  position: absolute;
+  bottom: -6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(78%, 340px);
+  opacity: 0.85;
+}
+
+.config__wave svg {
+  width: 100%;
+  height: 90px;
+  overflow: visible;
+}
+
+.config__wave-curve {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 10px var(--glow));
+  transition: d 600ms var(--e-io), stroke 400ms var(--e-out);
+}
+
+.config__wave-line {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.config__hint {
+  position: absolute;
+  bottom: -12%;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  transition: opacity var(--t-med) var(--e-out);
+}
+
+/* ---------- painel ---------- */
+.config__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.config__group {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.config__label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* swatches de cor */
+.config__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.config__swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition:
+    border-color var(--t-base) var(--e-out),
+    background-color var(--t-base) var(--e-out),
+    transform var(--t-base) var(--e-spring);
+}
+
+.config__swatch:hover {
+  transform: translateY(-2px);
+}
+
+.config__swatch.is-active {
+  border-color: var(--accent);
+  background: var(--bg-2);
+}
+
+.config__swatch-dot {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.18),
+    inset 0 3px 6px rgba(255, 255, 255, 0.22),
+    0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.config__swatch-name {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+
+.config__swatch.is-active .config__swatch-name {
+  color: var(--text-1);
+  font-weight: 700;
+}
+
+/* modos de equalização */
+.config__eqs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+
+.config__eq {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: var(--sp-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  transition:
+    border-color var(--t-base) var(--e-out),
+    transform var(--t-base) var(--e-spring),
+    box-shadow var(--t-base) var(--e-out);
+}
+
+.config__eq:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+
+.config__eq.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 10px 30px -14px var(--glow);
+}
+
+.config__eq-name {
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+
+.config__eq-desc {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  line-height: 1.45;
+}
+
+/* acabamento Pro */
+.config__pro {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  text-align: left;
+  transition: border-color var(--t-base) var(--e-out);
+}
+
+.config__pro:hover {
+  border-color: var(--line-strong);
+}
+
+.config__pro-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.config__pro-text strong {
+  font-size: var(--fs-sm);
+}
+
+.config__pro-desc {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+.config__pro-plus {
+  font-size: var(--fs-xs);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.config__pro-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  flex-shrink: 0;
+  transition: background-color var(--t-med) var(--e-out);
+}
+
+.config__pro-toggle span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform var(--t-med) var(--e-spring);
+}
+
+.config__pro[aria-checked='true'] .config__pro-toggle {
+  background: var(--accent);
+}
+
+.config__pro[aria-checked='true'] .config__pro-toggle span {
+  transform: translateX(20px);
+}
+
+/* compra */
+.config__buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--line);
+}
+
+.config__price {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.config__price-label {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--track-wide);
+  color: var(--text-3);
+}
+
+.config__price-value {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  color: var(--text-1);
+  min-width: 7ch;
+}
+
+.config__note {
+  flex-basis: 100%;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+.config__cta {
+  position: relative;
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 900px) {
+  .config__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-12);
+  }
+
+  .config__visual {
+    order: 0;
+  }
+
+  .config__product {
+    width: min(78vw, 420px);
+  }
+}
+
+@media (max-width: 480px) {
+  .config__eqs {
+    grid-template-columns: 1fr;
+  }
+
+  .config__buy {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .config__price {
+    margin-right: 0;
+    align-items: center;
+  }
+
+  .config__cta {
+    justify-content: center;
+  }
+}

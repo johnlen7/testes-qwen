@@ -1,0 +1,25 @@
+/* ════════════════════════════════════════════════════════════
+   5.2 Transição de tema — View Transition circular reveal.
+   Sem VT: o body já tem transition de cor de 600ms (fallback).
+   ════════════════════════════════════════════════════════════ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}

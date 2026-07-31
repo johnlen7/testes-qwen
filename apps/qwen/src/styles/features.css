@@ -1,0 +1,160 @@
+/* ════════════════════════════════════════════════════════════
+   4.4 Features — cards com tilt, glow, ícones de traço autoral
+   ════════════════════════════════════════════════════════════ */
+
+.features {
+  padding-bottom: var(--sp-section);
+}
+
+.features-grid {
+  width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+}
+
+.feature-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: var(--sp-6) var(--sp-5);
+  overflow: hidden;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-in-out);
+  transform-style: preserve-3d;
+}
+
+.feature-card.is-live {
+  transition: border-color var(--t-base) var(--ease-in-out);
+}
+
+.feature-card:hover {
+  border-color: var(--line-strong);
+}
+
+/* glow que segue o cursor */
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-soft),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--t-base) var(--ease-in-out);
+  pointer-events: none;
+}
+
+.feature-card:hover::before,
+.feature-card:focus-within::before {
+  opacity: 1;
+}
+
+/* linha de acento no topo, cresce no hover */
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--sp-5);
+  width: 32px;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--t-slow) var(--ease-out);
+}
+
+.feature-card:hover::after {
+  width: 64px;
+}
+
+/* ── Ícones autorais ── */
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--sp-5);
+  color: var(--ink-strong);
+  transition: color var(--t-base) var(--ease-in-out),
+    transform var(--t-base) var(--ease-spring);
+}
+
+.feature-icon :is(path, polyline, circle, ellipse, line) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.feature-icon .fi-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.feature-icon .fi-cancel {
+  stroke: var(--accent);
+  opacity: 0.9;
+}
+
+.feature-card:hover .feature-icon {
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* efeito "desenho" no hover — pathLength=100 normaliza todos os traços */
+.feature-card:hover .feature-icon :is(path, polyline, circle, ellipse, line):not(.fi-fill) {
+  animation: fi-draw 700ms var(--ease-out) both;
+}
+
+@keyframes fi-draw {
+  from {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+  }
+}
+
+.feature-card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  color: var(--ink-strong);
+  margin-bottom: var(--sp-2);
+}
+
+.feature-card p {
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  line-height: 1.65;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 1279px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card:hover .feature-icon :is(path, polyline, circle, ellipse, line):not(.fi-fill) {
+    animation: none;
+  }
+
+  .feature-card {
+    transform: none !important;
+  }
+}

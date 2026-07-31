@@ -1,0 +1,1473 @@
+/* ============================================================
+   ÓRBITA · seções — FATIA 1: header + hero
+   Regra dura: animações contínuas só em transform, opacity,
+   clip-path e filter.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Keyframes compartilhados
+   ------------------------------------------------------------ */
+
+@keyframes orbit-spin {
+  to { transform: rotate(1turn); }
+}
+
+@keyframes orbit-spin-rev {
+  to { transform: rotate(-1turn); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ------------------------------------------------------------
+   Overlay do reveal circular de tema
+   ------------------------------------------------------------ */
+
+.theme-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  visibility: hidden;
+  clip-path: circle(0px at 50% 50%);
+  transition: clip-path var(--d3) var(--ease-in-out-quart);
+}
+
+.theme-reveal.is-active {
+  visibility: visible;
+}
+
+/* ------------------------------------------------------------
+   Header fixo slim
+   ------------------------------------------------------------ */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--header-h);
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--d2) ease;
+}
+
+.site-header.is-scrolled {
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  max-width: var(--max);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--sp-6);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-16);
+  letter-spacing: 0.14em;
+}
+
+.site-nav {
+  margin-left: auto;
+  display: flex;
+  gap: var(--sp-6);
+}
+
+.site-nav a {
+  position: relative;
+  padding: var(--sp-2) 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  transition: color var(--d1) ease;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--d2) var(--ease-out-expo);
+}
+
+.site-nav a:hover {
+  color: var(--ink);
+}
+
+.site-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Toggle de tema (sol/lua SVG autoral) */
+.theme-toggle {
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  transition: border-color var(--d1) ease, transform var(--d2) var(--ease-spring);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle:active {
+  transform: scale(0.92);
+}
+
+.theme-toggle .icon {
+  grid-area: 1 / 1;
+  width: 1rem;
+  height: 1rem;
+  transition: opacity var(--d2) ease, transform var(--d2) var(--ease-out-expo);
+}
+
+.theme-toggle .icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+
+.theme-toggle.is-light .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle.is-light .icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+
+/* ------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--header-h) + var(--sp-8)) 0 var(--sp-16);
+}
+
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--sp-6);
+  min-height: calc(100svh - var(--header-h) - var(--sp-8));
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: var(--sp-12);
+}
+
+/* --- Copy --- */
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: var(--sp-6);
+}
+
+.eyebrow-tick {
+  width: 1.5rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero-title {
+  font-size: var(--fs-hero);
+  margin-bottom: var(--sp-6);
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* Reveal por linha: a máscara é clip-path, o conteúdo sobe junto */
+.hero-title .line {
+  display: block;
+  clip-path: inset(0 0 100% 0);
+}
+
+.hero-title .line-inner {
+  display: block;
+  transform: translateY(60%);
+}
+
+.hero-sub {
+  max-width: 46ch;
+  font-size: var(--fs-18);
+  color: var(--muted);
+  margin-bottom: var(--sp-8);
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 0.9em 1.7em;
+  font-weight: 500;
+  font-size: var(--fs-14);
+  border-radius: 999px;
+  transition:
+    transform var(--d1) var(--ease-out-expo),
+    background-color var(--d2) ease,
+    color var(--d2) ease,
+    border-color var(--d2) ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* --- Palco: glow + anéis + satélites + produto --- */
+
+.hero-stage {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+  margin-inline: auto;
+  aspect-ratio: 1;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 16%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--accent-soft), transparent 72%);
+  filter: blur(40px);
+  animation: glow-pulse 9s ease-in-out infinite;
+}
+
+.hero-rings {
+  position: absolute;
+  inset: 0;
+}
+
+.orbit {
+  width: 100%;
+  height: 100%;
+}
+
+.ring {
+  transform-box: view-box;
+  transform-origin: center;
+  animation: orbit-spin linear infinite;
+}
+
+.ring-a { animation-duration: 90s; }
+.ring-b { animation-duration: 60s; animation-direction: reverse; }
+.ring-c { animation-duration: 130s; }
+
+.ring-path {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.ring-b .ring-path {
+  stroke: var(--accent);
+  stroke-opacity: 0.35;
+}
+
+.tick {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.tick-major {
+  stroke: var(--accent);
+  stroke-opacity: 0.55;
+}
+
+/* Satélites: wrapper orbita (rotate), chip contra-rota para
+   manter o texto nivelado. inset% casa com o raio do anel. */
+.hero-sats {
+  position: absolute;
+  inset: 0;
+}
+
+.sat-orbit {
+  position: absolute;
+  animation: orbit-spin linear infinite;
+}
+
+.sat {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sat-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.35em 0.75em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  animation: orbit-spin-rev linear infinite;
+}
+
+.sat-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Órbita A: anel médio (r=205 → inset 11.5%), 46s */
+.sat-o-a { inset: 11.5%; animation-duration: 46s; }
+.sat-o-a .sat-inner { animation-duration: 46s; }
+
+/* Órbita B: anel externo (r=248 → inset 2.3%), 64s reversa,
+   deslocada 20s no ciclo; contra-rotação direta com o mesmo delay */
+.sat-o-b { inset: 2.3%; animation-duration: 64s; animation-direction: reverse; animation-delay: -20s; }
+.sat-o-b .sat-inner { animation-name: orbit-spin; animation-duration: 64s; animation-delay: -20s; }
+
+/* Órbita C: anel interno (r=150 → inset 21.2%), 38s, deslocada 14s */
+.sat-o-c { inset: 21.2%; animation-duration: 38s; animation-delay: -14s; }
+.sat-o-c .sat-inner { animation-duration: 38s; animation-delay: -14s; }
+
+/* Produto */
+.hero-product {
+  position: absolute;
+  inset: 13%;
+  display: flex;
+}
+
+.hero-product .product {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+/* Classes do SVG do produto (recolor via CSS vars, 300ms) */
+.p-shell { fill: var(--product-shell); transition: fill var(--d2) ease; }
+.p-shell-dark { fill: var(--product-shell-dark); transition: fill var(--d2) ease; }
+.p-cushion { fill: var(--product-cushion); transition: fill var(--d2) ease; }
+.p-accent { fill: var(--product-accent); transition: fill var(--d2) ease; }
+
+.p-band {
+  fill: none;
+  stroke: var(--product-band);
+  stroke-width: 30;
+  stroke-linecap: round;
+  transition: stroke var(--d2) ease;
+}
+
+.p-band-pad {
+  fill: none;
+  stroke: var(--product-cushion);
+  stroke-width: 11;
+  stroke-linecap: round;
+  transition: stroke var(--d2) ease;
+}
+
+.p-band-stitch {
+  fill: none;
+  stroke: var(--product-hair);
+  stroke-width: 1;
+  stroke-dasharray: 1.5 9;
+  opacity: 0.7;
+}
+
+.p-yoke {
+  fill: none;
+  stroke: var(--product-band);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke var(--d2) ease;
+}
+
+.p-shade-top { fill: #ffffff; opacity: 0.05; }
+.p-shade-bottom { fill: #000000; opacity: 0.14; }
+
+.p-rim {
+  fill: none;
+  stroke: var(--product-hair);
+  stroke-width: 1.5;
+}
+
+.p-ticks {
+  fill: none;
+  stroke: var(--product-hair);
+  stroke-width: 6;
+  stroke-dasharray: 1.5 13;
+  opacity: 0.7;
+}
+
+.p-cushion-hair {
+  fill: none;
+  stroke: var(--product-hair);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.p-driver {
+  fill: none;
+  stroke: var(--product-hair);
+  stroke-width: 1;
+}
+
+.p-driver-2 { opacity: 0.6; }
+
+.p-accent-line {
+  fill: none;
+  stroke: var(--product-accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke var(--d2) ease;
+}
+
+.p-led { fill: var(--product-accent); transition: fill var(--d2) ease; }
+.p-led-glow { fill: var(--product-accent); opacity: 0.18; transition: fill var(--d2) ease; }
+
+.p-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  fill: var(--product-hair);
+}
+
+/* ------------------------------------------------------------
+   Entrada orquestrada (beats)
+   Estado inicial → .is-in no <section class="hero">
+   ------------------------------------------------------------ */
+
+.hero [data-beat] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--d3) var(--ease-out-expo),
+    transform var(--d3) var(--ease-out-expo);
+}
+
+.hero [data-beat="0"] { transition-delay: 60ms; }
+.hero [data-beat="2"] { transition-delay: 420ms; }
+.hero [data-beat="3"] { transition-delay: 540ms; }
+
+.hero [data-beat="4"] {
+  transform: scale(0.92) translateY(10px);
+  transition-duration: var(--d4);
+  transition-delay: 680ms;
+}
+
+.hero-title .line {
+  transition: clip-path var(--d4) var(--ease-out-expo);
+}
+
+.hero-title .line-inner {
+  transition: transform var(--d4) var(--ease-out-expo);
+}
+
+.hero-title [data-line="1"] .line,
+.hero-title [data-line="1"] .line-inner { transition-delay: 160ms; }
+
+.hero-title [data-line="2"] .line,
+.hero-title [data-line="2"] .line-inner { transition-delay: 300ms; }
+
+.hero.is-in [data-beat] {
+  opacity: 1;
+  transform: none;
+}
+
+.hero.is-in .hero-title .line {
+  clip-path: inset(-8% 0 -8% 0);
+}
+
+.hero.is-in .hero-title .line-inner {
+  transform: none;
+}
+
+/* ------------------------------------------------------------
+   Responsivo
+   ------------------------------------------------------------ */
+
+@media (max-width: 56rem) {
+  .hero {
+    padding-top: calc(var(--header-h) + var(--sp-6));
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+    min-height: 0;
+  }
+
+  .hero-stage {
+    order: -1; /* produto acima do texto no mobile */
+    max-width: 26rem;
+  }
+
+  .hero-sub {
+    font-size: var(--fs-16);
+  }
+}
+
+@media (max-width: 44rem) {
+  .site-nav {
+    display: none;
+  }
+
+  .theme-toggle {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 26rem) {
+  .header-inner {
+    padding: 0 var(--sp-4);
+  }
+
+  .hero-inner {
+    padding: 0 var(--sp-4);
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ------------------------------------------------------------
+   Reduced motion: sem rotação, sem paralaxe (JS), entradas
+   viram fade simples.
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .ring,
+  .sat-orbit,
+  .sat-inner,
+  .hero-glow {
+    animation: none;
+  }
+
+  .theme-reveal {
+    transition: none;
+  }
+
+  .hero [data-beat],
+  .hero-title .line,
+  .hero-title .line-inner {
+    transition: opacity var(--d2) ease;
+    transition-delay: 0ms;
+    transform: none;
+    clip-path: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   Seção 4.2 · Scroll-telling "Como funciona" (#tecnologia)
+   ------------------------------------------------------------ */
+
+.story {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+
+.story-track {
+  height: 350vh;
+}
+
+.story-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.story-inner {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--sp-6);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--sp-12);
+}
+
+.story-title {
+  font-size: var(--fs-38);
+  margin-bottom: var(--sp-8);
+}
+
+.story-steps {
+  position: relative;
+  min-height: 12rem;
+  margin-bottom: var(--sp-8);
+}
+
+.story-step {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.story-step.is-active {
+  pointer-events: auto;
+}
+
+.step-tag {
+  font-size: var(--fs-12);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: var(--sp-3);
+}
+
+.step-title {
+  font-size: var(--fs-28);
+  margin-bottom: var(--sp-3);
+}
+
+.step-text {
+  max-width: 42ch;
+  color: var(--muted);
+}
+
+.story-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: var(--fs-12);
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.story-bar {
+  position: relative;
+  width: 8rem;
+  height: 1px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.story-bar-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.story-visual {
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+  aspect-ratio: 1;
+}
+
+.story-ring {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  will-change: transform, opacity;
+}
+
+.story-ring svg {
+  width: 100%;
+  height: 100%;
+}
+
+.story-ring-path {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 2 10;
+}
+
+.story-ring-accent {
+  stroke: var(--accent);
+  stroke-opacity: 0.35;
+  stroke-dasharray: 1 14;
+}
+
+.story-product {
+  position: absolute;
+  inset: 9%;
+  display: flex;
+}
+
+.story-product .product {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.story-product .layer {
+  will-change: transform;
+}
+
+.story-product .layer-driver {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ------------------------------------------------------------
+   Seção 4.3 · Configurador (#personalizar)
+   ------------------------------------------------------------ */
+
+.config {
+  border-top: 1px solid var(--line);
+  padding: var(--sp-24) 0;
+}
+
+.config-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--sp-6);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: var(--sp-12);
+}
+
+.config-visual {
+  position: relative;
+}
+
+.config-product {
+  width: 100%;
+  max-width: 30rem;
+  margin-inline: auto;
+  aspect-ratio: 1;
+  transition: transform var(--d3) var(--ease-spring);
+  will-change: transform;
+}
+
+.config-product .product {
+  width: 100%;
+  height: 100%;
+}
+
+.config-title {
+  font-size: var(--fs-38);
+  margin-bottom: var(--sp-8);
+}
+
+.config-group {
+  margin-bottom: var(--sp-8);
+}
+
+.config-label {
+  font-size: var(--fs-12);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-bottom: var(--sp-4);
+}
+
+.config-label span {
+  color: var(--ink);
+}
+
+/* Swatches circulares com anel de seleção animado */
+.swatches {
+  display: flex;
+  gap: var(--sp-4);
+}
+
+.swatch {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--sw, var(--surface-2));
+  transition: transform var(--d2) var(--ease-spring);
+}
+
+.swatch:hover {
+  transform: scale(1.08);
+}
+
+.swatch::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: transform var(--d2) var(--ease-spring), opacity var(--d2) ease;
+}
+
+.swatch[aria-checked="true"]::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Pills de tamanho */
+.sizes {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+.size-pill {
+  min-width: 3.25rem;
+  padding: 0.55em 1.2em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-14);
+  color: var(--muted);
+  transition:
+    color var(--d1) ease,
+    border-color var(--d1) ease,
+    transform var(--d2) var(--ease-spring);
+}
+
+.size-pill:hover {
+  transform: translateY(-2px);
+}
+
+.size-pill[aria-checked="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.config-price {
+  margin-bottom: var(--sp-6);
+}
+
+.config-price-label {
+  font-size: var(--fs-12);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-bottom: var(--sp-2);
+}
+
+.config-price-value {
+  font-size: var(--fs-38);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.config-cta {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------
+   Responsivo — novas seções
+   ------------------------------------------------------------ */
+
+@media (max-width: 56rem) {
+  .story-inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+    align-content: center;
+  }
+
+  .story-visual {
+    order: -1;
+    max-width: 15rem;
+  }
+
+  .story-title {
+    font-size: var(--fs-28);
+    margin-bottom: var(--sp-6);
+  }
+
+  .story-steps {
+    min-height: 11rem;
+    margin-bottom: var(--sp-6);
+  }
+
+  .step-title {
+    font-size: var(--fs-21);
+  }
+
+  .step-text {
+    font-size: var(--fs-14);
+  }
+
+  .config {
+    padding: var(--sp-16) 0;
+  }
+
+  .config-inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-12);
+  }
+
+  .config-product {
+    max-width: 20rem;
+  }
+}
+
+@media (max-width: 26rem) {
+  .story-visual {
+    max-width: 12rem;
+  }
+
+  .story-steps {
+    min-height: 13rem;
+  }
+}
+
+/* ------------------------------------------------------------
+   Reduced motion — novas seções:
+   scroll-telling vira estado final estático (produto montado,
+   textos em sequência); count-up/setas continuam funcionais.
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .story-track {
+    height: auto;
+  }
+
+  .story-stage {
+    position: static;
+    height: auto;
+    padding: var(--sp-16) 0;
+  }
+
+  .story-visual {
+    max-width: 18rem;
+  }
+
+  .story-ring {
+    opacity: 0.35;
+    transform: none;
+  }
+
+  .story-steps {
+    min-height: 0;
+    display: grid;
+    gap: var(--sp-8);
+  }
+
+  .story-step {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .story-progress {
+    display: none;
+  }
+
+  .config-product,
+  .swatch,
+  .swatch::after,
+  .size-pill {
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   Seção 4.4 · Features (#recursos)
+   ------------------------------------------------------------ */
+
+.features {
+  border-top: 1px solid var(--line);
+  padding: var(--sp-24) 0;
+}
+
+.features-head {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-12);
+  padding: 0 var(--sp-6);
+}
+
+.features-title {
+  font-size: var(--fs-38);
+}
+
+.features-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--sp-6);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+
+.feature-card {
+  position: relative;
+  padding: var(--sp-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform var(--d1) ease-out, border-color var(--d2) ease;
+}
+
+/* JS arma o estado inicial só quando pode animar a entrada */
+.features-armed .feature-card {
+  opacity: 0;
+}
+
+.features-armed .feature-card.is-in {
+  opacity: 1;
+}
+
+.feature-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-soft),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--d2) ease;
+  pointer-events: none;
+}
+
+.feature-card:hover::after,
+.feature-card:active::after,
+.feature-card:focus-visible::after {
+  opacity: 1;
+}
+
+.feature-icon {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  color: var(--accent);
+  margin-bottom: var(--sp-4);
+}
+
+.feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.feature-name {
+  font-size: var(--fs-16);
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-bottom: var(--sp-2);
+}
+
+.feature-text {
+  font-size: var(--fs-14);
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------
+   Seção 4.5 · Depoimentos (marquee)
+   ------------------------------------------------------------ */
+
+.quotes {
+  border-top: 1px solid var(--line);
+  padding: var(--sp-24) 0;
+  overflow: hidden;
+}
+
+.quotes-head {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-12);
+  padding: 0 var(--sp-6);
+}
+
+.quotes-title {
+  font-size: var(--fs-38);
+}
+
+.marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--sp-4);
+  width: max-content;
+  padding: 0 var(--sp-2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  cursor: grab;
+  will-change: transform;
+}
+
+.marquee.is-dragging .marquee-track {
+  cursor: grabbing;
+}
+
+.quote-card {
+  width: 22rem;
+  flex: none;
+  padding: var(--sp-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.quote-text {
+  font-size: var(--fs-16);
+  line-height: 1.55;
+  margin-bottom: var(--sp-4);
+}
+
+.quote-meta {
+  font-size: var(--fs-12);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------
+   Seção 4.6 · FAQ (#faq)
+   ------------------------------------------------------------ */
+
+.faq {
+  border-top: 1px solid var(--line);
+  padding: var(--sp-24) 0;
+}
+
+.faq-inner {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 var(--sp-6);
+}
+
+.faq-title {
+  font-size: var(--fs-38);
+  margin-bottom: var(--sp-12);
+}
+
+.faq-q-wrap {
+  font-size: var(--fs-18);
+}
+
+.faq-item {
+  border-top: 1px solid var(--line);
+}
+
+.faq-item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-6) 0;
+  text-align: left;
+  font-weight: 500;
+  font-size: inherit;
+  font-family: var(--font-text);
+  letter-spacing: 0;
+  transition: color var(--d1) ease;
+}
+
+.faq-q:hover {
+  color: var(--accent);
+}
+
+/* Ícone +/− que gira 45° (vira ×) por transform */
+.faq-icon {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  transition: transform var(--d2) var(--ease-out-expo);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1.5px;
+  background: var(--accent);
+  transform: translateY(-50%);
+}
+
+.faq-icon::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.faq-item.is-open .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Altura animada: grid-template-rows 0fr → 1fr (sem salto) */
+.faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--d3) var(--ease-in-out-quart);
+}
+
+.faq-item.is-open .faq-a {
+  grid-template-rows: 1fr;
+}
+
+.faq-a-inner {
+  overflow: hidden;
+}
+
+.faq-a-inner p {
+  max-width: 60ch;
+  padding-bottom: var(--sp-6);
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------
+   Seção 4.7 · CTA final (#comprar) + rodapé
+   ------------------------------------------------------------ */
+
+.cta {
+  border-top: 1px solid var(--line);
+  padding: var(--sp-24) 0;
+  overflow: hidden;
+}
+
+.cta-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--sp-6);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: var(--sp-12);
+}
+
+.cta-product {
+  width: 100%;
+  max-width: 24rem;
+  margin-inline: auto;
+  aspect-ratio: 1;
+}
+
+.cta-product .product {
+  width: 100%;
+  height: 100%;
+}
+
+.cta-title {
+  font-size: var(--fs-56);
+  margin-bottom: var(--sp-6);
+}
+
+.cta-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.cta-sub {
+  max-width: 44ch;
+  color: var(--muted);
+  margin-bottom: var(--sp-8);
+}
+
+.btn-magnetic {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.cta-buy-label {
+  position: relative;
+  z-index: 1;
+}
+
+.ripple {
+  position: absolute;
+  inset: 0;
+  background: var(--on-accent);
+  pointer-events: none;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--sp-8) var(--sp-6);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-6) var(--sp-8);
+}
+
+.footer-nav {
+  display: flex;
+  gap: var(--sp-6);
+  margin-left: auto;
+}
+
+.footer-nav a {
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  transition: color var(--d1) ease;
+}
+
+.footer-nav a:hover {
+  color: var(--ink);
+}
+
+.footer-note {
+  width: 100%;
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-12);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------
+   Responsivo — seções 4.4 a 4.7
+   ------------------------------------------------------------ */
+
+@media (max-width: 56rem) {
+  .features,
+  .quotes,
+  .faq,
+  .cta {
+    padding: var(--sp-16) 0;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+  }
+
+  .cta-visual {
+    order: -1;
+  }
+
+  .cta-product {
+    max-width: 18rem;
+  }
+
+  .cta-title {
+    font-size: var(--fs-38);
+  }
+}
+
+@media (max-width: 40rem) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-card {
+    width: 17.5rem;
+  }
+
+  .footer-nav {
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+}
+
+/* ------------------------------------------------------------
+   Reduced motion — seções 4.4 a 4.7
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card {
+    transform: none;
+    transition: border-color var(--d2) ease;
+  }
+
+  /* Marquee estático com scroll nativo (JS não inicia o rAF) */
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marquee-track {
+    cursor: default;
+    transform: none !important;
+  }
+
+  /* Accordion instantâneo */
+  .faq-a,
+  .faq-icon {
+    transition: none;
+  }
+
+  .ripple {
+    display: none;
+  }
+}

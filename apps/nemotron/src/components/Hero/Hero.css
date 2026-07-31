@@ -1,0 +1,250 @@
+/* ============================================================
+   ÓRBITA — Hero
+   Direção "satélite solar": entrada orquestrada, poeira estelar,
+   parallax de mouse e fade ao rolar. Contínuo só em transform/opacity.
+   ============================================================ */
+
+.hero {
+  position: relative;
+  /* content-box: o padding fica FORA do min-height, então a seção é
+     sempre mais alta que o viewport — o useScrollProgress precisa dessa
+     folga para o fade ter uma faixa definida (encerra exatamente quando
+     a próxima seção começa a entrar). */
+  box-sizing: content-box;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: clamp(5.5rem, 9vw, 7.5rem) clamp(3.5rem, 7vw, 5.5rem);
+  overflow: clip;
+  background: radial-gradient(
+    120% 90% at 50% -10%,
+    var(--accent-soft),
+    transparent 55%
+  );
+}
+
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(var(--s-7), 6vw, var(--s-9));
+  min-height: 100vh;
+  min-height: 100svh;
+  width: min(100%, var(--container));
+  margin-inline: auto;
+}
+
+/* ------------------------------ Coluna de texto ------------------------------ */
+
+.hero-content {
+  opacity: calc(1 - var(--fade, 0) * 1.5);
+  transform: translate3d(0, calc(var(--fade, 0) * -36px), 0);
+  will-change: transform, opacity;
+}
+
+.hero-text {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: var(--s-5);
+  /* Parallax — profundidade 10px */
+  transform: translate3d(
+    calc(var(--px, 0) * 10px),
+    calc(var(--py, 0) * 10px),
+    0
+  );
+  will-change: transform;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(2.5rem, 6.5vw, 4.8rem);
+  line-height: 1.05;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+
+/* ------------------------------ Coluna do produto ------------------------------ */
+
+.hero-product {
+  position: relative;
+  opacity: calc(1 - var(--fade, 0) * 1.5);
+  /* Fade (translateY maior) + parallax 18px, combinados num único transform */
+  transform: translate3d(
+    calc(var(--px, 0) * 18px),
+    calc(var(--py, 0) * 18px + var(--fade, 0) * -56px),
+    0
+  );
+  will-change: transform, opacity;
+}
+
+.hero-pg {
+  display: block;
+  width: min(100%, 460px);
+  margin-inline: auto;
+}
+
+/* ------------------------------ Entrada orquestrada ------------------------------ */
+
+.hero-in {
+  animation: hero-in 900ms var(--ease-out-expo) both;
+}
+
+/* Produto entra com scale/rotate sutil, ancorado na base */
+.hero-product-in {
+  transform-origin: bottom center;
+  animation: hero-product-in 1100ms var(--ease-out-expo) both;
+  animation-delay: 380ms;
+}
+
+@keyframes hero-product-in {
+  from {
+    opacity: 0;
+    transform: translateY(38px) scale(0.92) rotate(-1.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------ Poeira estelar ------------------------------ */
+
+.hero-dust-group {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-dust {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: dust-drift var(--dur, 10s) var(--ease-in-out) infinite both;
+  animation-delay: var(--d, 0s);
+}
+
+/* ------------------------------ Badge de preço (desktop) ------------------------------ */
+
+.hero-price {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-price {
+    position: absolute;
+    right: -2%;
+    bottom: 10%;
+    display: grid;
+    gap: 2px;
+    padding: var(--s-4) var(--s-5);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-price-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .hero-price-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+    font-weight: 380;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+}
+
+/* ------------------------------ Scroll cue ------------------------------ */
+
+.hero-cue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--faint);
+  animation: hero-in 900ms var(--ease-out-expo) both;
+  animation-delay: 640ms;
+}
+
+.hero-cue-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  transform-origin: top;
+  animation: hero-cue 2.6s var(--ease-in-out) infinite;
+}
+
+@keyframes hero-cue {
+  0% {
+    transform: scaleY(0);
+  }
+  40% {
+    transform: scaleY(1);
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* ------------------------------ Responsivo ------------------------------ */
+
+@media (max-width: 1023px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-8);
+    text-align: center;
+  }
+
+  .hero-text {
+    justify-items: center;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+
+  .hero-pg {
+    width: min(72vw, 320px);
+  }
+}
+
+/* ------------------------------ Reduced motion ------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* zera os delays de entrada: sem piscar conteúdo oculto */
+  .hero-in,
+  .hero-product-in {
+    animation-delay: 0ms !important;
+  }
+
+  .hero-cue {
+    display: none;
+  }
+}

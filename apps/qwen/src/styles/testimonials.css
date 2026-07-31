@@ -1,0 +1,95 @@
+/* ════════════════════════════════════════════════════════════
+   4.5 Depoimentos — marquee infinito com fade nas bordas
+   ════════════════════════════════════════════════════════════ */
+
+.testimonials {
+  padding-bottom: var(--sp-section);
+  overflow: hidden;
+}
+
+.marquee {
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y; /* drag horizontal é nosso; scroll vertical permanece nativo */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.marquee.is-dragging {
+  cursor: grabbing;
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--sp-5);
+  width: max-content;
+  padding: var(--sp-4) var(--sp-4) var(--sp-5);
+  will-change: transform;
+}
+
+.quote-card {
+  width: clamp(280px, 28vw, 380px);
+  flex: none;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  transition: border-color var(--t-base) var(--ease-in-out),
+    transform var(--t-base) var(--ease-out);
+}
+
+.marquee.is-paused .quote-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+}
+
+.quote-card blockquote {
+  font-size: var(--fs-body);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.quote-card footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid var(--line);
+  padding-top: var(--sp-3);
+}
+
+.quote-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--ink-strong);
+}
+
+.quote-role {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+
+/* ── Reduced motion: marquee vira scroll-x nativo ── */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    cursor: default;
+    scroll-snap-type: x proximity;
+  }
+
+  .marquee-track {
+    width: auto;
+    transform: none !important;
+  }
+
+  .quote-card {
+    scroll-snap-align: start;
+  }
+}

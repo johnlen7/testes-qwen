@@ -1,0 +1,201 @@
+/*
+  ÓRBITA — scroll-telling "como funciona" (#como-funciona).
+  Wrapper alto (N * 100vh) + palco sticky. Todas as regras aqui são escopadas
+  em #como-funciona pra não vazar pro .orbita-svg de outras seções (hero,
+  configurador, CTA) que compartilham as mesmas classes de src/styles/product.css.
+*/
+
+#como-funciona {
+  /* seção já vem com padding-block da regra global de src/styles/base.css —
+     aqui ela é uma sequência de palcos de 100vh, então zeramos. */
+  padding-block: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow: clip;
+}
+
+#como-funciona .scroll-telling__wrapper {
+  position: relative;
+  height: calc(var(--steps, 4) * 100vh);
+}
+
+#como-funciona .scroll-telling__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  padding-inline: var(--gutter);
+  overflow: hidden;
+}
+
+/* ---- indicador de progresso ---- */
+
+#como-funciona .scroll-telling__progress {
+  position: absolute;
+  top: clamp(var(--space-6), 6vh, var(--space-12));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  width: min(88%, 22rem);
+  z-index: 2;
+}
+
+#como-funciona .scroll-telling__progress-track {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: var(--color-border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+#como-funciona .scroll-telling__progress-fill {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-signal));
+  will-change: transform;
+}
+
+#como-funciona .scroll-telling__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+#como-funciona .scroll-telling__dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background: var(--color-border);
+  transition: background var(--dur-base) var(--ease-in-out-quart), transform var(--dur-base) var(--ease-out-back);
+}
+
+#como-funciona .scroll-telling__dot.is-active {
+  background: var(--color-accent);
+  transform: scale(1.4);
+}
+
+/* ---- palco visual (SVG) ---- */
+
+#como-funciona .scroll-telling__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+#como-funciona .scroll-telling__visual .orbita-svg {
+  width: clamp(200px, 26vw, 420px);
+  filter: drop-shadow(0 2rem 3rem rgba(0, 0, 0, 0.45));
+}
+
+/* partes animadas via JS: origem/caixa de transformação previsíveis */
+#como-funciona .scroll-telling__visual .orbita-svg [data-part] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ---- painel de texto ---- */
+
+#como-funciona .scroll-telling__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+#como-funciona .scroll-telling__title {
+  margin-bottom: var(--space-2);
+}
+
+#como-funciona .scroll-telling__panel-stack {
+  position: relative;
+  min-height: clamp(13rem, 26vh, 18rem);
+}
+
+#como-funciona .scroll-telling__step-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 32rem;
+  opacity: 0;
+  pointer-events: none;
+  /* duração local, deliberadamente independente de --dur-* (zerado sob
+     prefers-reduced-motion em tokens.css): esta seção exige crossfade mesmo
+     com movimento reduzido, só sem coreografia das partes do SVG. */
+  transition: opacity var(--step-fade-dur, 420ms) var(--ease-in-out-quart);
+}
+
+#como-funciona .scroll-telling__step-panel.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#como-funciona .scroll-telling__step-eyebrow {
+  color: var(--color-signal);
+}
+
+#como-funciona .scroll-telling__step-headline {
+  font-size: var(--fs-display-md);
+}
+
+#como-funciona .scroll-telling__step-desc {
+  font-size: var(--fs-body-lg);
+  color: var(--color-text-muted);
+  max-width: 34ch;
+}
+
+@media (max-width: 768px) {
+  #como-funciona .scroll-telling__stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    align-content: center;
+    justify-items: center;
+    gap: var(--space-4);
+    padding-block: calc(var(--space-12) + 2rem) var(--space-6);
+  }
+
+  #como-funciona .scroll-telling__visual .orbita-svg {
+    width: clamp(150px, 46vw, 240px);
+  }
+
+  #como-funciona .scroll-telling__panel {
+    align-items: center;
+    text-align: center;
+  }
+
+  #como-funciona .scroll-telling__panel-stack {
+    min-height: clamp(11rem, 34vh, 16rem);
+    width: 100%;
+  }
+
+  #como-funciona .scroll-telling__step-panel {
+    align-items: center;
+    max-width: 32rem;
+    margin-inline: auto;
+  }
+
+  #como-funciona .scroll-telling__step-desc {
+    max-width: 38ch;
+  }
+}
+
+@media (max-width: 400px) {
+  #como-funciona .scroll-telling__visual .orbita-svg {
+    width: clamp(130px, 50vw, 200px);
+  }
+
+  #como-funciona .scroll-telling__panel-stack {
+    min-height: clamp(12rem, 40vh, 17rem);
+  }
+}
