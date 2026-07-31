@@ -1,0 +1,16 @@
+{
+  "name": "orbita-vitrine",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Vitrine das implementações do briefing ÓRBITA por diferentes modelos",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "build": "node build.mjs && node verify.mjs",
+    "capture": "node capture.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.62.1"
+  }
+}
