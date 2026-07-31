@@ -1,0 +1,96 @@
+/* ============================================================
+   ÓRBITA · Design tokens — direção "Mecânica Celeste"
+   Dark é o tema de assinatura; light deriva dos mesmos tokens.
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  /* — paleta (dark default) — */
+  --bg: #0a0c12;
+  --bg-2: #0e1119;
+  --surface: #141824;
+  --surface-2: #1a1f2e;
+  --line: rgba(237, 234, 227, 0.1);
+  --line-strong: rgba(237, 234, 227, 0.2);
+  --ink: #edeae3;
+  --ink-2: #9ba0ad;
+  --ink-3: #697080;
+  --copper: #e8a15c;
+  --copper-hi: #f5c088;
+  --copper-deep: #b4622d;
+  --ice: #8fd8d0;
+  --glow: rgba(232, 161, 92, 0.14);
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+
+  /* nébula — tintas sutis de fundo */
+  --nebula-1: rgba(232, 161, 92, 0.07);
+  --nebula-2: rgba(143, 216, 208, 0.05);
+
+  /* — tipografia — */
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --fs-h1: clamp(3rem, 9vw, 7rem);
+  --fs-h2: clamp(2rem, 4.5vw, 3.5rem);
+  --fs-h3: 1.375rem;
+  --fs-body: 1.0625rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.72rem;
+
+  /* — espaçamento (base 4px) — */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  --container: 1200px;
+  --section-pad: clamp(4.5rem, 10vw, 8.5rem);
+
+  /* — movimento — */
+  --dur-1: 150ms;
+  --dur-2: 300ms;
+  --dur-3: 600ms;
+  --dur-4: 1000ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* — raios — */
+  --radius-s: 8px;
+  --radius-m: 14px;
+  --radius-l: 24px;
+
+  /* — chrome — */
+  --nav-h: 72px;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f4f1ea;
+  --bg-2: #ece8dd;
+  --surface: #ffffff;
+  --surface-2: #f0ece2;
+  --line: rgba(20, 22, 28, 0.12);
+  --line-strong: rgba(20, 22, 28, 0.24);
+  --ink: #14161c;
+  --ink-2: #565b66;
+  --ink-3: #8a8f9b;
+  --copper: #b4622d;
+  --copper-hi: #c97a3e;
+  --copper-deep: #8f4a1f;
+  --ice: #2e7d74;
+  --glow: rgba(180, 98, 45, 0.12);
+  --shadow: 0 24px 64px rgba(20, 22, 28, 0.16);
+
+  --nebula-1: rgba(180, 98, 45, 0.06);
+  --nebula-2: rgba(46, 125, 116, 0.05);
+}

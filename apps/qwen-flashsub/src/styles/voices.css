@@ -1,0 +1,115 @@
+/* ============================================================
+   ÓRBITA · Vozes — marquee autoral de depoimentos (drag + loop)
+   ============================================================ */
+
+.voices {
+  padding: var(--section-pad) 0;
+  overflow: hidden;
+}
+
+.voices__viewport {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+/* fades nas bordas — os cards surgem/desaparecem suavemente */
+.voices__viewport::before,
+.voices__viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--bg);
+}
+
+.voices__viewport::before {
+  left: 0;
+  -webkit-mask-image: linear-gradient(to right, black, transparent);
+  mask-image: linear-gradient(to right, black, transparent);
+}
+
+.voices__viewport::after {
+  right: 0;
+  -webkit-mask-image: linear-gradient(to left, black, transparent);
+  mask-image: linear-gradient(to left, black, transparent);
+}
+
+.voices__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.voices__track {
+  display: flex;
+  gap: var(--sp-5);
+  width: max-content;
+  will-change: transform;
+}
+
+.voice-card {
+  flex: 0 0 auto;
+  width: min(380px, 80vw);
+  padding: var(--sp-6);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  transition:
+    border-color var(--dur-2),
+    box-shadow var(--dur-2);
+}
+
+.voice-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+}
+
+.voice-card p {
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  margin-bottom: var(--sp-4);
+  font-style: italic;
+}
+
+.voice-card footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.voice-card__dots {
+  display: flex;
+  gap: 3px;
+}
+
+.voice-card__dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--copper);
+}
+
+.voice-card strong {
+  font-weight: 600;
+}
+
+.voice-card__role {
+  color: var(--ink-3);
+  display: block;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voices__viewport {
+    overflow-x: auto;
+    cursor: auto;
+  }
+
+  .voices__track {
+    will-change: auto;
+  }
+}

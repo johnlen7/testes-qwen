@@ -1,0 +1,108 @@
+/* ============================================================
+   ÓRBITA · Features — grid de cards com tilt 3D e glow radial
+   ============================================================ */
+
+.features {
+  padding: var(--section-pad) 0;
+  background: var(--bg-2);
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--sp-5);
+}
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  padding: var(--sp-6);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  transform-style: preserve-3d;
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out);
+}
+
+/* brilho radial que segue o ponteiro (coordenadas via --mx/--my do JS) */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), var(--glow), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--dur-2);
+  pointer-events: none;
+}
+
+.feature-card:hover {
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--line-strong);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--copper);
+  margin-bottom: var(--sp-4);
+  transition: transform var(--dur-2) var(--ease-spring);
+}
+
+.feature-card__icon .icon-ice {
+  stroke: var(--ice);
+}
+
+.feature-card:hover .feature-card__icon {
+  transform: scale(1.08);
+}
+
+.feature-card h3 {
+  margin-bottom: var(--sp-2);
+}
+
+.feature-card p {
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 767px) {
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .features__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .feature-card:hover {
+    transform: none;
+  }
+
+  .feature-card::before {
+    opacity: 0;
+  }
+
+  .feature-card__icon,
+  .feature-card:hover .feature-card__icon {
+    transform: none;
+  }
+}

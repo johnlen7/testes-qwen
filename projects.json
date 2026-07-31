@@ -180,6 +180,36 @@
     "design": 13
   },
   {
+    "slug": "qwen-flashsub",
+    "dir": "apps/qwen-flashsub",
+    "source": "qwen-flashsub",
+    "title": "ÓRBITA por Qwen 3.8 orquestrando Flash",
+    "model": "Qwen 3.8 · subagentes DeepSeek V4 Flash",
+    "score": 90,
+    "accent": "#f5c088",
+    "builder": "vite",
+    "outDir": "dist",
+    "enabled": true,
+    "stack": "vanilla TS · Vite",
+    "date": "2026-07-31",
+    "design": 17
+  },
+  {
+    "slug": "qwen-grok",
+    "dir": "apps/qwen-grok",
+    "source": "qwen-grok",
+    "title": "ÓRBITA por Grok no Qwen Code",
+    "model": "Grok · Qwen Code (OpenCode)",
+    "score": 82,
+    "accent": "#e8a05c",
+    "builder": "vite",
+    "outDir": "dist",
+    "enabled": true,
+    "stack": "React TS · Vite",
+    "date": "2026-07-31",
+    "design": 15
+  },
+  {
     "slug": "qwen-flash",
     "dir": "apps/qwen-flash",
     "source": "qwen-flash",

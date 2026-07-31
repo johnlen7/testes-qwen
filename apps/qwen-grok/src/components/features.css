@@ -1,0 +1,102 @@
+.features__grid {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: 1fr;
+}
+
+.features__card {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity var(--dur-slow) var(--ease-spring),
+    transform var(--dur-slow) var(--ease-spring);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+.features__grid.is-in .features__card {
+  opacity: 1;
+  transform: none;
+}
+
+.features__card-inner {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  height: 100%;
+  padding: var(--s-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  transform: perspective(800px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+  transform-style: preserve-3d;
+}
+
+.features__card:hover .features__card-inner,
+.features__card:focus-within .features__card-inner {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent),
+    0 20px 40px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.features__icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--fg);
+  margin-bottom: var(--s-4);
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.features__card:hover .features__icon {
+  transform: translateZ(12px) scale(1.06);
+}
+
+.features__card h3 {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--s-2);
+}
+
+.features__card p {
+  color: var(--fg-muted);
+  font-size: var(--fs-sm);
+  max-width: 36ch;
+}
+
+@media (min-width: 640px) {
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Pointer tilt via CSS only on fine pointers — JS-free approach with :hover gradient */
+@media (hover: hover) and (pointer: fine) {
+  .features__card-inner:hover {
+    --tilt-x: -4deg;
+    --tilt-y: 5deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .features__card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .features__card-inner {
+    transform: none !important;
+  }
+}

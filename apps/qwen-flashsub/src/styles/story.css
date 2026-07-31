@@ -1,0 +1,180 @@
+/* ============================================================
+   ÓRBITA · Scroll-telling — trilho de 400vh com palco sticky,
+   painéis ativos por progresso e trilho lateral de estágios.
+   ============================================================ */
+
+.story__track {
+  height: 400vh;
+  position: relative;
+}
+
+.story__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-7);
+  padding: var(--sp-6);
+}
+
+/* — visual do fone — */
+
+.story__visual {
+  position: relative;
+  width: 60%;
+  max-width: 560px;
+  flex-shrink: 0;
+}
+
+.story__headphone {
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+/* — painéis narrativos (empilhados na mesma célula do grid) — */
+
+.story__panels {
+  position: relative;
+  display: grid;
+  align-items: start;
+  width: 100%;
+  max-width: 520px;
+}
+
+.story__panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity var(--dur-3) var(--ease-out),
+    transform var(--dur-3) var(--ease-out);
+}
+
+.story__panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story__num {
+  display: block;
+  margin-bottom: var(--sp-2);
+}
+
+.story__panel h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin-bottom: var(--sp-3);
+}
+
+.story__panel p {
+  color: var(--ink-2);
+}
+
+/* linhas de cota técnicas dentro dos painéis */
+.story__panel .mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+}
+
+.story__panel .story__num {
+  color: var(--copper);
+}
+
+/* — trilho lateral de progresso — */
+
+.story__rail {
+  position: absolute;
+  top: 50%;
+  right: var(--sp-6);
+  width: 2px;
+  height: 320px;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.story__rail-line {
+  position: absolute;
+  inset: 0;
+  background: var(--line);
+}
+
+.story__rail-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--copper);
+  transform: scaleY(var(--rail-p, 0));
+  transform-origin: top;
+}
+
+.story__rail-dot {
+  position: absolute;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  transform: translate(-50%, -50%);
+  transition:
+    background-color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out);
+}
+
+.story__rail-dot:nth-child(3) {
+  top: 0%;
+}
+
+.story__rail-dot:nth-child(4) {
+  top: 33.333%;
+}
+
+.story__rail-dot:nth-child(5) {
+  top: 66.666%;
+}
+
+.story__rail-dot:nth-child(6) {
+  top: 100%;
+}
+
+.story__rail-dot.is-active {
+  background: var(--copper);
+  border-color: var(--copper);
+}
+
+/* — responsivo — */
+
+@media (min-width: 768px) {
+  .story__stage {
+    flex-direction: row;
+    gap: var(--sp-8);
+  }
+
+  .story__visual {
+    width: 55%;
+  }
+
+  .story__panels {
+    width: 45%;
+  }
+
+  .story__rail {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story__panel {
+    transition: opacity var(--dur-3) var(--ease-out);
+    transform: none;
+  }
+
+  .story__rail-fill {
+    transition: transform 150ms linear;
+  }
+}

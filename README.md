@@ -1,6 +1,6 @@
 # Vitrine ÓRBITA
 
-Doze implementações do mesmo briefing, uma por modelo. Hub em `/`, cada
+Quinze implementações do mesmo briefing, uma por modelo. Hub em `/`, cada
 implementação em `/p/<slug>/`.
 
 ## Comandos
@@ -54,4 +54,4 @@ https://example-qwen-kimi.rf3asg.easypanel.host/
 
 EasyPanel, App com Source = GitHub, Build = Dockerfile, porta 80.
 Push na `main` dispara rebuild. O build leva de 5 a 12 minutos — são
-doze `npm ci` em sequência dentro do estágio Node.
+quinze `npm ci` em sequência dentro do estágio Node.

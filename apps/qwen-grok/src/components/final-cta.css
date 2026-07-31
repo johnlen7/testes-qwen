@@ -1,0 +1,74 @@
+.final-cta__panel {
+  display: grid;
+  gap: var(--s-7);
+  align-items: center;
+  padding: var(--s-7) var(--s-6);
+  border-radius: calc(var(--radius-lg) + 4px);
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 70% 80% at 15% 50%, var(--accent-soft), transparent 55%),
+    radial-gradient(ellipse 50% 60% at 90% 80%, var(--accent-2-soft), transparent 50%),
+    var(--bg-elevated);
+  box-shadow: var(--shadow);
+  overflow: clip;
+}
+
+.final-cta__visual {
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+}
+
+.final-cta__title {
+  font-size: var(--fs-3xl);
+  max-width: 12ch;
+  margin-bottom: var(--s-4);
+}
+
+.final-cta__lead {
+  color: var(--fg-muted);
+  max-width: 36ch;
+  margin-bottom: var(--s-5);
+}
+
+.final-cta__lead strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.final-cta__price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--s-5);
+  font-variant-numeric: tabular-nums;
+}
+
+.final-cta__thanks {
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--radius-md);
+  background: var(--accent-2-soft);
+  border: 1px solid color-mix(in srgb, var(--accent-2) 35%, transparent);
+  color: var(--fg);
+  max-width: 36ch;
+  animation: thanks-in var(--dur-base) var(--ease-spring);
+}
+
+@keyframes thanks-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .final-cta__panel {
+    grid-template-columns: 0.9fr 1.1fr;
+    padding: var(--s-8) var(--s-8);
+  }
+}

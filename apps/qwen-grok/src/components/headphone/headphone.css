@@ -1,0 +1,109 @@
+.hp {
+  --px: 0px;
+  --py: 0px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  transform: translate3d(var(--px), var(--py), 0);
+  will-change: transform;
+}
+
+.hp__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transition: filter var(--dur-base) var(--ease-out);
+}
+
+.hp--sm {
+  max-width: 140px;
+}
+.hp--md {
+  max-width: 280px;
+}
+.hp--lg {
+  max-width: 380px;
+}
+.hp--hero {
+  max-width: min(420px, 78vw);
+}
+
+/* Product metal transitions */
+.hp__svg stop,
+.hp__svg [fill],
+.hp__svg [stroke] {
+  transition:
+    fill var(--dur-base) var(--ease-out),
+    stroke var(--dur-base) var(--ease-out),
+    stop-color var(--dur-base) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+}
+
+.hp__band,
+.hp__cup,
+.hp__anc {
+  will-change: transform, opacity;
+}
+
+.hp__anc-spin {
+  transform-origin: 160px 200px;
+  animation: anc-spin 18s linear infinite;
+}
+
+.hp__anc-spin--rev {
+  animation-direction: reverse;
+  animation-duration: 28s;
+}
+
+@keyframes anc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ambient orbits around product */
+.hp-orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--hp-accent-ring) 45%, transparent);
+  pointer-events: none;
+  animation: orbit-spin linear infinite;
+}
+
+.hp-orbit--a {
+  width: 108%;
+  aspect-ratio: 1;
+  animation-duration: 22s;
+  opacity: 0.45;
+}
+
+.hp-orbit--b {
+  width: 124%;
+  aspect-ratio: 1.15;
+  animation-duration: 34s;
+  animation-direction: reverse;
+  opacity: 0.28;
+  border-style: dashed;
+}
+
+.hp-orbit--c {
+  width: 90%;
+  aspect-ratio: 0.85;
+  animation-duration: 16s;
+  opacity: 0.2;
+  border-color: color-mix(in srgb, var(--accent-2) 50%, transparent);
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-orbit,
+  .hp__anc-spin {
+    animation: none !important;
+  }
+}
